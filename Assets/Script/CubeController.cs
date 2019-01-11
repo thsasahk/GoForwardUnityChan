@@ -12,10 +12,10 @@ public class CubeController : MonoBehaviour
 
     Rigidbody2D rigid2D;
 
-    private AudioSource SE;
+    private AudioSource[] SE;
     void Start()
     {
-        this.SE=GetComponent<AudioSource>();
+        this.SE=GetComponents<AudioSource>();
         this.rigid2D=GetComponent<Rigidbody2D>();
     }
 
@@ -34,7 +34,7 @@ public class CubeController : MonoBehaviour
     {
         if(other.gameObject.tag=="Stage"||other.gameObject.tag=="Block")
         {
-            this.SE.Play();
+            this.SE[0].Play();
         }
     }
 }

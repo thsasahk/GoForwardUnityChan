@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnityChanController : MonoBehaviour
 {
@@ -9,6 +10,9 @@ public class UnityChanController : MonoBehaviour
 
     //ユニティちゃんを移動させるコンポーネントを入れる
     Rigidbody2D rigid2D;
+
+    //
+    public AudioSource[] audio;
 
     //地面の位置
     private float groundLevel=-3.0f;
@@ -22,12 +26,16 @@ public class UnityChanController : MonoBehaviour
     //ゲームオーバーになる位置
     private float deadLine=-9;
 
+    //球
+    public GameObject bomb;
     void Start()
     {
         //アニメーターのコンポーネントを取得
         this.animator=GetComponent<Animator>();
         //Rigidbody2Dのコンポーネントを取得
         this.rigid2D=GetComponent<Rigidbody2D>();
+        //
+        this.audio=GetComponents<AudioSource>();
     }
 
     // Update is called once per frame
@@ -41,7 +49,7 @@ public class UnityChanController : MonoBehaviour
         this.animator.SetBool("isGround",isGround);
 
         //ジャンプ状態のときはボリュームを0にする
-        GetComponent<AudioSource>().volume=(isGround)?1:0;
+        this.audio[0].volume=(isGround)?1:0;
 
         //着地状態でクリックされた場合
         if(isGround&&Input.GetMouseButtonDown(0))
@@ -56,6 +64,12 @@ public class UnityChanController : MonoBehaviour
             {
                 this.rigid2D.velocity*=dump;
             }
+        }
+
+        //発射する
+        if(Input.GetMouseButtonDown(1))
+        {
+            Instantiate(bomb,new Vector2(transform.position.x+1.0f,transform.position.y-0.3f),Quaternion.identity);
         }
 
         //デッドラインを超えた場合ゲームオーバーにする

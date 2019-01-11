@@ -707,6 +707,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bed104d3170442448d70bee9f52de10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audio: []
+  bomb: {fileID: 3496292481898863473, guid: bee9842bedfeed34088278f25492f3ed, type: 3}
 --- !u!82 &796627964
 AudioSource:
   m_ObjectHideFlags: 0
@@ -998,8 +1000,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -150, y: -35}
-  m_SizeDelta: {x: 300, y: 65}
+  m_AnchoredPosition: {x: -170, y: -35}
+  m_SizeDelta: {x: 328.5, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1066267671
 MonoBehaviour:
