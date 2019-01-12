@@ -12,11 +12,22 @@ public class CubeController : MonoBehaviour
 
     Rigidbody2D rigid2D;
 
-    private AudioSource[] SE;
+    private AudioSource SE;
+    private AudioSource destroySE;
+    private GameObject cubeGenerator;
+    private GameObject canvas;
+    private UIController uiController;
+    public GameObject particlePrefab;
     void Start()
     {
-        this.SE=GetComponents<AudioSource>();
+        this.SE=GetComponent<AudioSource>();
         this.rigid2D=GetComponent<Rigidbody2D>();
+        //破棄時のSEを鳴らすために、キューブジェネレイターからオーディオソースを取得
+        this.cubeGenerator=GameObject.Find("CubeGenerator");
+        this.destroySE=this.cubeGenerator.GetComponent<AudioSource>();
+        //isGameOverの獲得
+        this.canvas=GameObject.Find("Canvas");
+        this.uiController=this.canvas.GetComponent<UIController>();
     }
 
     void Update()
@@ -34,7 +45,17 @@ public class CubeController : MonoBehaviour
     {
         if(other.gameObject.tag=="Stage"||other.gameObject.tag=="Block")
         {
-            this.SE[0].Play();
+            this.SE.Play();
+        }        
+    }
+
+    void OnDestroy()
+    {
+        //スクロールによる破棄やシーンのロードではSEは鳴らない
+        if(transform.position.x>deadLine&&this.uiController.isGameOver==false)
+        {
+            this.destroySE.Play();
+            Instantiate(this.particlePrefab,transform.position,Quaternion.identity);
         }
     }
 }

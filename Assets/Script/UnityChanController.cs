@@ -12,7 +12,7 @@ public class UnityChanController : MonoBehaviour
     Rigidbody2D rigid2D;
 
     //
-    public AudioSource[] audio;
+    public AudioSource[] unitySE;
 
     //地面の位置
     private float groundLevel=-3.0f;
@@ -28,6 +28,15 @@ public class UnityChanController : MonoBehaviour
 
     //球
     public GameObject bomb;
+    
+    //球のチャージ時間
+    public float chargeTime=0;
+
+    //チャージの完了時間
+    public float maxCharge;
+
+    //スライダーを用意
+    public Slider chargeSlider;
     void Start()
     {
         //アニメーターのコンポーネントを取得
@@ -35,7 +44,7 @@ public class UnityChanController : MonoBehaviour
         //Rigidbody2Dのコンポーネントを取得
         this.rigid2D=GetComponent<Rigidbody2D>();
         //
-        this.audio=GetComponents<AudioSource>();
+        this.unitySE=GetComponents<AudioSource>();
     }
 
     // Update is called once per frame
@@ -49,7 +58,7 @@ public class UnityChanController : MonoBehaviour
         this.animator.SetBool("isGround",isGround);
 
         //ジャンプ状態のときはボリュームを0にする
-        this.audio[0].volume=(isGround)?1:0;
+        this.unitySE[2].volume=(isGround)?1:0;
 
         //着地状態でクリックされた場合
         if(isGround&&Input.GetMouseButtonDown(0))
@@ -66,11 +75,28 @@ public class UnityChanController : MonoBehaviour
             }
         }
 
-        //発射する
-        if(Input.GetMouseButtonDown(1))
+        //チャージ音を再生する
+        if(Input.GetMouseButtonDown(1))this.unitySE[1].Play();
+        //チャージする
+        if(Input.GetMouseButton(1))
         {
-            Instantiate(bomb,new Vector2(transform.position.x+1.0f,transform.position.y-0.3f),Quaternion.identity);
+            this.chargeTime+=Time.deltaTime;
+            if(chargeTime>=maxCharge)this.chargeTime=maxCharge;
         }
+        //発射
+        if(Input.GetMouseButtonUp(1))
+        {
+            this.unitySE[1].Stop();
+            if(chargeTime>=maxCharge)
+            {
+                this.unitySE[0].Play();
+                Instantiate(bomb,new Vector2(transform.position.x+1.0f,transform.position.y-0.3f),Quaternion.identity);
+            }
+            this.chargeTime=0.0f;
+        }
+        //スライダーの値を変化させる
+        this.chargeSlider.value=this.chargeTime;
+
 
         //デッドラインを超えた場合ゲームオーバーにする
         if(transform.position.x<deadLine)
