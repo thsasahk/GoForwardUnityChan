@@ -8,6 +8,7 @@ TagManager:
   - Stage
   - Block
   - Bomb
+  - HBlock
   layers:
   - Default
   - TransparentFX

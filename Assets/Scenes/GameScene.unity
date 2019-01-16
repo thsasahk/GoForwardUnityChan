@@ -1229,6 +1229,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cubePrefab: {fileID: 4955316660020057446, guid: 230305235170989429d824ba17bd7ee5,
     type: 3}
+  hardPrefab: {fileID: 5529118170657180753, guid: d8987cb10a80a5f4fa77b126557219c8,
+    type: 3}
+  hardPercentage: 5
 --- !u!4 &958883083
 Transform:
   m_ObjectHideFlags: 0

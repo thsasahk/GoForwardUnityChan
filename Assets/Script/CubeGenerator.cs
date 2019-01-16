@@ -6,6 +6,8 @@ public class CubeGenerator : MonoBehaviour
 {
     //キューブのPrefab
     public GameObject cubePrefab;
+    //ハードキューブのプレファブ
+    public GameObject hardPrefab;
 
     //時間計測用の変数
     private  float delta = 0;
@@ -30,6 +32,9 @@ public class CubeGenerator : MonoBehaviour
 
     //キューブの生成個数の上限
     private int maxBlockNum = 4;
+
+    //ハードキューブプレファブが生成される確率
+    public int hardPercentage;
     
     void Start()
     {
@@ -51,9 +56,19 @@ public class CubeGenerator : MonoBehaviour
             //指定したキューブ数だけ生成する
             for(int i=0;i<n;i++)
             {
-                //キューブの生成
-                GameObject go=Instantiate(cubePrefab)as GameObject;
-                go.transform.position=new Vector2(this.genPosX,this.offsetY+i*spaceY);
+                //生成されるキューブの種類をランダムに決定
+                int m=Random.Range(1,hardPercentage);
+                if(m==hardPercentage-1)
+                {
+                    //ハードキューブの生成
+                    GameObject go=Instantiate(this.hardPrefab)as GameObject;
+                    go.transform.position=new Vector2(this.genPosX,this.offsetY+i*spaceY);
+                }else
+                {
+                    //キューブの生成
+                    GameObject go=Instantiate(cubePrefab)as GameObject;
+                    go.transform.position=new Vector2(this.genPosX,this.offsetY+i*spaceY);
+                }
             }
             //次のキューブまでの生成時間を決める
             this.span=this.offsetX+this.spaceX*n;

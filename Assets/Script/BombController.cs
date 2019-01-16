@@ -23,5 +23,9 @@ public class BombController : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
+        if(other.gameObject.tag=="HBlock")
+        {
+            Destroy(gameObject);
+        }
     }
 }
