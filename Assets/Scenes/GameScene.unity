@@ -490,7 +490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5000000, guid: 1355a58c3bd9c40679bea54b926e0179, type: 3}
       propertyPath: m_Mass
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11400000, guid: 1355a58c3bd9c40679bea54b926e0179, type: 3}
@@ -713,8 +713,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitySE: []
   bomb: {fileID: 3496292481898863473, guid: bee9842bedfeed34088278f25492f3ed, type: 3}
+  bombLv2: {fileID: 2525198722434481331, guid: 49ba453e4862c1d419c4584b562aeb7c, type: 3}
   chargeTime: 0
   maxCharge: 2
+  chargeLV: 0
   chargeSlider: {fileID: 828478275}
 --- !u!82 &796627959
 AudioSource:

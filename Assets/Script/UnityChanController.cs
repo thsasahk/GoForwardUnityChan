@@ -28,12 +28,17 @@ public class UnityChanController : MonoBehaviour
 
     //球
     public GameObject bomb;
+    public GameObject bombLv2;
+    private BombController bombController;
     
     //球のチャージ時間
     public float chargeTime=0;
 
     //チャージの完了時間
     public float maxCharge;
+
+    //チャージのレベルを設定
+    public int chargeLV=0;
 
     //スライダーを用意
     public Slider chargeSlider;
@@ -87,18 +92,48 @@ public class UnityChanController : MonoBehaviour
         if(Input.GetMouseButton(1))
         {
             this.chargeTime+=Time.deltaTime;
-            if(chargeTime>=maxCharge)this.chargeTime=maxCharge;
+            if(chargeTime>=maxCharge)
+            {
+                switch(this.chargeLV)
+                {
+                    case 0:
+                    this.chargeLV=1;
+                    this.chargeTime=0;
+                    break;
+
+                    case 1:
+                    this.chargeLV=2;
+                    this.chargeTime=maxCharge;
+                    break;
+
+                    case 2:
+                    this.chargeTime=maxCharge;
+                    break;
+                }
+            }
         }
         //発射
         if(Input.GetMouseButtonUp(1))
         {
             this.unitySE[1].Stop();
-            if(chargeTime>=maxCharge)
+            if(chargeLV==1)
             {
+                //bombのBombControllerを取得
+                this.bombController=this.bomb.GetComponent<BombController>();
+                this.bombController.Lv=1;
                 this.unitySE[0].Play();
                 Instantiate(bomb,new Vector2(transform.position.x+1.0f,transform.position.y-0.3f),Quaternion.identity);
+            }else if(chargeLV==2)
+            {
+                //bombLv2のBombControllerを取得
+                this.bombController=this.bombLv2.GetComponent<BombController>();
+                this.bombController.Lv=2;
+                GameObject BombLv2=Instantiate(this.bombLv2)as GameObject;
+                BombLv2.transform.position=new Vector2(transform.position.x+1.0f,transform.position.y-0.3f);
+                BombLv2.transform.Rotate(0.0f,0.0f,0.0f);
             }
             this.chargeTime=0.0f;
+            this.chargeLV=0;
         }
         //スライダーの値を変化させる
         this.chargeSlider.value=this.chargeTime;
