@@ -51,7 +51,7 @@ public class UIController : MonoBehaviour
 
     public void GameOver()
     {
-        this.gameOverText.GetComponent<Text>().text="GameOver";
+        this.gameOverText.GetComponent<Text>().text="Game Over";
         this.isGameOver=true;
     }
 }

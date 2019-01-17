@@ -37,6 +37,7 @@ public class UnityChanController : MonoBehaviour
 
     //スライダーを用意
     public Slider chargeSlider;
+
     void Start()
     {
         //アニメーターのコンポーネントを取得
@@ -50,6 +51,11 @@ public class UnityChanController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //ユニティちゃんが画面右に行くのを禁止
+        if(this.gameObject.transform.position.x>-2.9f)
+        {
+            this.gameObject.transform.position=new Vector2(-2.9f,this.gameObject.transform.position.y);
+        }
         //走るアニメーションを再生するために、Animatorのパラメータを調節する
         this.animator.SetFloat("Horizontal", 1);
 

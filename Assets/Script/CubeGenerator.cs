@@ -8,6 +8,8 @@ public class CubeGenerator : MonoBehaviour
     public GameObject cubePrefab;
     //ハードキューブのプレファブ
     public GameObject hardPrefab;
+    //ジャンプボールのプレファブ
+    public GameObject jumpBall;
 
     //時間計測用の変数
     private  float delta = 0;
@@ -35,6 +37,9 @@ public class CubeGenerator : MonoBehaviour
 
     //ハードキューブプレファブが生成される確率
     public int hardPercentage;
+
+    //一度に複数のジャンプボールを作らないように管理する
+    private bool ballSwitch=false;
     
     void Start()
     {
@@ -63,6 +68,12 @@ public class CubeGenerator : MonoBehaviour
                     //ハードキューブの生成
                     GameObject go=Instantiate(this.hardPrefab)as GameObject;
                     go.transform.position=new Vector2(this.genPosX,this.offsetY+i*spaceY);
+                }else if(m==hardPercentage-2)
+                {
+                    if(this.ballSwitch)return;
+                    GameObject go=Instantiate(this.jumpBall)as GameObject;
+                    go.transform.position=new Vector2(this.genPosX-3,this.offsetY);
+                    this.ballSwitch=true;
                 }else
                 {
                     //キューブの生成
@@ -72,6 +83,7 @@ public class CubeGenerator : MonoBehaviour
             }
             //次のキューブまでの生成時間を決める
             this.span=this.offsetX+this.spaceX*n;
+            this.ballSwitch=false;
         }
     }
 }

@@ -18,7 +18,7 @@ public class BombController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag=="Block")
+        if(other.gameObject.tag=="Block"||other.gameObject.tag=="JumpBall")
         {
             Destroy(other.gameObject);
             Destroy(gameObject);
