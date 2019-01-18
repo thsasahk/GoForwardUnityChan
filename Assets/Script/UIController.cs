@@ -21,6 +21,15 @@ public class UIController : MonoBehaviour
     //ゲームオーバーの判定
     public bool isGameOver=false;
 
+    //スコアの記録、表示
+    public GameObject scoreText;
+    public int score=0;
+    //ハイスコア
+    public static int highScore;
+
+    //cubeScoreの獲得
+    public int cubeScore=0;
+
     void Start()
     {
         //シンビューからオブジェクトを検索する
@@ -30,6 +39,11 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
+        //scoreを計算
+        this.score=this.cubeScore+Mathf.FloorToInt(this.len);
+        //scoreを表示
+        this.scoreText.GetComponent<Text>().text="Score:"+this.score.ToString()+"pts";
+
         if(this.isGameOver==false)
         {
             //走った距離を計測する
@@ -53,5 +67,7 @@ public class UIController : MonoBehaviour
     {
         this.gameOverText.GetComponent<Text>().text="Game Over";
         this.isGameOver=true;
+        //ハイスコアの更新
+        if(highScore<this.score)highScore=this.score;
     }
 }
