@@ -102,11 +102,8 @@ public class UnityChanController : MonoBehaviour
                     break;
 
                     case 1:
-                    this.chargeLV=2;
-                    this.chargeTime=maxCharge;
-                    break;
-
                     case 2:
+                    this.chargeLV=2;
                     this.chargeTime=maxCharge;
                     break;
                 }
@@ -147,6 +144,31 @@ public class UnityChanController : MonoBehaviour
 
             //ユニティちゃんを破棄する
             Destroy(gameObject);
+        }
+
+        //ChargeSliderの色を変化させる
+        switch(this.chargeLV)
+        {
+            case 0:
+            ChangeSliderColor(new Color32(95,255,187,255),new Color32(0,0,0,255));
+            break;
+
+            case 1:
+            case 2:
+            ChangeSliderColor(new Color32(59,255,72,255),new Color32(95,255,187,255));
+            break;
+        }
+    }
+
+    public void ChangeSliderColor(Color fillColor, Color backgroundColor)
+    {
+        Image[] images = this.chargeSlider.GetComponentsInChildren<Image>();
+        foreach (var image in images)
+        {
+            if (image.name == "Background")
+                image.color = backgroundColor;
+            else if (image.name == "Fill")
+                image.color = fillColor;
         }
     }
 }
