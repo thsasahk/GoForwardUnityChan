@@ -69,7 +69,7 @@ public class UnityChanController : MonoBehaviour
         this.animator.SetBool("isGround",isGround);
 
         //ジャンプ状態のときはボリュームを0にする
-        this.unitySE[2].volume=(isGround)?1:0;
+        this.unitySE[1].volume=(isGround)?1:0;
 
         //着地状態でクリックされた場合
         if(isGround&&Input.GetMouseButtonDown(0))
@@ -112,13 +112,12 @@ public class UnityChanController : MonoBehaviour
         //発射
         if(Input.GetMouseButtonUp(1))
         {
-            this.unitySE[1].Stop();
+            this.unitySE[0].Stop();
             if(chargeLV==1)
             {
                 //bombのBombControllerを取得
                 this.bombController=this.bomb.GetComponent<BombController>();
                 this.bombController.Lv=1;
-                this.unitySE[0].Play();
                 Instantiate(bomb,new Vector2(transform.position.x+1.0f,transform.position.y-0.3f),Quaternion.identity);
             }else if(chargeLV==2)
             {
