@@ -87,7 +87,7 @@ public class UnityChanController : MonoBehaviour
         }
 
         //チャージ音を再生する
-        if(Input.GetMouseButtonDown(1))this.unitySE[1].Play();
+        if(Input.GetMouseButtonDown(1))this.unitySE[0].Play();
         //チャージする
         if(Input.GetMouseButton(1))
         {
