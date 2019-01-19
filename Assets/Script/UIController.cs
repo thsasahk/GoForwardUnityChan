@@ -25,7 +25,8 @@ public class UIController : MonoBehaviour
     public GameObject scoreText;
     public int score=0;
     //ハイスコア
-    public static int highScore;
+    public string highScore_Key;
+    public int highScore=0;
 
     //cubeScoreの獲得
     public int cubeScore=0;
@@ -35,6 +36,9 @@ public class UIController : MonoBehaviour
         //シンビューからオブジェクトを検索する
         this.gameOverText=GameObject.Find("GameOver");
         this.runLengthText=GameObject.Find("RunLength");
+
+        PlayerPrefs.GetInt("highScore_Key",0);
+        Debug.Log(this.highScore);
     }
 
     void Update()
@@ -68,6 +72,11 @@ public class UIController : MonoBehaviour
         this.gameOverText.GetComponent<Text>().text="Game Over";
         this.isGameOver=true;
         //ハイスコアの更新
-        if(highScore<this.score)highScore=this.score;
+        if(this.highScore<this.score)
+        {
+            this.highScore=this.score;
+            PlayerPrefs.SetInt("highScore_Key",this.highScore);
+            PlayerPrefs.Save();
+        }
     }
 }
