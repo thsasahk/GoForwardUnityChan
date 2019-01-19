@@ -26,7 +26,7 @@ public class UIController : MonoBehaviour
     public int score=0;
     //ハイスコア
     public string highScore_Key;
-    public int highScore=0;
+    public int highScore;
 
     //cubeScoreの獲得
     public int cubeScore=0;
@@ -37,7 +37,7 @@ public class UIController : MonoBehaviour
         this.gameOverText=GameObject.Find("GameOver");
         this.runLengthText=GameObject.Find("RunLength");
 
-        PlayerPrefs.GetInt("highScore_Key",0);
+        this.highScore=PlayerPrefs.GetInt("highScore_Key",0);
         Debug.Log(this.highScore);
     }
 
@@ -65,6 +65,9 @@ public class UIController : MonoBehaviour
                 SceneManager.LoadScene("GameScene");
             }
         }
+
+        //ハイスコアのリセット
+        if(Input.GetKey(KeyCode.Space)&&Input.GetKey(KeyCode.R))PlayerPrefs.DeleteKey("highScore_Key");
     }
 
     public void GameOver()
