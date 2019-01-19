@@ -7,19 +7,14 @@ public class JumpBallController : MonoBehaviour
     public float speed;
     //消滅位置
     private float deadLine=-10;
-    private GameObject cubeGenerator;
     private GameObject canvas;
     private UIController uiController;
     private AudioSource jSE;
-    private AudioSource jdestroySE;
     public GameObject particlePrefab;
 
     void Start()
     {
         this.jSE=GetComponent<AudioSource>();
-        //破棄時のSEを鳴らすために、キューブジェネレイターからオーディオソースを取得
-        this.cubeGenerator=GameObject.Find("CubeGenerator");
-        this.jdestroySE=this.cubeGenerator.GetComponent<AudioSource>();
         //isGameOverの獲得
         this.canvas=GameObject.Find("Canvas");
         this.uiController=this.canvas.GetComponent<UIController>();
@@ -40,7 +35,6 @@ public class JumpBallController : MonoBehaviour
         //スクロールによる破棄やシーンのロードではSEは鳴らない
         if(transform.position.x>deadLine&&this.uiController.isGameOver==false)
         {
-            this.jdestroySE.Play();
             Instantiate(this.particlePrefab,transform.position,Quaternion.identity);
         }
     }
