@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombSpeed: 0.15
-  Lv: 0
+  Lv: 2
 --- !u!70 &6441536228170498779
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

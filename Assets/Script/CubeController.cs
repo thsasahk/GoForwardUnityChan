@@ -20,6 +20,9 @@ public class CubeController : MonoBehaviour
     private UIController uiController;
     public GameObject particlePrefab;
 
+    private int hitCount=0;
+    public int destroyCount;
+
     void Start()
     {
         this.SE=GetComponents<AudioSource>();
@@ -38,6 +41,9 @@ public class CubeController : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        //hitCountがdestroyCountになったらキューブを破壊
+        if(this.hitCount==this.destroyCount)Destroy(gameObject);
     }
 
     void OnCollisionEnter2D(Collision2D other)
@@ -62,9 +68,28 @@ public class CubeController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag=="Bomb"&&this.gameObject.tag=="HBlock")
+        switch(gameObject.tag)
         {
+            case "HBlock":
             this.SE[1].Play();
+            break;
+
+            case "Block":
+            switch(other.gameObject.GetComponent<BombController>().Lv)
+            {
+                case 0:
+                this.hitCount++;
+                break;
+
+                case 1:
+                this.hitCount=destroyCount;
+                break;
+
+                case 2:
+                this.hitCount=this.destroyCount;
+                break;
+            }
+            break;
         }
     }
 }

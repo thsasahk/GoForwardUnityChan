@@ -12,27 +12,25 @@ public class BombController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(this.Lv==1)
+        switch(this.Lv)
         {
+            case 0:
             transform.Translate(this.bombSpeed,0,0);
-        }else if(this.Lv==2)
-        {
+            break;
+
+            case 1:
+            case 2:
             transform.Translate(0,this.bombSpeed,0);
+            break;
+
         }
+
         if(transform.position.x>=10.0f)Destroy(gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag=="Block"||other.gameObject.tag=="JumpBall")
-        {
-            Destroy(other.gameObject);
-            if(this.Lv==1)Destroy(gameObject);
-        }
-        if(other.gameObject.tag=="HBlock")
-        {
-            if(this.Lv==1)Destroy(gameObject);
-        }
+        if((this.Lv==0||this.Lv==1)&&other.gameObject.tag!="Player"&&other.gameObject.tag!="Bomb")Destroy(gameObject);
     }
 
     void OnDestroy()

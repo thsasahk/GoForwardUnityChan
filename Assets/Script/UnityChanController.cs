@@ -27,7 +27,8 @@ public class UnityChanController : MonoBehaviour
     private float deadLine=-9;
 
     //球
-    public GameObject bomb;
+    public GameObject bombLv0;
+    public GameObject bombLv1;
     public GameObject bombLv2;
     private BombController bombController;
     
@@ -109,24 +110,28 @@ public class UnityChanController : MonoBehaviour
                 }
             }
         }
+
         //発射
         if(Input.GetMouseButtonUp(1))
         {
             this.unitySE[0].Stop();
-            if(chargeLV==1)
+            switch(this.chargeLV)
             {
-                //bombのBombControllerを取得
-                this.bombController=this.bomb.GetComponent<BombController>();
-                this.bombController.Lv=1;
-                Instantiate(bomb,new Vector2(transform.position.x+1.0f,transform.position.y-0.3f),Quaternion.identity);
-            }else if(chargeLV==2)
-            {
-                //bombLv2のBombControllerを取得
-                this.bombController=this.bombLv2.GetComponent<BombController>();
-                this.bombController.Lv=2;
+                case 0:
+                Instantiate(bombLv0,new Vector2(transform.position.x+1.0f,transform.position.y-0.3f),Quaternion.identity);
+                break;
+
+                case 1:
+                GameObject BombLv1=Instantiate(this.bombLv1)as GameObject;
+                BombLv1.transform.position=new Vector2(transform.position.x+1.0f,transform.position.y-0.3f);
+                BombLv1.transform.Rotate(0.0f,0.0f,0.0f);
+                break;
+
+                case 2:
                 GameObject BombLv2=Instantiate(this.bombLv2)as GameObject;
                 BombLv2.transform.position=new Vector2(transform.position.x+1.0f,transform.position.y-0.3f);
                 BombLv2.transform.Rotate(0.0f,0.0f,0.0f);
+                break;
             }
             this.chargeTime=0.0f;
             this.chargeLV=0;

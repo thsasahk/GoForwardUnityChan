@@ -43,4 +43,9 @@ public class JumpBallController : MonoBehaviour
     {
         if(other.gameObject.tag=="Player")this.jSE.Play();
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag=="Bomb")Destroy(gameObject);
+    }
 }
