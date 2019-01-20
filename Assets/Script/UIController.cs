@@ -38,7 +38,6 @@ public class UIController : MonoBehaviour
         this.runLengthText=GameObject.Find("RunLength");
 
         this.highScore=PlayerPrefs.GetInt("highScore_Key",0);
-        Debug.Log(this.highScore);
     }
 
     void Update()
@@ -62,7 +61,7 @@ public class UIController : MonoBehaviour
         {
             if(Input.GetMouseButtonDown(0))
             {
-                SceneManager.LoadScene("GameScene");
+                SceneManager.LoadScene("StartScene");
             }
         }
 
