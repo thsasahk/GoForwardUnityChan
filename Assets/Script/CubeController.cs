@@ -10,9 +10,6 @@ public class CubeController : MonoBehaviour
     //消滅位置
     private float deadLine=-10;
 
-    //キューブを破壊した際のスコアを記録
-    public int cubeScore;
-
     Rigidbody2D rigid2D;
 
     private AudioSource[] SE;

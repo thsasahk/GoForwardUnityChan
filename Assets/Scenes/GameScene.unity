@@ -562,6 +562,20 @@ PrefabInstance:
       propertyPath: chargeSlider
       value: 
       objectReference: {fileID: 828478275}
+    - target: {fileID: 796627958, guid: adfc4788e58bc5542883ec1b132b3c24, type: 3}
+      propertyPath: bombLv0
+      value: 
+      objectReference: {fileID: 3496292481898863473, guid: bee9842bedfeed34088278f25492f3ed,
+        type: 3}
+    - target: {fileID: 796627958, guid: adfc4788e58bc5542883ec1b132b3c24, type: 3}
+      propertyPath: bombLv1
+      value: 
+      objectReference: {fileID: 793018430437199667, guid: f2cae45b1d744e647ac109c437cb8178,
+        type: 3}
+    - target: {fileID: 796627958, guid: adfc4788e58bc5542883ec1b132b3c24, type: 3}
+      propertyPath: maxCharge
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: adfc4788e58bc5542883ec1b132b3c24, type: 3}
 --- !u!1 &729961235
@@ -841,7 +855,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 2
   m_MinValue: 0
-  m_MaxValue: 2
+  m_MaxValue: 1
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
