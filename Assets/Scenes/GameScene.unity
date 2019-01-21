@@ -1053,7 +1053,7 @@ MonoBehaviour:
     type: 3}
   jumpBall: {fileID: 6351160333045077042, guid: 7e416e643a7ab8548bbfdfa365d46c50,
     type: 3}
-  hardPercentage: 7
+  hardPercentage: 11
 --- !u!4 &958883083
 Transform:
   m_ObjectHideFlags: 0
