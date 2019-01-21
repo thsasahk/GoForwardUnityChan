@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1540813926309247753}
   m_Layer: 0
   m_Name: CoinPrefab
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +91,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1540813926309247748}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 995684c525dd35040b4769c466a16869, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -139,5 +139,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e729402b60ba04e980946d3b834c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
   speed: -0.3

@@ -5,13 +5,17 @@ using UnityEngine;
 public class Coin_Controller : MonoBehaviour
 {
     //coinScoreの獲得
-    public GameObject canvas;
+    private GameObject canvas;
     private UIController uiController;
 
     //Coinの移動速度
     public float speed;
+
+    private int deadLine=-10;
+
     void Start()
     {
+        this.canvas=GameObject.Find("Canvas");
         this.uiController=this.canvas.GetComponent<UIController>();
     }
 
@@ -20,6 +24,12 @@ public class Coin_Controller : MonoBehaviour
     {
         //Coinを移動させる
         this.transform.Translate(this.speed,0,0);
+
+        //deadLineを超えたら破棄
+        if(transform.position.x<this.deadLine)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)

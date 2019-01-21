@@ -65,6 +65,8 @@ public class CubeController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        if(other.gameObject.tag=="Coin")return;
+        
         switch(gameObject.tag)
         {
             case "HBlock":
