@@ -139,4 +139,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87e729402b60ba04e980946d3b834c7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinSound: {fileID: 7129419450744185624, guid: c3698aca1ba5d9448bb043f1118e5b19,
+    type: 3}
   speed: -0.3

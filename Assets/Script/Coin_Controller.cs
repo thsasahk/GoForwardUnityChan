@@ -8,6 +8,8 @@ public class Coin_Controller : MonoBehaviour
     private GameObject canvas;
     private UIController uiController;
 
+    public GameObject coinSound;
+
     //Coinの移動速度
     public float speed;
 
@@ -36,6 +38,7 @@ public class Coin_Controller : MonoBehaviour
     {
         if(other.gameObject.tag=="Player")
         {
+            Instantiate(this.coinSound,new Vector2(0,0),Quaternion.identity);
             this.uiController.coinScore+=20;
             Destroy(gameObject);
         }        
