@@ -28,8 +28,10 @@ public class UIController : MonoBehaviour
     public string highScore_Key;
     public int highScore;
 
-    //cubeScoreの獲得
+    //CubePrefab破壊時のスコア
     public int cubeScore=0;
+    //CoinPrefab獲得時のスコア
+    public int coinScore=0;
 
     void Start()
     {
@@ -43,7 +45,7 @@ public class UIController : MonoBehaviour
     void Update()
     {
         //scoreを計算
-        this.score=this.cubeScore+Mathf.FloorToInt(this.len);
+        this.score=this.cubeScore+this.coinScore+Mathf.FloorToInt(this.len);
         //scoreを表示
         this.scoreText.GetComponent<Text>().text="Score:"+this.score.ToString()+"pts";
 
