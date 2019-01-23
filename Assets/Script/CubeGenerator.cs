@@ -40,10 +40,12 @@ public class CubeGenerator : MonoBehaviour
 
     //一度に複数のジャンプボールを作らないように管理する
     private bool ballSwitch = false;
+    public GameObject canvas;
+    private UIController uiController;
     
     void Start()
     {
-        
+        this.uiController = this.canvas.GetComponent<UIController>();
     }
 
     // Update is called once per frame
@@ -62,7 +64,7 @@ public class CubeGenerator : MonoBehaviour
             for(int i = 0;i < n;i ++)
             {
                 //生成されるキューブの種類をランダムに決定
-                int m = Random.Range(1,hardPercentage);
+                int m = Random.Range(1,this.hardPercentage);
                 if(m == hardPercentage - 1)
                 {
                     //ハードキューブの生成
@@ -70,7 +72,8 @@ public class CubeGenerator : MonoBehaviour
                     go.transform.position = new Vector2(this.genPosX,this.offsetY+i*spaceY);
                 }else if(m == hardPercentage - 2)
                 {
-                    if(this.ballSwitch)return;
+                    if(this.uiController.len > 100 || this.ballSwitch)
+                        return;
                     GameObject go = Instantiate(this.jumpBall)as GameObject;
                     go.transform.position = new Vector2(this.genPosX-3,this.offsetY);
                     this.ballSwitch = true;

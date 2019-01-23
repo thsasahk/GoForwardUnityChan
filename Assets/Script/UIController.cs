@@ -13,7 +13,7 @@ public class UIController : MonoBehaviour
     private GameObject runLengthText;
 
     //走った距離
-    public float len = 0;
+    public float len = 100;
 
     //走る速度
     public float speed = 0.03f;
