@@ -13,72 +13,74 @@ public class UIController : MonoBehaviour
     private GameObject runLengthText;
 
     //走った距離
-    public float len=0;
+    public float len = 0;
 
     //走る速度
-    public float speed=0.03f;
+    public float speed = 0.03f;
 
     //ゲームオーバーの判定
-    public bool isGameOver=false;
+    public bool isGameOver = false;
 
     //スコアの記録、表示
     public GameObject scoreText;
-    public int score=0;
+    public int score = 0;
     //ハイスコア
     public string highScore_Key;
     public int highScore;
 
     //CubePrefab破壊時のスコア
-    public int cubeScore=0;
+    public int cubeScore = 0;
     //CoinPrefab獲得時のスコア
-    public int coinScore=0;
+    public int coinScore = 0;
 
     void Start()
     {
         //シンビューからオブジェクトを検索する
-        this.gameOverText=GameObject.Find("GameOver");
-        this.runLengthText=GameObject.Find("RunLength");
+        this.gameOverText = GameObject.Find("GameOver");
+        this.runLengthText = GameObject.Find("RunLength");
 
-        this.highScore=PlayerPrefs.GetInt("highScore_Key",0);
+        this.highScore = PlayerPrefs.GetInt("highScore_Key",0);
     }
 
     void Update()
     {
         //scoreを計算
-        this.score=this.cubeScore+this.coinScore+Mathf.FloorToInt(this.len);
+        this.score = this.cubeScore + this.coinScore+Mathf.FloorToInt(this.len);
         //scoreを表示
-        this.scoreText.GetComponent<Text>().text="Score:"+this.score.ToString()+"pts";
+        this.scoreText.GetComponent<Text>().text = "Score:" + this.score.ToString() + "pts";
 
-        if(this.isGameOver==false)
+        if(this.isGameOver == false)
         {
             //走った距離を計測する
-            this.len+=this.speed;
+            this.len += this.speed;
 
             //走った距離を表示する
-            this.runLengthText.GetComponent<Text>().text="Distance: "+len.ToString("F2")+"m";
+            this.runLengthText.GetComponent<Text>().text = "Distance: " + len.ToString("F2") + "m";
         }
 
         //ゲームオーバーになった場合
-        if(isGameOver)
+        if(isGameOver
+        && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
         {
-            if(Input.GetMouseButtonDown(0))
-            {
-                SceneManager.LoadScene("StartScene");
-            }
+            SceneManager.LoadScene("StartScene");
         }
 
         //ハイスコアのリセット
-        if(Input.GetKey(KeyCode.Space)&&Input.GetKey(KeyCode.R))PlayerPrefs.DeleteKey("highScore_Key");
+        if(Input.GetKey(KeyCode.Space)
+        && Input.GetKey(KeyCode.R))
+        {
+            PlayerPrefs.DeleteKey("highScore_Key");
+        }
     }
 
     public void GameOver()
     {
-        this.gameOverText.GetComponent<Text>().text="Game Over";
-        this.isGameOver=true;
+        this.gameOverText.GetComponent<Text>().text = "Game Over";
+        this.isGameOver = true;
         //ハイスコアの更新
-        if(this.highScore<this.score)
+        if(this.highScore < this.score)
         {
-            this.highScore=this.score;
+            this.highScore = this.score;
             PlayerPrefs.SetInt("highScore_Key",this.highScore);
             PlayerPrefs.Save();
         }

@@ -6,35 +6,56 @@ public class BombController : MonoBehaviour
 {
     public float bombSpeed;
     //bombの種類
-    public int Lv=0;
+    public int attack;
+    //接触したオブジェクトのスクリプトの器
+    private CubeController cubeController;
     void Start(){}
 
     // Update is called once per frame
     void Update()
     {
-        switch(this.Lv)
+        switch(this.attack)
         {
-            case 0:
+            case 1:
             transform.Translate(this.bombSpeed,0,0);
             break;
 
-            case 1:
-            case 2:
+            default:
             transform.Translate(0,this.bombSpeed,0);
             break;
 
         }
 
-        if(transform.position.x>=10.0f)Destroy(gameObject);
+        if(transform.position.x >= 10.0f)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if((this.Lv==0||this.Lv==1)&&other.gameObject.tag!="Player"&&other.gameObject.tag!="Bomb")Destroy(gameObject);
-    }
+        switch(other.gameObject.tag)
+        {
+            case "JumpBall":
+            Destroy(other.gameObject);
+            if(attack <= 3)
+            {
+                Destroy(gameObject);
+            }
+            break;
 
-    void OnDestroy()
-    {
-        this.Lv=0;
+            case "Block":
+            case "HBlock":
+            this.cubeController = other.gameObject.GetComponent<CubeController>();
+            this.cubeController.Damage(this.attack);
+            if(attack <= 3)
+            {
+                Destroy(gameObject);
+            }
+            break;
+
+            default:
+            break;
+        }
     }
 }

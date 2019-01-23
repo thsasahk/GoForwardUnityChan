@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3496292481898863482}
   - component: {fileID: 1890798111662098439}
   m_Layer: 0
-  m_Name: BombPrefab
+  m_Name: BombLv0Prefab
   m_TagString: Bomb
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bombSpeed: 0.25
-  Lv: 0
+  attack: 1
 --- !u!82 &1890798111662098439
 AudioSource:
   m_ObjectHideFlags: 0

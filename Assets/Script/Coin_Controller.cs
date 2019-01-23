@@ -13,12 +13,12 @@ public class Coin_Controller : MonoBehaviour
     //Coinの移動速度
     public float speed;
 
-    private int deadLine=-10;
+    public int deadLine = -10;
 
     void Start()
     {
-        this.canvas=GameObject.Find("Canvas");
-        this.uiController=this.canvas.GetComponent<UIController>();
+        this.canvas = GameObject.Find("Canvas");
+        this.uiController = this.canvas.GetComponent<UIController>();
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class Coin_Controller : MonoBehaviour
         this.transform.Translate(this.speed,0,0);
 
         //deadLineを超えたら破棄
-        if(transform.position.x<this.deadLine)
+        if(transform.position.x < this.deadLine)
         {
             Destroy(this.gameObject);
         }
@@ -36,10 +36,10 @@ public class Coin_Controller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.gameObject.tag=="Player")
+        if(other.gameObject.tag == "Player")
         {
             Instantiate(this.coinSound,new Vector2(0,0),Quaternion.identity);
-            this.uiController.coinScore+=20;
+            this.uiController.coinScore += 20;
             Destroy(gameObject);
         }        
     }

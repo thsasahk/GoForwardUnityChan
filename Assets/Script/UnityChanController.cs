@@ -15,16 +15,16 @@ public class UnityChanController : MonoBehaviour
     public AudioSource[] unitySE;
 
     //地面の位置
-    private float groundLevel=-3.0f;
+    private float groundLevel = -3.0f;
 
     //ジャンプ速度の減衰
-    private float dump=0.8f;
+    public float dump = 0.8f;
 
     //ジャンプの速度
-    float jumpVelocity=20;
+    public float jumpVelocity=20;
 
     //ゲームオーバーになる位置
-    private float deadLine=-9;
+    public float deadLine=-9;
 
     //球
     public GameObject bombLv0;
@@ -47,65 +47,67 @@ public class UnityChanController : MonoBehaviour
     void Start()
     {
         //アニメーターのコンポーネントを取得
-        this.animator=GetComponent<Animator>();
+        this.animator = GetComponent<Animator>();
         //Rigidbody2Dのコンポーネントを取得
-        this.rigid2D=GetComponent<Rigidbody2D>();
-        //
-        this.unitySE=GetComponents<AudioSource>();
+        this.rigid2D = GetComponent<Rigidbody2D>();
+        this.unitySE = GetComponents<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //ユニティちゃんが画面右に行くのを禁止
-        if(this.gameObject.transform.position.x>-2.9f)
+        if(this.transform.position.x > -2.9f)
         {
-            this.gameObject.transform.position=new Vector2(-2.9f,this.gameObject.transform.position.y);
+            this.transform.position = new Vector2(-2.9f,this.transform.position.y);
         }
         //走るアニメーションを再生するために、Animatorのパラメータを調節する
         this.animator.SetFloat("Horizontal", 1);
 
         //着地しているかどうかを調べる
-        bool isGround=(this.transform.position.y>this.groundLevel)?false:true;
+        bool isGround = (this.transform.position.y > this.groundLevel)?false:true;
         this.animator.SetBool("isGround",isGround);
 
         //ジャンプ状態のときはボリュームを0にする
-        this.unitySE[1].volume=(isGround)?1:0;
+        this.unitySE[1].volume = (isGround)?1:0;
 
         //着地状態でクリックされた場合
-        if(isGround&&Input.GetMouseButtonDown(0))
+        if(isGround && Input.GetMouseButtonDown(0))
         {
             //上方向への力をかける
-            this.rigid2D.velocity=new Vector2(0,this.jumpVelocity);
+            this.rigid2D.velocity = new Vector2(0,this.jumpVelocity);
         }
         //クリックをやめたら減速する
-        if(Input.GetMouseButton(0)==false)
+        if(Input.GetMouseButton(0) == false)
         {
-            if(this.rigid2D.velocity.y>0)
+            if(this.rigid2D.velocity.y > 0)
             {
-                this.rigid2D.velocity*=dump;
+                this.rigid2D.velocity *= dump;
             }
         }
 
         //チャージ音を再生する
-        if(Input.GetMouseButtonDown(1))this.unitySE[0].Play();
+        if(Input.GetMouseButtonDown(1))
+        {
+            this.unitySE[0].Play();
+        }
         //チャージする
         if(Input.GetMouseButton(1))
         {
-            this.chargeTime+=Time.deltaTime;
-            if(chargeTime>=maxCharge)
+            this.chargeTime += Time.deltaTime;
+            if(chargeTime >= maxCharge)
             {
                 switch(this.chargeLV)
                 {
                     case 0:
-                    this.chargeLV=1;
-                    this.chargeTime=0;
+                    this.chargeLV = 1;
+                    this.chargeTime = 0;
                     break;
 
                     case 1:
                     case 2:
-                    this.chargeLV=2;
-                    this.chargeTime=maxCharge;
+                    this.chargeLV = 2;
+                    this.chargeTime = maxCharge;
                     break;
                 }
             }
@@ -122,26 +124,26 @@ public class UnityChanController : MonoBehaviour
                 break;
 
                 case 1:
-                GameObject BombLv1=Instantiate(this.bombLv1)as GameObject;
-                BombLv1.transform.position=new Vector2(transform.position.x+1.0f,transform.position.y-0.3f);
+                GameObject BombLv1 = Instantiate(this.bombLv1)as GameObject;
+                BombLv1.transform.position = new Vector2(transform.position.x+1.0f,transform.position.y-0.3f);
                 BombLv1.transform.Rotate(0.0f,0.0f,0.0f);
                 break;
 
                 case 2:
-                GameObject BombLv2=Instantiate(this.bombLv2)as GameObject;
-                BombLv2.transform.position=new Vector2(transform.position.x+1.0f,transform.position.y-0.3f);
+                GameObject BombLv2 = Instantiate(this.bombLv2)as GameObject;
+                BombLv2.transform.position = new Vector2(transform.position.x+1.0f,transform.position.y-0.3f);
                 BombLv2.transform.Rotate(0.0f,0.0f,0.0f);
                 break;
             }
-            this.chargeTime=0.0f;
-            this.chargeLV=0;
+            this.chargeTime = 0.0f;
+            this.chargeLV = 0;
         }
         //スライダーの値を変化させる
-        this.chargeSlider.value=this.chargeTime;
+        this.chargeSlider.value = this.chargeTime;
 
 
         //デッドラインを超えた場合ゲームオーバーにする
-        if(transform.position.x<deadLine)
+        if(transform.position.x < deadLine)
         {
             //UIControllerのGameOver関数を呼び出して画面上に「GameOver」と表示する
             GameObject.Find("Canvas").GetComponent<UIController>().GameOver();

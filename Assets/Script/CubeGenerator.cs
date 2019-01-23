@@ -15,7 +15,7 @@ public class CubeGenerator : MonoBehaviour
     private  float delta = 0;
 
     //キューブの生成間隔
-    private  float span = 1.0f;
+    public float span = 1.0f;
 
     //キューブの生成位置：X座標
     private float genPosX = 12;
@@ -33,13 +33,13 @@ public class CubeGenerator : MonoBehaviour
     private float spaceX = 0.4f;
 
     //キューブの生成個数の上限
-    private int maxBlockNum = 4;
+    public int maxBlockNum = 4;
 
     //ハードキューブプレファブが生成される確率
     public int hardPercentage;
 
     //一度に複数のジャンプボールを作らないように管理する
-    private bool ballSwitch=false;
+    private bool ballSwitch = false;
     
     void Start()
     {
@@ -49,41 +49,41 @@ public class CubeGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.delta+=Time.deltaTime;
+        this.delta += Time.deltaTime;
 
         //span以上の時間がたったかどうかを調べる
-        if(this.delta>this.span)
+        if(this.delta > this.span)
         {
-            this.delta=0;
+            this.delta = 0;
             //生成するキューブ数をランダムに決定
-            int n=Random.Range(1,maxBlockNum+1);
+            int n = Random.Range(1,maxBlockNum+1);
 
             //指定したキューブ数だけ生成する
-            for(int i=0;i<n;i++)
+            for(int i = 0;i < n;i ++)
             {
                 //生成されるキューブの種類をランダムに決定
-                int m=Random.Range(1,hardPercentage);
-                if(m==hardPercentage-1)
+                int m = Random.Range(1,hardPercentage);
+                if(m == hardPercentage - 1)
                 {
                     //ハードキューブの生成
-                    GameObject go=Instantiate(this.hardPrefab)as GameObject;
-                    go.transform.position=new Vector2(this.genPosX,this.offsetY+i*spaceY);
-                }else if(m==hardPercentage-2)
+                    GameObject go = Instantiate(this.hardPrefab)as GameObject;
+                    go.transform.position = new Vector2(this.genPosX,this.offsetY+i*spaceY);
+                }else if(m == hardPercentage - 2)
                 {
                     if(this.ballSwitch)return;
-                    GameObject go=Instantiate(this.jumpBall)as GameObject;
-                    go.transform.position=new Vector2(this.genPosX-3,this.offsetY);
-                    this.ballSwitch=true;
+                    GameObject go = Instantiate(this.jumpBall)as GameObject;
+                    go.transform.position = new Vector2(this.genPosX-3,this.offsetY);
+                    this.ballSwitch = true;
                 }else
                 {
                     //キューブの生成
-                    GameObject go=Instantiate(cubePrefab)as GameObject;
-                    go.transform.position=new Vector2(this.genPosX,this.offsetY+i*spaceY);
+                    GameObject go = Instantiate(cubePrefab)as GameObject;
+                    go.transform.position = new Vector2(this.genPosX,this.offsetY+i*spaceY);
                 }
             }
             //次のキューブまでの生成時間を決める
-            this.span=this.offsetX+this.spaceX*n;
-            this.ballSwitch=false;
+            this.span = this.offsetX + this.spaceX*n;
+            this.ballSwitch = false;
         }
     }
 }
