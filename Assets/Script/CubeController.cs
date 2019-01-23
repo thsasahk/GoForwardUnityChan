@@ -46,15 +46,7 @@ public class CubeController : MonoBehaviour
 
     void OnDestroy()
     {
-        //スクロールによる破棄やシーンのロードではパーティクルを生成しない
-        if(transform.position.x > deadLine
-        &&this.uiController.isGameOver == false)
-        {
-            Instantiate(this.particlePrefab,transform.position,Quaternion.identity);
 
-            //キューブが破壊された際にスコアに加算
-            this.uiController.cubeScore += 10;
-        }
     }
     
     public void Damage(int i)
@@ -67,6 +59,14 @@ public class CubeController : MonoBehaviour
         this.life -= i;
         if(this.life < 1)
         {
+            //スクロールによる破棄やシーンのロードではパーティクルを生成しない
+            if(transform.position.x > deadLine
+                &&this.uiController.isGameOver == false)
+            {
+                Instantiate(this.particlePrefab,transform.position,Quaternion.identity);
+                //キューブが破壊された際にスコアに加算
+                this.uiController.cubeScore += 10;
+            }
             Destroy(gameObject);
         }
     }

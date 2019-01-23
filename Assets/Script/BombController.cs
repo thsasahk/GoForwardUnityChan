@@ -9,6 +9,7 @@ public class BombController : MonoBehaviour
     public int attack;
     //接触したオブジェクトのスクリプトの器
     private CubeController cubeController;
+    private StarController starController;
     void Start(){}
 
     // Update is called once per frame
@@ -48,6 +49,15 @@ public class BombController : MonoBehaviour
             case "HBlock":
             this.cubeController = other.gameObject.GetComponent<CubeController>();
             this.cubeController.Damage(this.attack);
+            if(attack <= 3)
+            {
+                Destroy(gameObject);
+            }
+            break;
+
+            case "Star":
+            this.starController = other.gameObject.GetComponent<StarController>();
+            this.starController.Damage(this.attack);
             if(attack <= 3)
             {
                 Destroy(gameObject);
