@@ -8,11 +8,12 @@ public class StarGenerator : MonoBehaviour
     public GameObject canvas;
     private UIController uiController;
     private float span;
+    public float coolTime;
     private float time = 0;
     void Start()
     {
         this.uiController = this.canvas.GetComponent<UIController>();
-        this.span = Random.Range(3.0f,7.0f);
+        this.span = Random.Range(this.coolTime,this.coolTime + 5.0f);
     }
     void Update()
     {
@@ -24,7 +25,7 @@ public class StarGenerator : MonoBehaviour
         if(this.uiController.len >= 100 && this.time >= this.span)
         {
             Instantiate(this.star,new Vector2(13,5),Quaternion.identity);
-            this.span = Random.Range(3.0f,7.0f);
+            this.span = Random.Range(this.coolTime,this.coolTime + 5.0f);
             this.time = 0;
         }
     }
