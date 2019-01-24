@@ -14,6 +14,8 @@ public class StarController : MonoBehaviour
     public GameObject starParticlePrefab;
     public GameObject canvas;
     private UIController uiController;
+    private Rigidbody2D rb2D;
+    public float power;
     void Start()
     {
         this.distanceY=Random.Range(-10.0f,-25.0f);
@@ -48,9 +50,17 @@ public class StarController : MonoBehaviour
             {
                 Instantiate(this.starParticlePrefab,transform.position,Quaternion.identity);
                 //キューブが破壊された際にスコアに加算
-                this.uiController.cubeScore += 20;
+                this.uiController.starScore += 20;
             }
             Destroy(gameObject);
+        }
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Player")
+        {
+            this.rb2D = other.gameObject.GetComponent<Rigidbody2D>();
+            this.rb2D.AddForce(new Vector3(this.power * Mathf.Cos(this.rollAngle * Mathf.Deg2Rad), this.power * Mathf.Sin(this.rollAngle * Mathf.Deg2Rad), 0));
         }
     }
 }

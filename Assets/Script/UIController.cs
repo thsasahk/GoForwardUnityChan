@@ -13,7 +13,7 @@ public class UIController : MonoBehaviour
     private GameObject runLengthText;
 
     //走った距離
-    public float len = 100;
+    public float len = 0;
 
     //走る速度
     public float speed = 0.03f;
@@ -32,6 +32,7 @@ public class UIController : MonoBehaviour
     public int cubeScore = 0;
     //CoinPrefab獲得時のスコア
     public int coinScore = 0;
+    public int starScore = 0;
 
     void Start()
     {
@@ -45,7 +46,7 @@ public class UIController : MonoBehaviour
     void Update()
     {
         //scoreを計算
-        this.score = this.cubeScore + this.coinScore+Mathf.FloorToInt(this.len);
+        this.score = this.cubeScore + this.coinScore + this.starScore + Mathf.FloorToInt(this.len);
         //scoreを表示
         this.scoreText.GetComponent<Text>().text = "Score:" + this.score.ToString() + "pts";
 
