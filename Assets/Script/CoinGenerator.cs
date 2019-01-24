@@ -11,14 +11,21 @@ public class CoinGenerator : MonoBehaviour
     public int startSpan2=8;
     public int span1=3;
     public int span2=6;
+    public GameObject canvas;
+    private UIController uiController;
     void Start()
     {
         this.span=Random.Range(this.startSpan1,this.startSpan2);
+        this.uiController = this.canvas.GetComponent<UIController>();
     }
 
     
     void Update()
     {
+        if(this.uiController.len >= 147)
+        {
+            Destroy(gameObject);
+        }
         this.waitTime += Time.deltaTime;
 
         if(this.waitTime >= this.span)

@@ -16,6 +16,10 @@ public class StarGenerator : MonoBehaviour
     }
     void Update()
     {
+        if(this.uiController.len >= 140)
+        {
+            Destroy(gameObject);
+        }
         this.time += Time.deltaTime;
         if(this.uiController.len >= 100 && this.time >= this.span)
         {

@@ -43,7 +43,14 @@ public class UnityChanController : MonoBehaviour
 
     //スライダーを用意
     public Slider chargeSlider;
-
+    //lenを取得
+    public GameObject canvas;
+    private UIController uiController;
+    private bool isGround;
+    public float clearWalk;
+    public GameObject clearParticleWR;
+    public GameObject clearParticleYG;
+    private bool isGoalParticle = false;
     void Start()
     {
         //アニメーターのコンポーネントを取得
@@ -51,11 +58,27 @@ public class UnityChanController : MonoBehaviour
         //Rigidbody2Dのコンポーネントを取得
         this.rigid2D = GetComponent<Rigidbody2D>();
         this.unitySE = GetComponents<AudioSource>();
+        //UIControllerを取得
+        this.uiController = this.canvas.GetComponent<UIController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //デッドラインを超えた場合ゲームオーバーにする
+        if(transform.position.x < deadLine)
+        {
+            //UIControllerのGameOver関数を呼び出して画面上に「GameOver」と表示する
+            GameObject.Find("Canvas").GetComponent<UIController>().GameOver();
+            //ユニティちゃんを破棄する
+            Destroy(gameObject);
+        }
+        //走行距離150で終了
+        if(this.uiController.len >= 150.0f)
+        {
+            Clear();
+            return;
+        }
         //ユニティちゃんが画面右に行くのを禁止
         if(this.transform.position.x > -2.9f)
         {
@@ -65,7 +88,7 @@ public class UnityChanController : MonoBehaviour
         this.animator.SetFloat("Horizontal", 1);
 
         //着地しているかどうかを調べる
-        bool isGround = (this.transform.position.y > this.groundLevel)?false:true;
+        this.isGround = (this.transform.position.y > this.groundLevel)?false:true;
         this.animator.SetBool("isGround",isGround);
 
         //ジャンプ状態のときはボリュームを0にする
@@ -142,15 +165,7 @@ public class UnityChanController : MonoBehaviour
         this.chargeSlider.value = this.chargeTime;
 
 
-        //デッドラインを超えた場合ゲームオーバーにする
-        if(transform.position.x < deadLine)
-        {
-            //UIControllerのGameOver関数を呼び出して画面上に「GameOver」と表示する
-            GameObject.Find("Canvas").GetComponent<UIController>().GameOver();
-
-            //ユニティちゃんを破棄する
-            Destroy(gameObject);
-        }
+        
 
         //ChargeSliderの色を変化させる
         switch(this.chargeLV)
@@ -176,5 +191,31 @@ public class UnityChanController : MonoBehaviour
             else if (image.name == "Fill")
                 image.color = fillColor;
         }
+    }
+    void Clear()
+    {
+        if(this.transform.position.x <= 0)
+        {
+            this.transform.Translate(this.clearWalk,0,0);
+        }
+        else
+        {
+            this.animator.SetFloat("Horizontal", 0);
+            if(this.isGoalParticle == false)
+            {
+                Instantiate(this.clearParticleWR,new Vector2(-4.5f,-4.9f),Quaternion.identity);
+                Instantiate(this.clearParticleYG,new Vector2(4.5f,-4.9f),Quaternion.identity);
+                this.isGoalParticle = true;
+            
+            }
+        }
+        this.unitySE[0].Stop();
+        this.unitySE[1].Stop();
+        this.isGround = (this.transform.position.y > this.groundLevel)?false:true;
+        this.animator.SetBool("isGround",isGround);
+    }
+    void OnDestroy()
+    {
+        
     }
 }

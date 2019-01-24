@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BackgroundController : MonoBehaviour
+public class StartBackGroundController : MonoBehaviour
 {
     //スクロール速度
     private float scrollSpeed = -0.03f;
@@ -14,16 +14,11 @@ public class BackgroundController : MonoBehaviour
     private UIController uiController;
     void Start()
     {
-        this.uiController = this.canvas.GetComponent<UIController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(this.uiController.len >= 150)
-        {
-            return;
-        }
         //背景を移動する
         transform.Translate(scrollSpeed,0,0);
         //画面外に出たら画面右端に移動する

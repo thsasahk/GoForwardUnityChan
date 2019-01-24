@@ -6,14 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class StartSceneManager : MonoBehaviour
 {
-//テキストを取得
-public GameObject clickToPlay;
-public GameObject highScoreText;
-private float span = 0;
-
-	[SerializeField]
-
-	Fade fade = null;
+    //テキストを取得
+    public GameObject clickToPlay;
+    public GameObject highScoreText;
+    private float span = 0;
     void Start()
     {
     }

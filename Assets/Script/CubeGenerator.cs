@@ -51,6 +51,10 @@ public class CubeGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(this.uiController.len >= 147)
+        {
+            Destroy(gameObject);
+        }
         this.delta += Time.deltaTime;
 
         //span以上の時間がたったかどうかを調べる
