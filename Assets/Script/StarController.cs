@@ -46,7 +46,7 @@ public class StarController : MonoBehaviour
         {
             //スクロールによる破棄やシーンのロードではパーティクルを生成しない
             if(transform.position.y > -5.5f
-                &&this.uiController.isGameOver == false)
+                && this.uiController.isGameOver == false)
             {
                 Instantiate(this.starParticlePrefab,transform.position,Quaternion.identity);
                 //キューブが破壊された際にスコアに加算

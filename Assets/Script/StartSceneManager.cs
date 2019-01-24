@@ -9,9 +9,11 @@ public class StartSceneManager : MonoBehaviour
 //テキストを取得
 public GameObject clickToPlay;
 public GameObject highScoreText;
+private float span = 0;
 
-private float span=0;
+	[SerializeField]
 
+	Fade fade = null;
     void Start()
     {
     }
@@ -39,9 +41,7 @@ private float span=0;
 
         //GameSceneへの遷移
         if(Input.GetMouseButton(0)
-        ||Input.GetMouseButton(1))
-        {
-            SceneManager.LoadScene("GameScene");
-        }
+            ||Input.GetMouseButton(1))
+            FadeManager.Instance.LoadScene ("GAmeScene", 1.0f);
     }
 }

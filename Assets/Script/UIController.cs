@@ -33,6 +33,7 @@ public class UIController : MonoBehaviour
     //CoinPrefab獲得時のスコア
     public int coinScore = 0;
     public int starScore = 0;
+    public GameObject fadeCanvas;
 
     void Start()
     {
@@ -63,7 +64,7 @@ public class UIController : MonoBehaviour
         if(isGameOver
         && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
         {
-            SceneManager.LoadScene("StartScene");
+            FadeManager.Instance.LoadScene ("StartScene", 1.0f);
         }
 
         //ハイスコアのリセット
