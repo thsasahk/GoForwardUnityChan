@@ -20,7 +20,7 @@ public class BackgroundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(this.uiController.len >= 150)
+        if(this.uiController.length >= 150)
         {
             return;
         }

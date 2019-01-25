@@ -17,12 +17,12 @@ public class StarGenerator : MonoBehaviour
     }
     void Update()
     {
-        if(this.uiController.len >= 140)
+        if(this.uiController.length >= 140)
         {
             Destroy(gameObject);
         }
         this.time += Time.deltaTime;
-        if(this.uiController.len >= 100 && this.time >= this.span)
+        if(this.uiController.length >= 100 && this.time >= this.span)
         {
             Instantiate(this.star,new Vector2(13,5),Quaternion.identity);
             this.span = Random.Range(this.coolTime,this.coolTime + 5.0f);

@@ -10,6 +10,7 @@ public class StartSceneManager : MonoBehaviour
     public GameObject clickToPlay;
     public GameObject highScoreText;
     private float span = 0;
+    private bool sceneLoad = false;
     void Start()
     {
     }
@@ -37,7 +38,11 @@ public class StartSceneManager : MonoBehaviour
 
         //GameSceneへの遷移
         if(Input.GetMouseButton(0)
-            ||Input.GetMouseButton(1))
-            FadeManager.Instance.LoadScene ("GAmeScene", 1.0f);
+            ||Input.GetMouseButton(1)
+                && this.sceneLoad == false)
+            {
+                FadeManager.Instance.LoadScene ("GameScene", 1.0f);
+                this.sceneLoad = true;
+            }
     }
 }

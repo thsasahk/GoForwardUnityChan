@@ -13,7 +13,7 @@ public class UIController : MonoBehaviour
     private GameObject runLengthText;
 
     //走った距離
-    public float len = 0;
+    public float length = 0;
 
     //走る速度
     public float speed = 0.03f;
@@ -39,6 +39,7 @@ public class UIController : MonoBehaviour
     public GameObject bgmManager;
     private AudioSource[] bgm;
     private bool changeBGM = false;
+    private bool sceneLoad = false;
     void Start()
     {
         //シンビューからオブジェクトを検索する
@@ -50,7 +51,7 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        if(this.isGameOver == false && len >= 150)
+        if(this.isGameOver == false && length >= 150)
         {
             if(this.unityChan.transform.position.x >= 0)
             {
@@ -58,7 +59,7 @@ public class UIController : MonoBehaviour
             }
         }
         //scoreを計算
-        this.score = this.cubeScore + this.coinScore + this.starScore + Mathf.FloorToInt(this.len);
+        this.score = this.cubeScore + this.coinScore + this.starScore + Mathf.FloorToInt(this.length);
         //scoreを表示
         if(this.clear == false)
         {
@@ -67,17 +68,19 @@ public class UIController : MonoBehaviour
         if(this.isGameOver == false && this.clear == false)
         {
             //走った距離を計測する
-            this.len += this.speed;
+            this.length += this.speed;
 
             //走った距離を表示する
-            this.runLengthText.GetComponent<Text>().text = "Distance: " + len.ToString("F2") + "m";
+            this.runLengthText.GetComponent<Text>().text = "Distance: " + length.ToString("F2") + "m";
         }
 
         //ゲームオーバーになった場合
         if((this.isGameOver || this.clear)
-        && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
+            && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+                && this.sceneLoad == false)
         {
             FadeManager.Instance.LoadScene ("StartScene", 1.0f);
+            this.sceneLoad = true;
         }
 
         //ハイスコアのリセット

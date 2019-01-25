@@ -74,7 +74,7 @@ public class UnityChanController : MonoBehaviour
             Destroy(gameObject);
         }
         //走行距離150で終了
-        if(this.uiController.len >= 150.0f)
+        if(this.uiController.length >= 150.0f)
         {
             Clear();
             return;
@@ -213,9 +213,5 @@ public class UnityChanController : MonoBehaviour
         this.unitySE[1].Stop();
         this.isGround = (this.transform.position.y > this.groundLevel)?false:true;
         this.animator.SetBool("isGround",isGround);
-    }
-    void OnDestroy()
-    {
-        
     }
 }

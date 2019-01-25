@@ -51,7 +51,7 @@ public class CubeGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(this.uiController.len >= 147)
+        if(this.uiController.length >= 147)
         {
             Destroy(gameObject);
         }
@@ -76,7 +76,7 @@ public class CubeGenerator : MonoBehaviour
                     go.transform.position = new Vector2(this.genPosX,this.offsetY+i*spaceY);
                 }else if(m == hardPercentage - 2)
                 {
-                    if(this.uiController.len > 100 || this.ballSwitch)
+                    if(this.uiController.length > 100 || this.ballSwitch)
                         return;
                     GameObject go = Instantiate(this.jumpBall)as GameObject;
                     go.transform.position = new Vector2(this.genPosX-3,this.offsetY);

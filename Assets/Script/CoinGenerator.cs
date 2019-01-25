@@ -22,7 +22,7 @@ public class CoinGenerator : MonoBehaviour
     
     void Update()
     {
-        if(this.uiController.len >= 147)
+        if(this.uiController.length >= 147)
         {
             Destroy(gameObject);
         }
