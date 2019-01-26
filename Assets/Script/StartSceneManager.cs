@@ -6,10 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class StartSceneManager : MonoBehaviour
 {
-    //テキストを取得
+    /// <summary>
+    /// ClickToPlayオブジェクト
+    /// </summary>
     public GameObject clickToPlay;
+    /// <summary>
+    /// HighScoreTextオブジェクト
+    /// </summary>
     public GameObject highScoreText;
+    /// <summary>
+    /// ClickToPlayオブジェクトの点滅表示を管理する
+    /// </summary>
     private float span = 0;
+    /// <summary>
+    /// シーンのロード状況を管理する
+    /// </summary>
     private bool sceneLoad = false;
     void Start()
     {
@@ -36,13 +47,20 @@ public class StartSceneManager : MonoBehaviour
             this.span = 0;
         }
 
-        //GameSceneへの遷移
+        //シーンのロード中に重ねて読み込むことはしない
         if(Input.GetMouseButton(0)
             ||Input.GetMouseButton(1)
                 && this.sceneLoad == false)
             {
-                FadeManager.Instance.LoadScene ("GameScene", 1.0f);
-                this.sceneLoad = true;
+                LoadScene();
             }
+    }
+    /// <summary>
+    /// GameSceneをロードする
+    /// </summary>
+    void LoadScene()
+    {
+        FadeManager.Instance.LoadScene("GameScene", 1.0f);
+        this.sceneLoad = true;
     }
 }

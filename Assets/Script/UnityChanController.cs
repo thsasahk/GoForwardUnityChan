@@ -5,64 +5,103 @@ using UnityEngine.UI;
 
 public class UnityChanController : MonoBehaviour
 {
-    //アニメーションするためのコンポーネントを入れる
-    Animator animator;
-
-    //ユニティちゃんを移動させるコンポーネントを入れる
+    /// <summary>
+    /// オブジェクトのAnimator
+    /// </summary>
+    private Animator animator;
+    /// <summary>
+    /// オブジェクトのRigidbody2D
+    /// </summary>
     Rigidbody2D rigid2D;
-
-    //
+    /// <summary>
+    /// オブジェクトのAudioSource
+    /// </summary>
     public AudioSource[] unitySE;
-
-    //地面の位置
+    /// <summary>
+    /// オブジェクトが歩く地面の高さ
+    /// </summary>
     private float groundLevel = -3.0f;
-
-    //ジャンプ速度の減衰
+    /// <summary>
+    /// ジャンプ速度の減衰
+    /// </summary>
     public float dump = 0.8f;
-
-    //ジャンプの速度
+    /// <summary>
+    /// ジャンプの速度
+    /// </summary>
     public float jumpVelocity=20;
-
-    //ゲームオーバーになる位置
+    /// <summary>
+    /// ゲームオーバーになる位置
+    /// </summary>
     public float deadLine=-9;
-
-    //球
+    /// <summary>
+    /// chargeLV0で発射される弾
+    /// </summary>
     public GameObject bombLv0;
+    /// <summary>
+    /// chargeLV1で発射される弾
+    /// </summary>
     public GameObject bombLv1;
+    /// <summary>
+    /// chargeLV2で発射される弾
+    /// </summary>
     public GameObject bombLv2;
+    /// <summary>
+    /// Bombオブジェクトのスクリプト
+    /// </summary>
     private BombController bombController;
-    
-    //球のチャージ時間
+    /// <summary>
+    /// 右クリックを押してからたった時間
+    /// </summary>
     public float chargeTime=0;
-
-    //チャージの完了時間
+    /// <summary>
+    /// chargeLVが一つ上がるまでの時間
+    /// </summary>
     public float maxCharge;
-
-    //チャージのレベルを設定
+    /// <summary>
+    /// 溜めた時間によってchargeのレベルを定義し、発射されるBombの種類を管理する
+    /// </summary>
     public int chargeLV=0;
-
-    //スライダーを用意
+    /// <summary>
+    /// chargeTimeを視覚化するオブジェクト
+    /// </summary>
     public Slider chargeSlider;
-    //lenを取得
+    /// <summary>
+    /// Canvasオブジェクト
+    /// </summary>
     public GameObject canvas;
+    /// <summary>
+    /// Canvasオブジェクトのスクリプト
+    /// </summary>
     private UIController uiController;
+    /// <summary>
+    /// オブジェクトの接地状態を入力する
+    /// </summary>
     private bool isGround;
+    /// <summary>
+    /// clear時のオブジェクトの歩行速度
+    /// </summary>
     public float clearWalk;
+    /// <summary>
+    /// clear時に生成されるParticleSystem赤、白
+    /// </summary>
     public GameObject clearParticleWR;
+    /// <summary>
+    /// clear時に生成されるParticleSystem黄、緑
+    /// </summary>
     public GameObject clearParticleYG;
+    /// <summary>
+    /// clear時に生成されるParticleSystem
+    /// </summary>
     private bool isGoalParticle = false;
+
     void Start()
     {
-        //アニメーターのコンポーネントを取得
         this.animator = GetComponent<Animator>();
-        //Rigidbody2Dのコンポーネントを取得
         this.rigid2D = GetComponent<Rigidbody2D>();
         this.unitySE = GetComponents<AudioSource>();
-        //UIControllerを取得
         this.uiController = this.canvas.GetComponent<UIController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         //デッドラインを超えた場合ゲームオーバーにする
@@ -114,59 +153,18 @@ public class UnityChanController : MonoBehaviour
         {
             this.unitySE[0].Play();
         }
-        //チャージする
+        //右クリックを推している間、Charge関数を呼び続ける
         if(Input.GetMouseButton(1))
         {
-            this.chargeTime += Time.deltaTime;
-            if(chargeTime >= maxCharge)
-            {
-                switch(this.chargeLV)
-                {
-                    case 0:
-                    this.chargeLV = 1;
-                    this.chargeTime = 0;
-                    break;
-
-                    case 1:
-                    case 2:
-                    this.chargeLV = 2;
-                    this.chargeTime = maxCharge;
-                    break;
-                }
-            }
+            Charge();
         }
-
         //発射
-        if(Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1))
         {
-            this.unitySE[0].Stop();
-            switch(this.chargeLV)
-            {
-                case 0:
-                Instantiate(bombLv0,new Vector2(transform.position.x+1.0f,transform.position.y-0.3f),Quaternion.identity);
-                break;
-
-                case 1:
-                GameObject BombLv1 = Instantiate(this.bombLv1)as GameObject;
-                BombLv1.transform.position = new Vector2(transform.position.x+1.0f,transform.position.y-0.3f);
-                BombLv1.transform.Rotate(0.0f,0.0f,0.0f);
-                break;
-
-                case 2:
-                GameObject BombLv2 = Instantiate(this.bombLv2)as GameObject;
-                BombLv2.transform.position = new Vector2(transform.position.x+1.0f,transform.position.y-0.3f);
-                BombLv2.transform.Rotate(0.0f,0.0f,0.0f);
-                break;
-            }
-            this.chargeTime = 0.0f;
-            this.chargeLV = 0;
+            Shot();
         }
         //スライダーの値を変化させる
         this.chargeSlider.value = this.chargeTime;
-
-
-        
-
         //ChargeSliderの色を変化させる
         switch(this.chargeLV)
         {
@@ -181,9 +179,16 @@ public class UnityChanController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// 引数として与えた色を下記の変数に代入して、BackGroundとFillの色を変化させる
+    /// </summary>
+    /// <param name="fillColor">ChargeSlider下FillのColor</param>
+    /// <param name="backgroundColor">ChargeSlider下BackGroundのColor</param>
     public void ChangeSliderColor(Color fillColor, Color backgroundColor)
     {
+        //Imageクラスの変数ImagesにchargeSliderの子が持つ全てのImageコンポーネントを格納する
         Image[] images = this.chargeSlider.GetComponentsInChildren<Image>();
+        //Imageクラスの変数ImageにImagesの要素を順に代入して処理を行う
         foreach (var image in images)
         {
             if (image.name == "Background")
@@ -192,6 +197,10 @@ public class UnityChanController : MonoBehaviour
                 image.color = fillColor;
         }
     }
+
+    /// <summary>
+    /// オブジェクトをx=0まで移動させ、Animatorをidleに移行、SEを停止させParticleSystemを生成する
+    /// </summary>
     void Clear()
     {
         if(this.transform.position.x <= 0)
@@ -213,5 +222,57 @@ public class UnityChanController : MonoBehaviour
         this.unitySE[1].Stop();
         this.isGround = (this.transform.position.y > this.groundLevel)?false:true;
         this.animator.SetBool("isGround",isGround);
+    }
+
+    /// <summary>
+    /// ChargeTime変数で時間を計測し、maxChargeを超えたらchargeLVを変化させる
+    /// </summary>
+    void Charge()
+    {
+        this.chargeTime += Time.deltaTime;
+        if (chargeTime >= maxCharge)
+        {
+            switch (this.chargeLV)
+            {
+                case 0:
+                    this.chargeLV = 1;
+                    this.chargeTime = 0;
+                    break;
+
+                case 1:
+                case 2:
+                    this.chargeLV = 2;
+                    this.chargeTime = maxCharge;
+                    break;
+            }
+        }
+    }
+
+    /// <summary>
+    /// チャージ中のSEを停止させ、chargeLVによって生成するBombオブジェクトを変化させる
+    /// </summary>
+    void Shot()
+    {
+        this.unitySE[0].Stop();
+        switch (this.chargeLV)
+        {
+            case 0:
+                Instantiate(bombLv0, new Vector2(transform.position.x + 1.0f, transform.position.y - 0.3f), Quaternion.identity);
+                break;
+
+            case 1:
+                GameObject BombLv1 = Instantiate(this.bombLv1) as GameObject;
+                BombLv1.transform.position = new Vector2(transform.position.x + 1.0f, transform.position.y - 0.3f);
+                BombLv1.transform.Rotate(0.0f, 0.0f, 0.0f);
+                break;
+
+            case 2:
+                GameObject BombLv2 = Instantiate(this.bombLv2) as GameObject;
+                BombLv2.transform.position = new Vector2(transform.position.x + 1.0f, transform.position.y - 0.3f);
+                BombLv2.transform.Rotate(0.0f, 0.0f, 0.0f);
+                break;
+        }
+        this.chargeTime = 0.0f;
+        this.chargeLV = 0;
     }
 }

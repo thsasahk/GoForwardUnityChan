@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Coin_Controller : MonoBehaviour
 {
-    //coinScoreの獲得
+    /// <summary>
+    /// Canvasオブジェクト
+    /// </summary>
     private GameObject canvas;
+    /// <summary>
+    /// Canvasオブジェクトのスクリプト
+    /// </summary>
     private UIController uiController;
-
+    /// <summary>
+    /// Coinオブジェクト消滅時のAoudio Sourceを再生するオブジェクト
+    /// </summary>
     public GameObject coinSound;
-
-    //Coinの移動速度
+    /// <summary>
+    /// Coinオブジェクトの移動速度
+    /// </summary>
     public float speed;
-
+    /// <summary>
+    /// 移動終了位置
+    /// </summary>
     public int deadLine = -10;
 
     void Start()
@@ -26,7 +36,6 @@ public class Coin_Controller : MonoBehaviour
     {
         //Coinを移動させる
         this.transform.Translate(this.speed,0,0);
-
         //deadLineを超えたら破棄
         if(transform.position.x < this.deadLine)
         {
@@ -36,6 +45,7 @@ public class Coin_Controller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        //Playerに接触するとCoinSoundオブジェクトを生成してUIControllerのcoinScoreを加算し、消滅する
         if(other.gameObject.tag == "Player")
         {
             Instantiate(this.coinSound,new Vector2(0,0),Quaternion.identity);

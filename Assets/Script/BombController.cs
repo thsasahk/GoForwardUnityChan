@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class BombController : MonoBehaviour
 {
+    /// <summary>
+    /// bombの移動速度
+    /// </summary>
     public float bombSpeed;
-    //bombの種類
+    /// <summary>
+    /// bombがオブジェクトに与えるダメージ量
+    /// </summary>
     public int attack;
-    //接触したオブジェクトのスクリプトの器
+    /// <summary>
+    /// Cubeオブジェクトのスクリプト
+    /// </summary>
     private CubeController cubeController;
+    /// <summary>
+    /// Starオブジェクトのスクリプト
+    /// </summary>
     private StarController starController;
     void Start(){}
 
@@ -26,7 +36,7 @@ public class BombController : MonoBehaviour
             break;
 
         }
-
+        //画面外に出たらbombオブジェクトを破棄する
         if(transform.position.x >= 10.0f)
         {
             Destroy(gameObject);
@@ -35,8 +45,10 @@ public class BombController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        //接触したオブジェクトのtagで処理を変化させる
         switch(other.gameObject.tag)
         {
+            //attackに関係なくJumpBallを破壊
             case "JumpBall":
             Destroy(other.gameObject);
             if(attack <= 3)
@@ -45,6 +57,7 @@ public class BombController : MonoBehaviour
             }
             break;
 
+            //Cubeオブジェクトのスクリプトを取得し、Damage関数を呼び出す
             case "Block":
             case "HBlock":
             this.cubeController = other.gameObject.GetComponent<CubeController>();
@@ -55,6 +68,7 @@ public class BombController : MonoBehaviour
             }
             break;
 
+            //Cubeオブジェクトのスクリプトを取得し、Damage関数を呼び出す
             case "Star":
             this.starController = other.gameObject.GetComponent<StarController>();
             this.starController.Damage(this.attack);
@@ -64,6 +78,7 @@ public class BombController : MonoBehaviour
             }
             break;
 
+            //それ以外のオブジェクトには反応しない
             default:
             break;
         }

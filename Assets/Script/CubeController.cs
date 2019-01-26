@@ -4,21 +4,37 @@ using UnityEngine;
 
 public class CubeController : MonoBehaviour
 {
-    //キューブの移動速度
+    /// <summary>
+    /// キューブの移動速度
+    /// </summary>
     public float speed = -0.2f;
-    //消滅位置
+    /// <summary>
+    /// 消滅位置
+    /// </summary>
     public float deadLine = -10;
-    Rigidbody2D rigid2D;
+    /// <summary>
+    /// オブジェクトのAudioSource
+    /// </summary>
     private AudioSource[] SE;
+    /// <summary>
+    /// Canvasオブジェクト
+    /// </summary>
     private GameObject canvas;
+    /// <summary>
+    /// Canvasオブジェクトのスクリプト
+    /// </summary>
     private UIController uiController;
+    /// <summary>
+    /// オブジェクト破棄時に生成されるParticleSystem
+    /// </summary>
     public GameObject particlePrefab;
+    /// <summary>
+    /// オブジェクトの破棄条件を計測する変数
+    /// </summary>
     public int life;
     void Start()
     {
         this.SE = GetComponents<AudioSource>();
-        this.rigid2D = GetComponent<Rigidbody2D>();
-        //isGameOverの獲得
         this.canvas = GameObject.Find("Canvas");
         this.uiController = this.canvas.GetComponent<UIController>();
     }
@@ -33,7 +49,7 @@ public class CubeController : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
-
+    //生成され、着地した際にSE[0]を再生する
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.tag == "Stage"
@@ -43,30 +59,26 @@ public class CubeController : MonoBehaviour
             this.SE[0].Play();
         }
     }
-
-    void OnDestroy()
-    {
-
-    }
-    
+    /// <summary>
+    /// Cubeオブジェクトのlife変数を変化させオブジェクトの破棄を管理する
+    /// </summary>
+    /// <param name="i"></param>
     public void Damage(int i)
     {
+        //HardBlockオブジェクトの場合はlife変数は一定値
         if(gameObject.tag == "HBlock")
         {
             this.SE[1].Play();
             return;
         }
+        //life変数を引数分マイナスさせる
         this.life -= i;
+        //life変数が1未満の場合はオブジェクトを破棄する
         if(this.life < 1)
         {
-            //スクロールによる破棄やシーンのロードではパーティクルを生成しない
-            if(transform.position.x > deadLine
-                &&this.uiController.isGameOver == false)
-            {
-                Instantiate(this.particlePrefab,transform.position,Quaternion.identity);
-                //キューブが破壊された際にスコアに加算
-                this.uiController.cubeScore += 10;
-            }
+            Instantiate(this.particlePrefab,transform.position,Quaternion.identity);
+            //キューブが破壊された際にスコアに加算する
+            this.uiController.cubeScore += 10;
             Destroy(gameObject);
         }
     }

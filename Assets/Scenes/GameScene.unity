@@ -346,7 +346,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 34471938b98f1b54a987fcf1f04b4e95, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -442,7 +442,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 999625fb6ec496d4f8d742e903d15624, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1322,7 +1322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20406ac8cd700b45afcbcba66701157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  len: 0
+  length: 0
   speed: 0.03
   isGameOver: 0
   scoreText: {fileID: 500772905}
@@ -1895,6 +1895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   star: {fileID: 8651462427137873048, guid: 6441df56f753a9c48a248a7d043e0bf8, type: 3}
   canvas: {fileID: 1050034879}
+  span: 0
   coolTime: 5
 --- !u!4 &2057240020
 Transform:

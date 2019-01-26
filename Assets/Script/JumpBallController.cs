@@ -4,18 +4,34 @@ using UnityEngine;
 
 public class JumpBallController : MonoBehaviour
 {
+    /// <summary>
+    /// JumpBallの移動速度
+    /// </summary>
     public float speed;
-    //消滅位置
+    /// <summary>
+    /// 消滅位置
+    /// </summary>
     public float deadLine = -10;
+    /// <summary>
+    /// Canvasオブジェクト
+    /// </summary>
     private GameObject canvas;
+    /// <summary>
+    /// Canvasオブジェクトのスクリプト
+    /// </summary>
     private UIController uiController;
+    /// <summary>
+    /// JumpBallのAudio Source
+    /// </summary>
     private AudioSource jSE;
+    /// <summary>
+    /// JumpBallが破棄されたときに生成されるParticleSystem
+    /// </summary>
     public GameObject particlePrefab;
 
     void Start()
     {
         this.jSE = GetComponent<AudioSource>();
-        //isGameOverの獲得
         this.canvas = GameObject.Find("Canvas");
         this.uiController = this.canvas.GetComponent<UIController>();
     }
@@ -32,7 +48,7 @@ public class JumpBallController : MonoBehaviour
 
     void OnDestroy()
     {
-        //スクロールによる破棄やシーンのロードではSEは鳴らない
+        //スクロールによる破棄やシーンのロードではParticleSystemを生成しない
         if(transform.position.x > deadLine
         && this.uiController.isGameOver == false)
         {

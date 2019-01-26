@@ -6,53 +6,93 @@ using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
-    //ゲームオーバーテキスト
+    /// <summary>
+    /// GameOverTextオブジェクト
+    /// </summary>
     private GameObject gameOverText;
-
-    //走行距離テキスト
+    /// <summary>
+    /// runLengthTextオブジェクト
+    /// </summary>
     private GameObject runLengthText;
-
-    //走った距離
+    /// <summary>
+    /// 走行距離
+    /// </summary>
     public float length = 0;
-
-    //走る速度
+    /// <summary>
+    /// Playerが走る速度
+    /// </summary>
     public float speed = 0.03f;
-
-    //ゲームオーバーの判定
+    /// <summary>
+    /// ゲームオーバーを判定する変数
+    /// </summary>
     public bool isGameOver = false;
-
-    //スコアの記録、表示
+    /// <summary>
+    /// ScoreTextオブジェクト
+    /// </summary>
     public GameObject scoreText;
+    /// <summary>
+    /// ClearSoreオブジェクト
+    /// </summary>
     public GameObject clearScore;
     public int score = 0;
-    //ハイスコア
+    /// <summary>
+    /// HighScoreを記録するためのキー
+    /// </summary>
     public string highScore_Key;
+    /// <summary>
+    /// ハイスコアを表す変数
+    /// </summary>
     public int highScore;
-
-    //CubePrefab破壊時のスコア
+    /// <summary>
+    /// Cubeオブジェクト破壊によって得たScore
+    /// </summary>
     public int cubeScore = 0;
-    //CoinPrefab獲得時のスコア
+    /// <summary>
+    /// Coinオブジェクト獲得によって得たScore
+    /// </summary>
     public int coinScore = 0;
+    /// <summary>
+    /// Starオブジェクト破壊によって得たScore
+    /// </summary>
     public int starScore = 0;
+    /// <summary>
+    /// unitychanオブジェクト
+    /// </summary>
     public GameObject unityChan;
+    /// <summary>
+    /// ゲームのclear状態を表す変数
+    /// </summary>
     public bool clear = false;
+    /// <summary>
+    /// BGMオブジェクト
+    /// </summary>
     public GameObject bgmManager;
+    /// <summary>
+    /// BGMオブジェクトのAudioSource
+    /// </summary>
     private AudioSource[] bgm;
+    /// <summary>
+    /// BGM変更済みで表すことを示す
+    /// </summary>
     private bool changeBGM = false;
+    /// <summary>
+    /// シーンのロード状況を管理する
+    /// </summary>
     private bool sceneLoad = false;
     void Start()
     {
-        //シンビューからオブジェクトを検索する
         this.gameOverText = GameObject.Find("GameOver");
         this.runLengthText = GameObject.Find("RunLength");
-        this.highScore = PlayerPrefs.GetInt("highScore_Key",0);
         this.bgm = this.bgmManager.GetComponents<AudioSource>();
+        this.highScore = PlayerPrefs.GetInt("highScore_Key", 0);
     }
 
     void Update()
     {
+        //Gameover状態でなくlengthが150以上のときにunityChanオブジェクトのposition.xを参照する
         if(this.isGameOver == false && length >= 150)
         {
+            //unityChanオブジェクトがx=0に移動してGameClearとなる
             if(this.unityChan.transform.position.x >= 0)
             {
                 GameClear();
@@ -90,7 +130,10 @@ public class UIController : MonoBehaviour
             PlayerPrefs.DeleteKey("highScore_Key");
         }
     }
-
+    /// <summary>
+    /// テキストにGame Overを表示し、isGameOverをtrueに変更、BGMも変更する
+    /// 獲得スコアがハイスコアより高い場合ハイスコアを変更して記録する
+    /// </summary>
     public void GameOver()
     {
         this.gameOverText.GetComponent<Text>().text = "Game Over";
@@ -109,6 +152,10 @@ public class UIController : MonoBehaviour
             this.changeBGM = true;
         }
     }
+    /// <summary>
+    /// テキストにGame Clearを表示し、clearをtrueに変更、BGMも変更する
+    /// 獲得スコアがハイスコアより高い場合ハイスコアを変更して記録する
+    /// </summary>
     void GameClear()
     {
         this.gameOverText.GetComponent<Text>().text = "Game Clear";

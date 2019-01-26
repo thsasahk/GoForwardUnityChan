@@ -4,19 +4,30 @@ using UnityEngine;
 
 public class StartBackGroundController : MonoBehaviour
 {
-    //スクロール速度
+    /// <summary>
+    /// スクロール速度
+    /// </summary>
     private float scrollSpeed = -0.03f;
-    //背景終了位置
+    /// <summary>
+    /// 背景終了位置
+    /// </summary>
     private float deadLine = -16;
-    //背景開始位置
+    /// <summary>
+    /// 背景移動開始位置
+    /// </summary>
     private float startLine = 15.8f;
+    /// <summary>
+    /// Canvasオブジェクト
+    /// </summary>
     public GameObject canvas;
+    /// <summary>
+    /// Canvasオブジェクトのスクリプト
+    /// </summary>
     private UIController uiController;
     void Start()
     {
     }
 
-    // Update is called once per frame
     void Update()
     {
         //背景を移動する
