@@ -7,7 +7,7 @@ public class CubeGenerator : MonoBehaviour
     /// <summary>
     /// Cubeオブジェクト
     /// </summary>
-    public GameObject cubePrefab;
+    public GameObject[] cubePrefab;
     /// <summary>
     /// HardCubeオブジェクト
     /// </summary>
@@ -115,8 +115,10 @@ public class CubeGenerator : MonoBehaviour
             }
             else
             {
+                //キューブの色を選択する
+                int x = Random.Range(0, 4);
                 //キューブの生成
-                GameObject go = Instantiate(cubePrefab) as GameObject;
+                GameObject go = Instantiate(cubePrefab[x]) as GameObject;
                 go.transform.position = new Vector2(this.genPosX, this.offsetY + i * spaceY);
             }
         }

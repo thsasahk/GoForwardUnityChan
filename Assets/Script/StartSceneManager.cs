@@ -22,8 +22,18 @@ public class StartSceneManager : MonoBehaviour
     /// シーンのロード状況を管理する
     /// </summary>
     private bool sceneLoad = false;
+    /// <summary>
+    /// Playerオブジェクト
+    /// </summary>
+    public GameObject player;
+    /// <summary>
+    /// PlayerオブジェクトのAnimator
+    /// </summary>
+    private Animator animator;
     void Start()
     {
+        this.animator = this.player.GetComponent<Animator>();
+        this.animator.SetBool("Run", true);
     }
 
     void Update()
@@ -48,8 +58,8 @@ public class StartSceneManager : MonoBehaviour
         }
 
         //シーンのロード中に重ねて読み込むことはしない
-        if(Input.GetMouseButton(0)
-            ||Input.GetMouseButton(1)
+        if((Input.GetMouseButton(0)
+            ||Input.GetMouseButton(1))
                 && this.sceneLoad == false)
             {
                 LoadScene();

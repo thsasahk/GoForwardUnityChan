@@ -7,15 +7,15 @@ public class BackgroundController : MonoBehaviour
     /// <summary>
     ///スクロール速度 
     /// </summary>
-    private float scrollSpeed = -0.03f;
+    public float scrollSpeed;
     /// <summary>
     /// 背景終了位置
     /// </summary>
-    private float deadLine = -16;
+    private float deadLine = -18f;
     /// <summary>
     ///背景開始位置
     ///</summary>
-    private float startLine = 15.8f;
+    private float startLine = 18f;
     /// <summary>
     ///Canvasオブジェクト
     /// </summary>

@@ -20,7 +20,7 @@ public class UnityChanController : MonoBehaviour
     /// <summary>
     /// オブジェクトが歩く地面の高さ
     /// </summary>
-    private float groundLevel = -3.0f;
+    private float groundLevel = -3.8f;
     /// <summary>
     /// ジャンプ速度の減衰
     /// </summary>
@@ -93,6 +93,14 @@ public class UnityChanController : MonoBehaviour
     /// clear時に生成されるParticleSystem
     /// </summary>
     private bool isGoalParticle = false;
+    /// <summary>
+    /// ジェット噴射のParticleSystem
+    /// </summary>
+    public GameObject jet;
+    /// <summary>
+    /// ParticleSystemの器
+    /// </summary>
+    private ParticleSystem jetParticle;
 
     void Start()
     {
@@ -100,6 +108,7 @@ public class UnityChanController : MonoBehaviour
         this.rigid2D = GetComponent<Rigidbody2D>();
         this.unitySE = GetComponents<AudioSource>();
         this.uiController = this.canvas.GetComponent<UIController>();
+        this.jetParticle = this.jet.GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -123,25 +132,33 @@ public class UnityChanController : MonoBehaviour
         {
             this.transform.position = new Vector2(-2.9f,this.transform.position.y);
         }
-        //走るアニメーションを再生するために、Animatorのパラメータを調節する
-        this.animator.SetFloat("Horizontal", 1);
 
         //着地しているかどうかを調べる
-        this.isGround = (this.transform.position.y > this.groundLevel)?false:true;
-        this.animator.SetBool("isGround",isGround);
+        this.isGround = (this.transform.position.y > this.groundLevel) ? false : true;
+        if (isGround)
+        {
+            this.animator.SetBool("Run", true);
+        }
+        else
+        {
+            this.animator.SetBool("Run", false);
+        }
 
         //ジャンプ状態のときはボリュームを0にする
-        this.unitySE[1].volume = (isGround)?1:0;
+        this.unitySE[1].volume = (isGround) ? 1 : 0;
 
         //着地状態でクリックされた場合
         if(isGround && Input.GetMouseButtonDown(0))
         {
             //上方向への力をかける
             this.rigid2D.velocity = new Vector2(0,this.jumpVelocity);
+            //
+            this.jetParticle.Play();
         }
         //クリックをやめたら減速する
         if(Input.GetMouseButton(0) == false)
         {
+            this.jetParticle.Stop();
             if(this.rigid2D.velocity.y > 0)
             {
                 this.rigid2D.velocity *= dump;
@@ -206,10 +223,15 @@ public class UnityChanController : MonoBehaviour
         if(this.transform.position.x <= 0)
         {
             this.transform.Translate(this.clearWalk,0,0);
+            this.isGround = (this.transform.position.y > this.groundLevel) ? false : true;
+            if (isGround)
+            {
+                this.animator.SetBool("Run", true);
+            }
         }
         else
         {
-            this.animator.SetFloat("Horizontal", 0);
+            this.animator.SetBool("Run", false);
             if(this.isGoalParticle == false)
             {
                 Instantiate(this.clearParticleWR,new Vector2(-4.5f,-4.9f),Quaternion.identity);
@@ -220,8 +242,6 @@ public class UnityChanController : MonoBehaviour
         }
         this.unitySE[0].Stop();
         this.unitySE[1].Stop();
-        this.isGround = (this.transform.position.y > this.groundLevel)?false:true;
-        this.animator.SetBool("isGround",isGround);
     }
 
     /// <summary>
