@@ -186,12 +186,12 @@ public class UnityChanController : MonoBehaviour
         switch(this.chargeLV)
         {
             case 0:
-            ChangeSliderColor(new Color32(95,255,187,255),new Color32(0,0,0,255));
+                ChangeSliderColor(new Color32(95, 255, 187, 255), new Color32(84, 84, 84, 255));
             break;
 
             case 1:
             case 2:
-            ChangeSliderColor(new Color32(59,255,72,255),new Color32(95,255,187,255));
+                ChangeSliderColor(new Color32(59, 255, 72, 255), new Color32(95, 255, 187, 255));
             break;
         }
     }
