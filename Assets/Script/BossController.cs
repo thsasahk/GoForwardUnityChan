@@ -17,6 +17,10 @@ public class BossController : MonoBehaviour
     /// </summary>
     public GameObject star;
     /// <summary>
+    /// BossBulletオブジェクト
+    /// </summary>
+    public GameObject bossBullet;
+    /// <summary>
     /// Canvasオブジェクト
     /// </summary>
     private GameObject canvas;
@@ -182,7 +186,7 @@ public class BossController : MonoBehaviour
         float rad = Mathf.Atan2(-6.4f, dx);
         this.angle = rad * Mathf.Rad2Deg - 180;
         iTween.RotateTo(gameObject, iTween.Hash("z", this.angle, "delay", 3.0f));
-        Invoke("Attack01", 4.0f);
+        Invoke("Attack05", 4.0f);
         //元の角度へ戻る
         iTween.RotateTo(gameObject, iTween.Hash("z", 0, "delay", 4.5f));
     }
@@ -319,6 +323,8 @@ public class BossController : MonoBehaviour
     void Attack01()
     {
         this.animator.SetTrigger("Boss_Attack");
+        Instantiate(this.bossBullet, new Vector2(transform.position.x - 2.5f, 
+            transform.position.y + 1.0f), Quaternion.identity);
     }
 
     /// <summary>
@@ -345,6 +351,23 @@ public class BossController : MonoBehaviour
     void Attack04()
     {
         this.animator.SetTrigger("Boss_Attack");
+        for(int wave = -50; wave <= 50; wave += 20)
+        {
+            GameObject bullet = Instantiate(this.bossBullet) as GameObject;
+            bullet.transform.position = new Vector2(transform.position.x - 2.5f, transform.position.y + 1.0f);
+            bullet.transform.Rotate(0, 0, wave);
+        }
+    }
+
+    /// <summary>
+    /// 斜め下に向けて一度攻撃
+    /// </summary>
+    void Attack05()
+    {
+        this.animator.SetTrigger("Boss_Attack");
+        GameObject bullet = Instantiate(this.bossBullet) as GameObject;
+        bullet.transform.position = new Vector2(transform.position.x - 2.0f, transform.position.y);
+        bullet.transform.Rotate(0, 0, this.angle);
     }
 
     /// <summary>

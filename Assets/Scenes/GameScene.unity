@@ -1741,12 +1741,12 @@ PrefabInstance:
     - target: {fileID: 7050452451906443354, guid: 54a39e1fe33609d4faebcd357feee629,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.55
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7050452451906443354, guid: 54a39e1fe33609d4faebcd357feee629,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.35
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7050452451906443354, guid: 54a39e1fe33609d4faebcd357feee629,
         type: 3}
@@ -1802,7 +1802,7 @@ PrefabInstance:
         type: 3}
       propertyPath: jumpMonster
       value: 
-      objectReference: {fileID: 1685832049595097712, guid: 74d25e2828e23074baf4bdfbd789f852,
+      objectReference: {fileID: 6666561923936923128, guid: f4f8aa55494afba4b89701f6155d3b5f,
         type: 3}
     - target: {fileID: 7050452451906443357, guid: 54a39e1fe33609d4faebcd357feee629,
         type: 3}
@@ -1815,6 +1815,12 @@ PrefabInstance:
       propertyPath: life
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 7050452451906443357, guid: 54a39e1fe33609d4faebcd357feee629,
+        type: 3}
+      propertyPath: bossBullet
+      value: 
+      objectReference: {fileID: 7173052509966433393, guid: e6bfa3d0001734941992731afe8a587e,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 54a39e1fe33609d4faebcd357feee629, type: 3}
 --- !u!1001 &8116148401699592882
