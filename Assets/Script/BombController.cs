@@ -24,6 +24,10 @@ public class BombController : MonoBehaviour
     /// Bossオブジェクトのスクリプト
     /// </summary>
     private BossController bossController;
+    /// <summary>
+    /// Bulletオブジェクトのスクリプト
+    /// </summary>
+    private BossBulletController bossBulletController;
 
     void Start(){}
 
@@ -55,39 +59,48 @@ public class BombController : MonoBehaviour
         {
             //attackに関係なくJumpBallを破壊
             case "JumpBall":
-            Destroy(other.gameObject);
-            if(attack <= 3)
-            {
-                Destroy(gameObject);
-            }
-            break;
+                Destroy(other.gameObject);
+                if(attack <= 3)
+                {
+                    Destroy(gameObject);
+                }
+                break;
 
-            //Cubeオブジェクトのスクリプトを取得し、Damage関数を呼び出す
+            //オブジェクトのスクリプトを取得し、Damage関数を呼び出す
             case "Block":
             case "HBlock":
-            this.cubeController = other.gameObject.GetComponent<CubeController>();
-            this.cubeController.Damage(this.attack);
-            if(attack <= 3)
-            {
-                Destroy(gameObject);
-            }
-            break;
+                this.cubeController = other.gameObject.GetComponent<CubeController>();
+                this.cubeController.Damage(this.attack);
+                if(attack <= 3)
+                {
+                    Destroy(gameObject);
+                }
+                break;
 
-            //Cubeオブジェクトのスクリプトを取得し、Damage関数を呼び出す
             case "Star":
-            this.starController = other.gameObject.GetComponent<StarController>();
-            this.starController.Damage(this.attack);
-            if(attack <= 3)
-            {
-                Destroy(gameObject);
-            }
-            break;
+                this.starController = other.gameObject.GetComponent<StarController>();
+                this.starController.Damage(this.attack);
+                if(attack <= 3)
+                {
+                    Destroy(gameObject);
+                }
+                break;
 
             case "Boss":
                 this.bossController = other.gameObject.GetComponent<BossController>();
                 this.bossController.Damage(this.attack);
                 Destroy(gameObject);
                 break;
+
+            case "Bullet":
+                this.bossBulletController = other.gameObject.GetComponent<BossBulletController>();
+                this.bossBulletController.Damage(this.attack);
+                if (attack <= 3)
+                {
+                    Destroy(gameObject);
+                }
+                break;
+
 
             //それ以外のオブジェクトには反応しない
             default:
