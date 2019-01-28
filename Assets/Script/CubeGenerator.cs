@@ -72,6 +72,7 @@ public class CubeGenerator : MonoBehaviour
 
     void Update()
     {
+        return;
         //UIControllerの変数lengthが147以上になると破棄する
         if(this.uiController.length >= 147)
         {

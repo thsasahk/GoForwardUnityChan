@@ -20,6 +20,11 @@ public class BombController : MonoBehaviour
     /// Starオブジェクトのスクリプト
     /// </summary>
     private StarController starController;
+    /// <summary>
+    /// Bossオブジェクトのスクリプト
+    /// </summary>
+    private BossController bossController;
+
     void Start(){}
 
     // Update is called once per frame
@@ -77,6 +82,12 @@ public class BombController : MonoBehaviour
                 Destroy(gameObject);
             }
             break;
+
+            case "Boss":
+                this.bossController = other.gameObject.GetComponent<BossController>();
+                this.bossController.Damage(this.attack);
+                Destroy(gameObject);
+                break;
 
             //それ以外のオブジェクトには反応しない
             default:

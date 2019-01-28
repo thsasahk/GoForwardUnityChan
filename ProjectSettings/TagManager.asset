@@ -12,6 +12,7 @@ TagManager:
   - JumpBall
   - Coin
   - Star
+  - Boss
   layers:
   - Default
   - TransparentFX

@@ -56,6 +56,10 @@ public class UIController : MonoBehaviour
     /// </summary>
     public int starScore = 0;
     /// <summary>
+    /// Bossオブジェクト破壊によって得たScore
+    /// </summary>
+    public int bossScore = 0;
+    /// <summary>
     /// unitychanオブジェクト
     /// </summary>
     public GameObject unityChan;
@@ -99,7 +103,7 @@ public class UIController : MonoBehaviour
             }
         }
         //scoreを計算
-        this.score = this.cubeScore + this.coinScore + this.starScore + Mathf.FloorToInt(this.length);
+        this.score = this.cubeScore + this.coinScore + this.starScore + this.bossScore + Mathf.FloorToInt(this.length);
         //scoreを表示
         if(this.clear == false)
         {
