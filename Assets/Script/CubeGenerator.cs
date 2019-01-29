@@ -64,15 +64,42 @@ public class CubeGenerator : MonoBehaviour
     /// Canvasオブジェクトのスクリプト
     /// </summary>
     private UIController uiController;
-    
+    /// <summary>
+    /// Bossオブジェクト
+    /// </summary>
+    public GameObject boss;
+    /// <summary>
+    /// Bossオブジェクトのスクリプト
+    /// </summary>
+    private BossController bossController;
+    /// <summary>
+    /// オブジェクトのon/offを表す変数
+    /// </summary>
+    public bool isBoss;
+
+
     void Start()
     {
         this.uiController = this.canvas.GetComponent<UIController>();
+        this.bossController = this.boss.GetComponent<BossController>();
     }
 
     void Update()
     {
-        return;
+        //Boss出現中は他のオブジェクトを生成しない
+        if (this.isBoss)
+        {
+            return;
+        }
+        if((this.uiController.length >= 50 && this.uiController.length <= 52)
+            || (this.uiController.length >= 105 && this.uiController.length <= 107))
+        {
+            if (this.isBoss == false)
+            {
+                this.isBoss = true;
+                Instantiate(this.boss, new Vector2(11.0f, 2.0f), Quaternion.identity);
+            }
+        }
         //UIControllerの変数lengthが147以上になると破棄する
         if(this.uiController.length >= 147)
         {
@@ -107,7 +134,7 @@ public class CubeGenerator : MonoBehaviour
             else if (m == hardPercentage - 2)
             {
                 //lengthが100以下のとき、すでにJumpBallを生成している場合はJumpBallを生成しない
-                if (this.uiController.length > 100 || this.ballSwitch)
+                if (this.uiController.length > 75 || this.ballSwitch)
                     return;
                 GameObject go = Instantiate(this.jumpBall) as GameObject;
                 go.transform.position = new Vector2(this.genPosX - 3, this.offsetY);

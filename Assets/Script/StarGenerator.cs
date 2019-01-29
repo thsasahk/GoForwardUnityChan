@@ -28,21 +28,37 @@ public class StarGenerator : MonoBehaviour
     /// 最後にStarを生成してからの時間を管理する
     /// </summary>
     private float time = 0;
+    /// <summary>
+    /// CubeGeneratorオブジェクト
+    /// </summary>
+    public GameObject cubeGenerator;
+    /// <summary>
+    /// CubeGeneratorオブジェクトのスクリプト
+    /// </summary>
+    private CubeGenerator cubeGeneratorScript;
+
     void Start()
     {
         this.uiController = this.canvas.GetComponent<UIController>();
         //最初のStarを生成する時間を決定する
         this.span = Random.Range(this.coolTime,this.coolTime + 5.0f);
+        this.cubeGeneratorScript = this.cubeGenerator.GetComponent<CubeGenerator>();
     }
+
     void Update()
     {
+        //Boss出現中は他のオブジェクトを生成しない
+        if (this.cubeGeneratorScript.isBoss)
+        {
+            return;
+        }
         //lengthが140を超えたら破棄する
-        if(this.uiController.length >= 140)
+        if (this.uiController.length >= 140)
         {
             Destroy(gameObject);
         }
         this.time += Time.deltaTime;
-        if(this.uiController.length >= 100 && this.time >= this.span)
+        if(this.uiController.length >= 75 && this.time >= this.span)
         {
             Instantiate(this.star,new Vector2(13,5),Quaternion.identity);
             //次にStarを生成する時間を決定する

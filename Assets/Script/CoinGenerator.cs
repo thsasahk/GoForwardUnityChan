@@ -40,18 +40,33 @@ public class CoinGenerator : MonoBehaviour
     /// Canvasオブジェクトのスクリプト
     /// </summary>
     private UIController uiController;
+    /// <summary>
+    /// CubeGeneratorオブジェクト
+    /// </summary>
+    public GameObject cubeGenerator;
+    /// <summary>
+    /// CubeGeneratorオブジェクトのスクリプト
+    /// </summary>
+    private CubeGenerator cubeGeneratorScript;
+
     void Start()
     {
         //GameScene開始から最初にCoinを生成するまでの時間を決定する
         this.span=Random.Range(this.startSpan1,this.startSpan2);
         this.uiController = this.canvas.GetComponent<UIController>();
+        this.cubeGeneratorScript = this.cubeGenerator.GetComponent<CubeGenerator>();
     }
 
     
     void Update()
     {
+        //Boss出現中は他のオブジェクトを生成しない
+        if (this.cubeGeneratorScript.isBoss)
+        {
+            return;
+        }
         //UIControllerのlengthが147を超えたら破棄される
-        if(this.uiController.length >= 147)
+        if (this.uiController.length >= 147)
         {
             Destroy(gameObject);
         }

@@ -45,20 +45,29 @@ public class BossController : MonoBehaviour
     /// </summary>
     private float coolTime = 0;
     /// <summary>
-    /// オブジェクトのon/offを表す変数
-    /// </summary>
-    public bool isBoss;
-    /// <summary>
     /// オブジェクトの体力
     /// </summary>
     public int life;
+    /// <summary>
+    /// オブジェクト消滅時に生成されるParticleSystem
+    /// </summary>
+    public GameObject bossParticle;
+    /// <summary>
+    /// CubeGeneratorオブジェクト
+    /// </summary>
+    private GameObject cubeGenerator;
+    /// <summary>
+    /// CubeGeneratorオブジェクトのスクリプト
+    /// </summary>
+    private CubeGenerator cubeGeneratorScript;
 
     void Start()
     {
         this.animator = GetComponent<Animator>();
         this.canvas = GameObject.Find("Canvas");
         this.uiController = this.canvas.GetComponent<UIController>();
-        this.isBoss = true;
+        this.cubeGenerator = GameObject.Find("CubeGenerator");
+        this.cubeGeneratorScript = this.cubeGenerator.GetComponent<CubeGenerator>();
     }
 
     void Update()
@@ -67,6 +76,12 @@ public class BossController : MonoBehaviour
         if (this.time >= this.coolTime)
         {
             SelectMove();
+        }
+        //lengthが一定値を超えたら逃げ出す
+        if ((this.uiController.length >= 75 && this.uiController.length <= 104)
+            || this.uiController.length >= 130)
+        {
+            Move09();
         }
     }
 
@@ -311,6 +326,7 @@ public class BossController : MonoBehaviour
     /// </summary>
     void Move09()
     {
+        this.cubeGeneratorScript.isBoss = false;
         iTween.RotateTo(gameObject, iTween.Hash("z", 720.0f));
         iTween.RotateTo(gameObject, iTween.Hash("y", 180.0f, "delay", 1.0f));
         iTween.MoveTo(gameObject, iTween.Hash("x", 13.0f, "y", 7.0f, "delay", 2.0f));
@@ -351,7 +367,8 @@ public class BossController : MonoBehaviour
     void Attack04()
     {
         this.animator.SetTrigger("Boss_Attack");
-        for(int wave = -50; wave <= 50; wave += 20)
+        //-50から50まで25度づつBulletの角度をずらしながら生成する
+        for(int wave = -50; wave <= 50; wave += 25)
         {
             GameObject bullet = Instantiate(this.bossBullet) as GameObject;
             bullet.transform.position = new Vector2(transform.position.x - 2.5f, transform.position.y + 1.0f);
@@ -396,7 +413,9 @@ public class BossController : MonoBehaviour
             }
             else
             {
-                Destroy();
+                this.cubeGeneratorScript.isBoss = false;
+                Instantiate(this.bossParticle, this.transform.position, Quaternion.identity);
+                Destroy(gameObject);
             }
         }
     }

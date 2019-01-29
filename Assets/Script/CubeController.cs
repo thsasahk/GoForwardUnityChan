@@ -32,6 +32,7 @@ public class CubeController : MonoBehaviour
     /// オブジェクトの破棄条件を計測する変数
     /// </summary>
     public int life;
+
     void Start()
     {
         this.SE = GetComponents<AudioSource>();
