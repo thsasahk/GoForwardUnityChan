@@ -28,7 +28,7 @@ public class UnityChanController : MonoBehaviour
     /// <summary>
     /// ジャンプの速度
     /// </summary>
-    public float jumpVelocity=20;
+    public float jumpPower;
     /// <summary>
     /// ゲームオーバーになる位置
     /// </summary>
@@ -101,6 +101,22 @@ public class UnityChanController : MonoBehaviour
     /// ParticleSystemの器
     /// </summary>
     private ParticleSystem jetParticle;
+    /// <summary>
+    /// オブジェクトが徐々にスタート位置に戻る速度
+    /// </summary>
+    public float returnSpeed;
+    /// <summary>
+    /// オブジェクトの最高高度
+    /// </summary>
+    public float maxHigh;
+    /// <summary>
+    /// jumpの継続可能時間
+    /// </summary>
+    public float jumpLimit;
+    /// <summary>
+    /// 現在jumpを続けている時間
+    /// </summary>
+    private float jumpTime = 0;
 
     void Start()
     {
@@ -121,16 +137,17 @@ public class UnityChanController : MonoBehaviour
             //ユニティちゃんを破棄する
             Destroy(gameObject);
         }
+
         //走行距離150で終了
         if(this.uiController.length >= 150.0f)
         {
             Clear();
             return;
         }
-        //ユニティちゃんが画面右に行くのを禁止
-        if(this.transform.position.x > -2.9f)
+
+        if(this.transform.position.x != -2.9f|| this.transform.position.y >= this.maxHigh)
         {
-            this.transform.position = new Vector2(-2.9f,this.transform.position.y);
+            Return();
         }
 
         //着地しているかどうかを調べる
@@ -138,6 +155,8 @@ public class UnityChanController : MonoBehaviour
         if (isGround)
         {
             this.animator.SetBool("Run", true);
+            //jumpTimeをリセット
+            this.jumpTime = 0;
         }
         else
         {
@@ -147,41 +166,31 @@ public class UnityChanController : MonoBehaviour
         //ジャンプ状態のときはボリュームを0にする
         this.unitySE[1].volume = (isGround) ? 1 : 0;
 
-        //着地状態でクリックされた場合
-        if(isGround && Input.GetMouseButtonDown(0))
+        if((Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space)) && this.jumpTime < this.jumpLimit)
         {
-            //上方向への力をかける
-            this.rigid2D.velocity = new Vector2(0,this.jumpVelocity);
-            //
-            this.jetParticle.Play();
-        }
-        //クリックをやめたら減速する
-        if(Input.GetMouseButton(0) == false)
-        {
-            this.jetParticle.Stop();
-            if(this.rigid2D.velocity.y > 0)
-            {
-                this.rigid2D.velocity *= dump;
-            }
+            Jump();
         }
 
         //チャージ音を再生する
-        if(Input.GetMouseButtonDown(1))
+        if (Input.GetMouseButtonDown(1)|| Input.GetKeyDown(KeyCode.LeftControl)|| Input.GetKeyDown(KeyCode.RightControl))
         {
             this.unitySE[0].Play();
         }
         //右クリックを推している間、Charge関数を呼び続ける
-        if(Input.GetMouseButton(1))
+        if(Input.GetMouseButton(1)|| Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
         {
             Charge();
         }
+
         //発射
-        if (Input.GetMouseButtonUp(1))
+        if (Input.GetMouseButtonUp(1)|| Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl))
         {
             Shot();
         }
+
         //スライダーの値を変化させる
         this.chargeSlider.value = this.chargeTime;
+
         //ChargeSliderの色を変化させる
         switch(this.chargeLV)
         {
@@ -277,7 +286,8 @@ public class UnityChanController : MonoBehaviour
         switch (this.chargeLV)
         {
             case 0:
-                Instantiate(bombLv0, new Vector2(transform.position.x + 1.0f, transform.position.y - 0.3f), Quaternion.identity);
+                Instantiate(bombLv0, new Vector2(transform.position.x + 1.0f, transform.position.y - 0.3f), 
+                    Quaternion.identity);
                 break;
 
             case 1:
@@ -294,5 +304,45 @@ public class UnityChanController : MonoBehaviour
         }
         this.chargeTime = 0.0f;
         this.chargeLV = 0;
+    }
+
+    /// <summary>
+    /// オブジェクトにy正方向の力を与える
+    /// jetParticleを再生する
+    /// Jumpしている時間を計測する
+    /// </summary>
+    void Jump()
+    {
+        this.rigid2D.AddForce(new Vector2(0f, this.jumpPower * Time.deltaTime));
+        this.jetParticle.Play();
+        this.jumpTime += Time.deltaTime;
+    }
+
+    /// <summary>
+    /// オブジェクトが画面右に行くのを禁止
+    /// オブジェクトが画面左に押し込まれても、徐々にスタート位置に帰ってくる
+    /// maxHigh以上には上昇しない
+    /// ピタッと止まると不自然なので少し揺らす
+    /// </summary>
+    void Return()
+    {
+        if (this.transform.position.x > -2.9f)
+        {
+            this.transform.position = new Vector2(-2.9f, this.transform.position.y);
+        }
+
+        if(this.transform.position.x < -2.9f)
+        {
+            this.transform.Translate(this.returnSpeed, 0.0f, 0.0f);
+        }
+
+
+        this.maxHigh = Random.Range(this.maxHigh - 0.02f, this.maxHigh + 0.02f);
+        if (this.transform.position.y >= this.maxHigh)
+        {
+            this.transform.position = new Vector2(this.transform.position.x, this.maxHigh);
+            this.rigid2D.velocity = Vector2.zero;
+        }
+
     }
 }

@@ -14,6 +14,6 @@ public class ParticleController : MonoBehaviour
     void Update()
     {
         transform.Translate(-0.2f,0,0);
-        Destroy(gameObject,2.0f);
+        Destroy(gameObject,3.0f);
     }
 }

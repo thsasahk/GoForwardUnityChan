@@ -91,13 +91,14 @@ public class CubeGenerator : MonoBehaviour
         {
             return;
         }
+        //他オブジェクトの生成停止から少し時間をおいてボスを生成
         if((this.uiController.length >= 50 && this.uiController.length <= 52)
             || (this.uiController.length >= 105 && this.uiController.length <= 107))
         {
             if (this.isBoss == false)
             {
                 this.isBoss = true;
-                Instantiate(this.boss, new Vector2(11.0f, 2.0f), Quaternion.identity);
+                Invoke("CreateBoss", 3.0f);
             }
         }
         //UIControllerの変数lengthが147以上になると破棄する
@@ -154,5 +155,13 @@ public class CubeGenerator : MonoBehaviour
         this.span = this.offsetX + this.spaceX * n;
         //JumpBallの生成禁止スイッチを解除
         this.ballSwitch = false;
+    }
+
+    /// <summary>
+    /// Bossオブジェクトを生成
+    /// </summary>
+    void CreateBoss()
+    {
+        Instantiate(this.boss, new Vector2(11.0f, 2.0f), Quaternion.identity);
     }
 }

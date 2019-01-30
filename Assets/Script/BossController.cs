@@ -77,19 +77,23 @@ public class BossController : MonoBehaviour
 
     void Update()
     {
-        this.time += Time.deltaTime;
-        if (this.time >= this.coolTime)
-        {
-            SelectMove();
-        }
         //lengthが一定値を超えたら逃げ出す
         if ((this.uiController.length >= 75 && this.uiController.length <= 104)
             || this.uiController.length >= 130)
         {
             Move09();
+            return;
+        }
+        this.time += Time.deltaTime;
+        if (this.time >= this.coolTime)
+        {
+            SelectMove();
         }
     }
 
+    /// <summary>
+    /// ランダムで選んだ変数moveの値に対応した攻撃パターンを行う
+    /// </summary>
     void SelectMove()
     {
         if (this.uiController.length < 75)
@@ -199,11 +203,12 @@ public class BossController : MonoBehaviour
         this.coolTime = 6.0f;
         //X座標は一定値からランダムで選択、Y座標は2.5で固定
         float posX = Random.Range(3f, 8f);
-        iTween.MoveTo(gameObject, iTween.Hash("x", posX, "y", 2.5f, "time", 3.0f));
+        iTween.MoveTo(gameObject, iTween.Hash("x", posX, "y", 1.0f, "time", 3.0f));
         //オブジェクトとPlayerを結ぶ角度angleを求める
         //オブジェクトのz角が0の時、spriteは180度の方向を向いているので注意
-        float dx = this.Player.transform.position.x - posX;
-        float rad = Mathf.Atan2(-6.4f, dx);
+        float distanceX = this.Player.transform.position.x - posX;
+        float distanceY = this.Player.transform.position.y - 1.0f;
+        float rad = Mathf.Atan2(distanceY, distanceX);
         this.angle = rad * Mathf.Rad2Deg - 180;
         iTween.RotateTo(gameObject, iTween.Hash("z", this.angle, "delay", 3.0f));
         Invoke("Attack05", 4.0f);
@@ -331,7 +336,7 @@ public class BossController : MonoBehaviour
     /// </summary>
     void Move09()
     {
-        this.cubeGeneratorScript.isBoss = false;
+        GetComponent<CircleCollider2D>().enabled = false;
         iTween.RotateTo(gameObject, iTween.Hash("z", 720.0f));
         iTween.RotateTo(gameObject, iTween.Hash("y", 180.0f, "delay", 1.0f));
         iTween.MoveTo(gameObject, iTween.Hash("x", 13.0f, "y", 7.0f, "delay", 2.0f));
@@ -398,6 +403,7 @@ public class BossController : MonoBehaviour
     void Destroy()
     {
         this.uiController.bossScore += 100;
+        this.cubeGeneratorScript.isBoss = false;
         Destroy(gameObject);
     }
 
@@ -413,7 +419,7 @@ public class BossController : MonoBehaviour
         //life変数が1未満の場合はオブジェクトを破棄する
         if (this.life < 1)
         {
-            if (this.uiController.length < 75)
+            if (this.uiController.length < 100)
             {
                 Move09();
             }
@@ -421,6 +427,7 @@ public class BossController : MonoBehaviour
             {
                 this.cubeGeneratorScript.isBoss = false;
                 Instantiate(this.bossParticle, this.transform.position, Quaternion.identity);
+                this.uiController.bossScore += 100;
                 Destroy(gameObject);
             }
         }

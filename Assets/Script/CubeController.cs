@@ -43,7 +43,7 @@ public class CubeController : MonoBehaviour
     void Update()
     {
         //キューブを移動させる
-        transform.Translate(this.speed,0,0);
+        transform.Translate(this.speed, 0,0);
         //画面外に出たら破棄する
         if(transform.position.x < deadLine)
         {
