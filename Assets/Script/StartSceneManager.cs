@@ -59,7 +59,8 @@ public class StartSceneManager : MonoBehaviour
 
         //シーンのロード中に重ねて読み込むことはしない
         if((Input.GetMouseButton(0)
-            ||Input.GetMouseButton(1))
+            ||Input.GetMouseButton(1)
+                || Input.GetKeyDown(KeyCode.Space))
                 && this.sceneLoad == false)
             {
                 LoadScene();

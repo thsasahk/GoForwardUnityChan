@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
@@ -83,16 +84,68 @@ public class UIController : MonoBehaviour
     /// シーンのロード状況を管理する
     /// </summary>
     private bool sceneLoad = false;
+    /// <summary>
+    /// DangerTextオブジェクト
+    /// </summary>
+    public GameObject DangerText;
+    /// <summary>
+    /// DangerTextオブジェクトのTextUGUI
+    /// </summary>
+    public TextMeshProUGUI DangerTextUGUI;
+    /// <summary>
+    /// DangerTextオブジェクトのAnimator
+    /// </summary>
+    private Animator DangerTextAnimator;
+    /// <summary>
+    /// DangerTextオブジェクトのAudioSource;
+    /// </summary>
+    private AudioSource DangerTextAudioSource;
+    /// <summary>
+    /// DangerTextのAudioSourceの再生状態を表す
+    /// </summary>
+    public bool oneplay = false;
+    /// <summary>
+    /// CubeGeneratorオブジェクト
+    /// </summary>
+    public GameObject cubeGenerator;
+    /// <summary>
+    /// CubeGeneratorオブジェクトのスクリプト
+    /// </summary>
+    private CubeGenerator cubeGeneratorController;
+    /// <summary>
+    /// DangerTextを表示する時間
+    /// </summary>
+    public float alertTimeMax;
+    /// <summary>
+    /// DangerTextが表示されている時間を計測する
+    /// </summary>
+    private float alertTime;
+
+
     void Start()
     {
         this.gameOverText = GameObject.Find("GameOver");
         this.runLengthText = GameObject.Find("RunLength");
         this.bgm = this.bgmManager.GetComponents<AudioSource>();
         this.highScore = PlayerPrefs.GetInt("highScore_Key", 0);
+        this.DangerTextUGUI = this.DangerText.GetComponent<TextMeshProUGUI>();
+        this.cubeGeneratorController = this.cubeGenerator.GetComponent<CubeGenerator>();
+        this.DangerTextAnimator = this.DangerText.GetComponent<Animator>();
+        this.DangerTextAudioSource = this.DangerText.GetComponent<AudioSource>();
     }
 
     void Update()
     {
+        if (this.cubeGeneratorController.isBoss)
+        {
+            DangerTextPlay();
+        }
+        else
+        {
+            this.alertTime = 0;
+            this.oneplay = false;
+        }
+
         //Gameover状態でなくlengthが150以上のときにunityChanオブジェクトのposition.xを参照する
         if(this.isGameOver == false && length >= 150)
         {
@@ -120,7 +173,7 @@ public class UIController : MonoBehaviour
 
         //ゲームオーバーになった場合
         if((this.isGameOver || this.clear)
-            && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
+            && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space))
                 && this.sceneLoad == false)
         {
             FadeManager.Instance.LoadScene ("StartScene", 1.0f);
@@ -156,6 +209,7 @@ public class UIController : MonoBehaviour
             this.changeBGM = true;
         }
     }
+
     /// <summary>
     /// テキストにGame Clearを表示し、clearをtrueに変更、BGMも変更する
     /// 獲得スコアがハイスコアより高い場合ハイスコアを変更して記録する
@@ -179,6 +233,27 @@ public class UIController : MonoBehaviour
             this.bgm[0].Stop();
             this.bgm[2].Play();
             this.changeBGM = true;
+        }
+    }
+
+    /// <summary>
+    /// DangerTextにDANGERと表示する
+    /// DangerTextのAudioSource、Animatorを再生する
+    /// </summary>
+    void DangerTextPlay()
+    {
+        if (this.oneplay == false)
+        {
+            this.oneplay = true;
+            this.DangerTextAudioSource.Play();
+        }
+        this.DangerTextAnimator.enabled = true;
+        this.DangerTextUGUI.text = "DANGER";
+        this.alertTime += Time.deltaTime;
+        if (alertTime >= alertTimeMax)
+        {
+            this.DangerTextUGUI.text = " ";
+            this.DangerTextAnimator.enabled = false;
         }
     }
 }
