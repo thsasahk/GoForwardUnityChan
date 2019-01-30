@@ -60,6 +60,10 @@ public class BossController : MonoBehaviour
     /// CubeGeneratorオブジェクトのスクリプト
     /// </summary>
     private CubeGenerator cubeGeneratorScript;
+    /// <summary>
+    /// オブジェクトのAudioSource
+    /// </summary>
+    private AudioSource[] audioSource;
 
     void Start()
     {
@@ -68,6 +72,7 @@ public class BossController : MonoBehaviour
         this.uiController = this.canvas.GetComponent<UIController>();
         this.cubeGenerator = GameObject.Find("CubeGenerator");
         this.cubeGeneratorScript = this.cubeGenerator.GetComponent<CubeGenerator>();
+        this.audioSource = GetComponents<AudioSource>();
     }
 
     void Update()
@@ -402,6 +407,7 @@ public class BossController : MonoBehaviour
     /// <param name="i"></param>
     public void Damage(int i)
     {
+        this.audioSource[0].Play();
         //life変数を引数分マイナスさせる
         this.life -= i;
         //life変数が1未満の場合はオブジェクトを破棄する
