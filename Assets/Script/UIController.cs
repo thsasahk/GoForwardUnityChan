@@ -120,6 +120,14 @@ public class UIController : MonoBehaviour
     /// DangerTextが表示されている時間を計測する
     /// </summary>
     private float alertTime;
+    /// <summary>
+    /// DistanceToBossTextオブジェクト
+    /// </summary>
+    public GameObject distanceToBossText;
+    /// <summary>
+    /// 現在位置からボス出現位置までの距離
+    /// </summary>
+    private float distanceToBoss;
 
 
     void Start()
@@ -186,7 +194,10 @@ public class UIController : MonoBehaviour
         {
             PlayerPrefs.DeleteKey("highScore_Key");
         }
+
+        DistanceToBoss();
     }
+
     /// <summary>
     /// テキストにGame Overを表示し、isGameOverをtrueに変更、BGMも変更する
     /// 獲得スコアがハイスコアより高い場合ハイスコアを変更して記録する
@@ -254,6 +265,38 @@ public class UIController : MonoBehaviour
         {
             this.DangerTextUGUI.text = " ";
             this.DangerTextAnimator.enabled = false;
+        }
+    }
+
+    /// <summary>
+    /// 現在位置からBoss出現位置までの距離を計算して表示する
+    /// Boss出現中はDangerZoneと表示し、以降Boss出現がない時は何も表示しない
+    /// </summary>
+    void DistanceToBoss()
+    {
+        if (this.cubeGeneratorController.isBoss)
+        {
+            this.distanceToBossText.GetComponent<Text>().text = "Danger Zone";
+            return;
+        }
+
+        if (this.length >= 105)
+        {
+            this.distanceToBossText.GetComponent<Text>().text = " ";
+            return;
+        }
+
+        if (this.length < 50)
+        {
+            this.distanceToBoss = 50 - this.length;
+            this.distanceToBossText.GetComponent<Text>().text 
+                = "Danger Zone: " + this.distanceToBoss.ToString("F2") + " m";
+        }
+        else
+        {
+            this.distanceToBoss = 105 - this.length;
+            this.distanceToBossText.GetComponent<Text>().text 
+                = "Danger Zone: " + this.distanceToBoss.ToString("F2") + " m";
         }
     }
 }
