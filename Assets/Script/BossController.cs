@@ -37,6 +37,10 @@ public class BossController : MonoBehaviour
     /// </summary>
     private Animator animator;
     /// <summary>
+    /// オブジェクトのSpriteRenderer
+    /// </summary>
+    private SpriteRenderer spriteRenderer;
+    /// <summary>
     /// 時間計測用の変数
     /// </summary>
     private float time = 0;
@@ -73,6 +77,7 @@ public class BossController : MonoBehaviour
         this.cubeGenerator = GameObject.Find("CubeGenerator");
         this.cubeGeneratorScript = this.cubeGenerator.GetComponent<CubeGenerator>();
         this.audioSource = GetComponents<AudioSource>();
+        this.spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -416,6 +421,8 @@ public class BossController : MonoBehaviour
         this.audioSource[0].Play();
         //life変数を引数分マイナスさせる
         this.life -= i;
+        int colorChange = 255 - ((15 - this.life) * 17);
+        this.spriteRenderer.color = new Color32(255, (byte)colorChange, (byte)colorChange, 255);
         //life変数が1未満の場合はオブジェクトを破棄する
         if (this.life < 1)
         {
