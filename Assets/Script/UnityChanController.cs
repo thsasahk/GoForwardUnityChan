@@ -22,10 +22,6 @@ public class UnityChanController : MonoBehaviour
     /// </summary>
     private float groundLevel = -3.8f;
     /// <summary>
-    /// ジャンプ速度の減衰
-    /// </summary>
-    public float dump = 0.8f;
-    /// <summary>
     /// ジャンプの速度
     /// </summary>
     public float jumpPower;
@@ -46,13 +42,9 @@ public class UnityChanController : MonoBehaviour
     /// </summary>
     public GameObject bombLv2;
     /// <summary>
-    /// Bombオブジェクトのスクリプト
-    /// </summary>
-    private BombController bombController;
-    /// <summary>
     /// 右クリックを押してからたった時間
     /// </summary>
-    public float chargeTime=0;
+    public float chargeTime = 0;
     /// <summary>
     /// chargeLVが一つ上がるまでの時間
     /// </summary>
@@ -60,7 +52,7 @@ public class UnityChanController : MonoBehaviour
     /// <summary>
     /// 溜めた時間によってchargeのレベルを定義し、発射されるBombの種類を管理する
     /// </summary>
-    public int chargeLV=0;
+    public int chargeLV = 0;
     /// <summary>
     /// chargeTimeを視覚化するオブジェクト
     /// </summary>
@@ -187,22 +179,6 @@ public class UnityChanController : MonoBehaviour
         {
             Shot();
         }
-
-        //スライダーの値を変化させる
-        this.chargeSlider.value = this.chargeTime;
-
-        //ChargeSliderの色を変化させる
-        switch(this.chargeLV)
-        {
-            case 0:
-                ChangeSliderColor(new Color32(95, 255, 187, 255), new Color32(84, 84, 84, 255));
-            break;
-
-            case 1:
-            case 2:
-                ChangeSliderColor(new Color32(59, 255, 72, 255), new Color32(95, 255, 187, 255));
-            break;
-        }
     }
 
     /// <summary>
@@ -259,6 +235,9 @@ public class UnityChanController : MonoBehaviour
     void Charge()
     {
         this.chargeTime += Time.deltaTime;
+        //スライダーの値を変化させる
+        this.chargeSlider.value = this.chargeTime;
+
         if (chargeTime >= maxCharge)
         {
             switch (this.chargeLV)
@@ -274,6 +253,19 @@ public class UnityChanController : MonoBehaviour
                     this.chargeTime = maxCharge;
                     break;
             }
+        }
+
+        //ChargeSliderの色を変化させる
+        switch (this.chargeLV)
+        {
+            case 0:
+                ChangeSliderColor(new Color32(95, 255, 187, 255), new Color32(84, 84, 84, 255));
+                break;
+
+            case 1:
+            case 2:
+                ChangeSliderColor(new Color32(59, 255, 72, 255), new Color32(95, 255, 187, 255));
+                break;
         }
     }
 
@@ -310,9 +302,17 @@ public class UnityChanController : MonoBehaviour
     /// オブジェクトにy正方向の力を与える
     /// jetParticleを再生する
     /// Jumpしている時間を計測する
+    /// maxHigh以上には上昇しない
+    /// ピタッと止まると不自然なので少し揺らす
     /// </summary>
     void Jump()
     {
+        this.maxHigh = Random.Range(this.maxHigh - 0.02f, this.maxHigh + 0.02f);
+        if (this.transform.position.y >= this.maxHigh)
+        {
+            this.transform.position = new Vector2(this.transform.position.x, this.maxHigh);
+            this.rigid2D.velocity = Vector2.zero;
+        }
         this.rigid2D.AddForce(new Vector2(0f, this.jumpPower * Time.deltaTime));
         this.jetParticle.Play();
         this.jumpTime += Time.deltaTime;
@@ -321,8 +321,6 @@ public class UnityChanController : MonoBehaviour
     /// <summary>
     /// オブジェクトが画面右に行くのを禁止
     /// オブジェクトが画面左に押し込まれても、徐々にスタート位置に帰ってくる
-    /// maxHigh以上には上昇しない
-    /// ピタッと止まると不自然なので少し揺らす
     /// </summary>
     void Return()
     {
@@ -335,14 +333,5 @@ public class UnityChanController : MonoBehaviour
         {
             this.transform.Translate(this.returnSpeed, 0.0f, 0.0f);
         }
-
-
-        this.maxHigh = Random.Range(this.maxHigh - 0.02f, this.maxHigh + 0.02f);
-        if (this.transform.position.y >= this.maxHigh)
-        {
-            this.transform.position = new Vector2(this.transform.position.x, this.maxHigh);
-            this.rigid2D.velocity = Vector2.zero;
-        }
-
     }
 }
