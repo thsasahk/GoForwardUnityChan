@@ -50,6 +50,7 @@ public class CubeController : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
     //生成され、着地した際にSE[0]を再生する
     void OnCollisionEnter2D(Collision2D other)
     {

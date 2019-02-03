@@ -40,7 +40,22 @@ public class TSCubeController : MonoBehaviour
     /// オブジェクト破棄時に生成されるParticleSystem
     /// </summary>
     public GameObject particlePrefab;
-
+    /// <summary>
+    /// ManualTextオブジェクト
+    /// </summary>
+    [SerializeField] private GameObject manualText;
+    /// <summary>
+    /// ManualTextオブジェクトのスクリプト
+    /// </summary>
+    private TSUIController tSUIController;
+    /// <summary>
+    /// lesson4の開始を記録する
+    /// </summary>
+    public bool lesson4Start;
+    /// <summary>
+    /// 
+    /// </summary>
+    [SerializeField] private GameObject player;
 
     void Start()
     {
@@ -48,6 +63,9 @@ public class TSCubeController : MonoBehaviour
         this.cubeGenerator = GameObject.Find("CubeGenerator");
         this.tutorialSceneManagerController = this.tutorialSceneManager.GetComponent<TutorialSceneManagerController>();
         this.tSCubeGeneratorController = this.cubeGenerator.GetComponent<TSCubeGeneratorController>();
+        this.manualText = GameObject.Find("ManualText");
+        this.tSUIController = this.manualText.GetComponent<TSUIController>();
+        this.SE = GetComponents<AudioSource>();
     }
 
     void Update()
@@ -59,6 +77,11 @@ public class TSCubeController : MonoBehaviour
                 break;
 
             case 4:
+                if (this.lesson4Start == false)
+                {
+                    transform.position = new Vector2(12.0f, 0.0f);
+                    this.lesson4Start = true;
+                }
                 //キューブを移動させる
                 transform.Translate(this.speed, 0, 0);
                 //画面外に出たら破棄する
@@ -98,6 +121,18 @@ public class TSCubeController : MonoBehaviour
     private void OnDestroy()
     {
         this.tutorialSceneManagerController.lesson++;
+        this.tSUIController.TextMoveBotom();
         this.tSCubeGeneratorController.createCube = false;
+    }
+
+    //生成され、着地した際にSE[0]を再生する
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.tag == "Stage"
+        || other.gameObject.tag == "Block"
+        || other.gameObject.tag == "HBlock")
+        {
+            this.SE[0].Play();
+        }
     }
 }

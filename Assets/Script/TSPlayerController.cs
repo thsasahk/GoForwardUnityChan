@@ -24,11 +24,11 @@ public class TSPlayerController : MonoBehaviour
     /// <summary>
     /// オブジェクトのRigidbody2D
     /// </summary>
-    Rigidbody2D rigid2D;
+    private Rigidbody2D rigid2D;
     /// <summary>
     /// オブジェクトのAudioSource
     /// </summary>
-    public AudioSource[] unitySE;
+    private AudioSource[] unitySE;
     /// <summary>
     /// オブジェクトが歩く地面の高さ
     /// </summary>
@@ -36,19 +36,19 @@ public class TSPlayerController : MonoBehaviour
     /// <summary>
     /// ジャンプの速度
     /// </summary>
-    public float jumpPower;
+    [SerializeField] private float jumpPower;
     /// <summary>
     /// ゲームオーバーになる位置
     /// </summary>
-    public float deadLine = -9;
+    [SerializeField] private  float deadLine = -9;
     /// <summary>
     /// 右クリックを押してからたった時間
     /// </summary>
-    public float chargeTime = 0;
+    private float chargeTime = 0;
     /// <summary>
     /// chargeLVが一つ上がるまでの時間
     /// </summary>
-    public float maxCharge;
+    [SerializeField] private float maxCharge;
     /// <summary>
     /// 溜めた時間によってchargeのレベルを定義し、発射されるBombの種類を管理する
     /// </summary>
@@ -56,26 +56,27 @@ public class TSPlayerController : MonoBehaviour
     /// <summary>
     /// chargeTimeを視覚化するオブジェクト
     /// </summary>
-    public Slider chargeSlider;
+    [SerializeField] private Slider chargeSlider;
     /// <summary>
     /// ジェット噴射のParticleSystem
     /// </summary>
-    public GameObject jet;
+    [SerializeField] private GameObject jet;
     /// <summary>
     /// ParticleSystemの器
     /// </summary>
     private ParticleSystem jetParticle;
+    /// <summary>
     /// オブジェクトが徐々にスタート位置に戻る速度
     /// </summary>
-    public float returnSpeed;
+    [SerializeField] private float returnSpeed;
     /// <summary>
     /// オブジェクトの最高高度
     /// </summary>
-    public float maxHigh;
+    [SerializeField] private float maxHigh;
     /// <summary>
     /// jumpの継続可能時間
     /// </summary>
-    public float jumpLimit;
+    [SerializeField] private float jumpLimit;
     /// <summary>
     /// 現在jumpを続けている時間
     /// </summary>
@@ -87,7 +88,12 @@ public class TSPlayerController : MonoBehaviour
 
     void Start()
     {
+        this.tutorialSceneManager = GameObject.Find("TutorialSceneManager");
         this.tutorialSceneManagerController = this.tutorialSceneManager.GetComponent<TutorialSceneManagerController>();
+        this.unitySE = GetComponents<AudioSource>();
+        this.animator = GetComponent<Animator>();
+        this.rigid2D = GetComponent<Rigidbody2D>();
+        this.jetParticle = this.jet.GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -112,13 +118,15 @@ public class TSPlayerController : MonoBehaviour
                 //右クリックを推している間、Charge関数を呼び続ける
                 if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
                 {
-                    Charge(1);
+                    Charge();
                 }
                 if (Input.GetMouseButtonUp(1) || Input.GetKeyUp(KeyCode.LeftControl) ||
                     Input.GetKeyUp(KeyCode.RightControl))
                 {
                     Shot();
                 }
+                //スライダーの値を変化させる
+                this.chargeSlider.value = this.chargeTime;
                 break;
 
             case 3:
@@ -131,21 +139,33 @@ public class TSPlayerController : MonoBehaviour
                 //右クリックを推している間、Charge関数を呼び続ける
                 if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
                 {
-                    Charge(2);
+                    Charge();
                 }
                 if (Input.GetMouseButtonUp(1) || Input.GetKeyUp(KeyCode.LeftControl) ||
                     Input.GetKeyUp(KeyCode.RightControl))
                 {
                     Shot();
                 }
+                //ChargeSliderの色を変化させる
+                switch (this.chargeLV)
+                {
+                    case 0:
+                        ChangeSliderColor(new Color32(95, 255, 187, 255), new Color32(84, 84, 84, 255));
+                        break;
+
+                    case 1:
+                    case 2:
+                        ChangeSliderColor(new Color32(59, 255, 72, 255), new Color32(95, 255, 187, 255));
+                        break;
+                }
+                //スライダーの値を変化させる
+                this.chargeSlider.value = this.chargeTime;
                 break;
 
             case 4:
-                //デッドラインを超えた場合ゲームオーバーにする
+                this.unitySE[1].Play();
                 if (transform.position.x < deadLine)
                 {
-                    //UIControllerのGameOver関数を呼び出して画面上に「GameOver」と表示する
-                    GameObject.Find("Canvas").GetComponent<UIController>().GameOver();
                     //ユニティちゃんを破棄する
                     Destroy(gameObject);
                 }
@@ -169,6 +189,22 @@ public class TSPlayerController : MonoBehaviour
                 {
                     Jump();
                 }
+                // maxHigh以上には上昇しない
+                // ピタッと止まると不自然なので少し揺らす
+                this.maxHigh = Random.Range(this.maxHigh - 0.02f, this.maxHigh + 0.02f);
+                if (this.transform.position.y >= this.maxHigh)
+                {
+                    this.transform.position = new Vector2(this.transform.position.x, this.maxHigh);
+                    this.rigid2D.velocity = Vector2.zero;
+                }
+
+                if (this.transform.position.x != -2.9f || this.transform.position.y >= this.maxHigh)
+                {
+                    Return();
+                }
+
+                //スライダーの値を変化させる
+                this.chargeSlider.value = this.chargeTime;
                 break;
         }
 
@@ -206,39 +242,39 @@ public class TSPlayerController : MonoBehaviour
     /// <summary>
     /// ChargeTime変数で時間を計測し、maxChargeを超えたらchargeLVを変化させる
     /// </summary>
-    void Charge(int i)
+    void Charge()
     {
-        this.chargeTime += Time.deltaTime;
-        //スライダーの値を変化させる
-        this.chargeSlider.value = this.chargeTime;
-
-        if (chargeTime >= maxCharge)
+        switch (this.tutorialSceneManagerController.lesson)
         {
-            switch (this.chargeLV)
-            {
-                case 0:
+            case 2:
+                this.chargeTime += Time.deltaTime;
+
+                if (chargeTime >= maxCharge)
+                {
                     this.chargeLV = 1;
-                    this.chargeTime = 0;
-                    break;
-
-                case 1:
-                case 2:
-                    this.chargeLV = i;
                     this.chargeTime = maxCharge;
-                    break;
-            }
-        }
-
-        //ChargeSliderの色を変化させる
-        switch (this.chargeLV)
-        {
-            case 0:
-                ChangeSliderColor(new Color32(95, 255, 187, 255), new Color32(84, 84, 84, 255));
+                }
                 break;
 
-            case 1:
-            case 2:
-                ChangeSliderColor(new Color32(59, 255, 72, 255), new Color32(95, 255, 187, 255));
+            case 3:
+                this.chargeTime += Time.deltaTime;
+
+                if (chargeTime >= maxCharge)
+                {
+                    switch (this.chargeLV)
+                    {
+                        case 0:
+                            this.chargeLV = 1;
+                            this.chargeTime = 0;
+                            break;
+
+                        case 1:
+                        case 2:
+                            this.chargeLV = 2;
+                            this.chargeTime = maxCharge;
+                            break;
+                    }
+                }
                 break;
         }
     }
@@ -266,17 +302,9 @@ public class TSPlayerController : MonoBehaviour
     /// オブジェクトにy正方向の力を与える
     /// jetParticleを再生する
     /// Jumpしている時間を計測する
-    /// maxHigh以上には上昇しない
-    /// ピタッと止まると不自然なので少し揺らす
     /// </summary>
     void Jump()
     {
-        this.maxHigh = Random.Range(this.maxHigh - 0.02f, this.maxHigh + 0.02f);
-        if (this.transform.position.y >= this.maxHigh)
-        {
-            this.transform.position = new Vector2(this.transform.position.x, this.maxHigh);
-            this.rigid2D.velocity = Vector2.zero;
-        }
         this.rigid2D.AddForce(new Vector2(0f, this.jumpPower * Time.deltaTime));
         this.jetParticle.Play();
         this.jumpTime += Time.deltaTime;
@@ -285,7 +313,6 @@ public class TSPlayerController : MonoBehaviour
     /// <summary>
     /// オブジェクトが画面右に行くのを禁止
     /// オブジェクトが画面左に押し込まれても、徐々にスタート位置に帰ってくる
-
     /// </summary>
     void Return()
     {
@@ -298,5 +325,11 @@ public class TSPlayerController : MonoBehaviour
         {
             this.transform.Translate(this.returnSpeed, 0.0f, 0.0f);
         }
+    }
+
+    private void OnDestroy()
+    {
+        this.tutorialSceneManagerController.isPlayer = false;
+        this.tutorialSceneManagerController.lesson--;  
     }
 }

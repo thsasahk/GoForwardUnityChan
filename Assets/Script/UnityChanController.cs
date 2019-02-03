@@ -162,6 +162,14 @@ public class UnityChanController : MonoBehaviour
         {
             Jump();
         }
+        // maxHigh以上には上昇しない
+        // ピタッと止まると不自然なので少し揺らす
+        this.maxHigh = Random.Range(this.maxHigh - 0.02f, this.maxHigh + 0.02f);
+        if (this.transform.position.y >= this.maxHigh)
+        {
+            this.transform.position = new Vector2(this.transform.position.x, this.maxHigh);
+            this.rigid2D.velocity = Vector2.zero;
+        }
 
         //チャージ音を再生する
         if (Input.GetMouseButtonDown(1)|| Input.GetKeyDown(KeyCode.LeftControl)|| Input.GetKeyDown(KeyCode.RightControl))
@@ -179,6 +187,20 @@ public class UnityChanController : MonoBehaviour
         {
             Shot();
         }
+        //ChargeSliderの色を変化させる
+        switch (this.chargeLV)
+        {
+            case 0:
+                ChangeSliderColor(new Color32(95, 255, 187, 255), new Color32(84, 84, 84, 255));
+                break;
+
+            case 1:
+            case 2:
+                ChangeSliderColor(new Color32(59, 255, 72, 255), new Color32(95, 255, 187, 255));
+                break;
+        }
+        //スライダーの値を変化させる
+        this.chargeSlider.value = this.chargeTime;
     }
 
     /// <summary>
@@ -235,8 +257,6 @@ public class UnityChanController : MonoBehaviour
     void Charge()
     {
         this.chargeTime += Time.deltaTime;
-        //スライダーの値を変化させる
-        this.chargeSlider.value = this.chargeTime;
 
         if (chargeTime >= maxCharge)
         {
@@ -253,19 +273,6 @@ public class UnityChanController : MonoBehaviour
                     this.chargeTime = maxCharge;
                     break;
             }
-        }
-
-        //ChargeSliderの色を変化させる
-        switch (this.chargeLV)
-        {
-            case 0:
-                ChangeSliderColor(new Color32(95, 255, 187, 255), new Color32(84, 84, 84, 255));
-                break;
-
-            case 1:
-            case 2:
-                ChangeSliderColor(new Color32(59, 255, 72, 255), new Color32(95, 255, 187, 255));
-                break;
         }
     }
 
@@ -302,17 +309,9 @@ public class UnityChanController : MonoBehaviour
     /// オブジェクトにy正方向の力を与える
     /// jetParticleを再生する
     /// Jumpしている時間を計測する
-    /// maxHigh以上には上昇しない
-    /// ピタッと止まると不自然なので少し揺らす
     /// </summary>
     void Jump()
     {
-        this.maxHigh = Random.Range(this.maxHigh - 0.02f, this.maxHigh + 0.02f);
-        if (this.transform.position.y >= this.maxHigh)
-        {
-            this.transform.position = new Vector2(this.transform.position.x, this.maxHigh);
-            this.rigid2D.velocity = Vector2.zero;
-        }
         this.rigid2D.AddForce(new Vector2(0f, this.jumpPower * Time.deltaTime));
         this.jetParticle.Play();
         this.jumpTime += Time.deltaTime;

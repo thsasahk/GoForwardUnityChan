@@ -50,10 +50,7 @@ public class TSCubeGeneratorController : MonoBehaviour
             case 3:
                 Instantiate(this.cube[1], new Vector2(5.0f, 0.0f), Quaternion.identity);
                 Instantiate(this.cube[0], new Vector2(7.0f, 0.0f), Quaternion.identity);
-                break;
-
-            case 4:
-                Instantiate(this.cube[0], new Vector2(10.0f, 0.0f), Quaternion.identity);
+                GameObject lesson3Cube = GameObject.Find("TutrialSceneHardPrefab");
                 break;
 
             default:

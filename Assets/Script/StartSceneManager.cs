@@ -71,7 +71,7 @@ public class StartSceneManager : MonoBehaviour
     /// </summary>
     void LoadScene()
     {
-        FadeManager.Instance.LoadScene("GameScene", 1.0f);
+        FadeManager.Instance.LoadScene("TutorialScene", 1.0f);
         this.sceneLoad = true;
     }
 }
