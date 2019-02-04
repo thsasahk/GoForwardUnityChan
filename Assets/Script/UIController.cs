@@ -12,6 +12,14 @@ public class UIController : MonoBehaviour
     /// </summary>
     private GameObject gameOverText;
     /// <summary>
+    /// GameOverTextオブジェクトのTextMeshProUGUI
+    /// </summary>
+    private TextMeshProUGUI gameOverTextUGUI;
+    /// <summary>
+    /// gameOverTextUGUIオブジェクトのfontMaterial
+    /// </summary>
+    private Material gameOverTextMaterial;
+    /// <summary>
     /// runLengthTextオブジェクト
     /// </summary>
     private GameObject runLengthText;
@@ -133,6 +141,8 @@ public class UIController : MonoBehaviour
     void Start()
     {
         this.gameOverText = GameObject.Find("GameOver");
+        this.gameOverTextUGUI = this.gameOverText.GetComponent<TextMeshProUGUI>();
+        this.gameOverTextMaterial = this.gameOverTextUGUI.fontMaterial;
         this.runLengthText = GameObject.Find("RunLength");
         this.bgm = this.bgmManager.GetComponents<AudioSource>();
         this.highScore = PlayerPrefs.GetInt("highScore_Key", 0);
@@ -204,7 +214,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
-        this.gameOverText.GetComponent<Text>().text = "Game Over";
+        this.gameOverTextUGUI.text = "Game Over";
         this.isGameOver = true;
         //ハイスコアの更新
         if(this.highScore < this.score)
@@ -227,7 +237,8 @@ public class UIController : MonoBehaviour
     /// </summary>
     void GameClear()
     {
-        this.gameOverText.GetComponent<Text>().text = "Game Clear";
+        this.gameOverTextMaterial.SetColor("_OutlineColor", new Color32(255, 255, 0, 255));
+        this.gameOverTextUGUI.text = "Game Clear";
         this.clearScore.GetComponent<Text>().text = "Score:" + this.score.ToString() + "pts";
         this.runLengthText.GetComponent<Text>().text = " ";
         this.scoreText.GetComponent<Text>().text = " ";
