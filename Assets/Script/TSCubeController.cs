@@ -70,6 +70,7 @@ public class TSCubeController : MonoBehaviour
 
     void Update()
     {
+        //lesson変数によってキューブの性質を変化させる
         switch (this.tutorialSceneManagerController.lesson)
         {
             case 2:
@@ -118,6 +119,11 @@ public class TSCubeController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// オブジェクトが破棄されるときにlesson変数を上昇させる
+    /// createCubeをfalseにしてCubeの生成を許可する
+    /// TextMeshProのアニメを再生する
+    /// </summary>
     private void OnDestroy()
     {
         this.tutorialSceneManagerController.lesson++;

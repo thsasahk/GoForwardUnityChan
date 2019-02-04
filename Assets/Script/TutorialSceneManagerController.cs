@@ -21,7 +21,8 @@ public class TutorialSceneManagerController : MonoBehaviour
 
     void Update()
     {
-        if ((this.lesson == 5 || Input.GetKeyDown(KeyCode.RightShift)) && this.loadScene == false)
+        if ((this.lesson == 5 || Input.GetKeyDown(KeyCode.RightShift)|| Input.GetKeyDown(KeyCode.LeftShift)) 
+            && this.loadScene == false)
         {
             LoadScene();
         }

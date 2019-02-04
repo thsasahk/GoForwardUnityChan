@@ -54,9 +54,13 @@ public class TSPlayerController : MonoBehaviour
     /// </summary>
     public int chargeLV = 0;
     /// <summary>
+    /// ChargeSliderオブジェクト
+    /// </summary>
+    private GameObject chargeSliderObject;
+    /// <summary>
     /// chargeTimeを視覚化するオブジェクト
     /// </summary>
-    [SerializeField] private Slider chargeSlider;
+    private Slider chargeSlider;
     /// <summary>
     /// ジェット噴射のParticleSystem
     /// </summary>
@@ -88,6 +92,8 @@ public class TSPlayerController : MonoBehaviour
 
     void Start()
     {
+        this.chargeSliderObject = GameObject.Find("ChargeSlider");
+        this.chargeSlider = this.chargeSliderObject.GetComponent<Slider>();
         this.tutorialSceneManager = GameObject.Find("TutorialSceneManager");
         this.tutorialSceneManagerController = this.tutorialSceneManager.GetComponent<TutorialSceneManagerController>();
         this.unitySE = GetComponents<AudioSource>();
@@ -98,6 +104,7 @@ public class TSPlayerController : MonoBehaviour
 
     void Update()
     {
+        //lesson変数を参照してPlayerに許可する行動を決定する
         switch (this.tutorialSceneManagerController.lesson)
         {
             case 1:
@@ -327,6 +334,9 @@ public class TSPlayerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// オブジェクトが破棄されるときに調整のためにlesson変数を減少させる
+    /// </summary>
     private void OnDestroy()
     {
         this.tutorialSceneManagerController.isPlayer = false;

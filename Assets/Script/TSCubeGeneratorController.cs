@@ -20,17 +20,25 @@ public class TSCubeGeneratorController : MonoBehaviour
     /// Cubeの生成を管理する変数
     /// </summary>
     public bool createCube = false;
+    /// <summary>
+    /// キューブ生成までの間
+    /// </summary>
+    [SerializeField] private float delay;
 
     void Start()
     {
         this.tutorialSceneManagerController = this.tutorialSceneManager.GetComponent<TutorialSceneManagerController>();
+        this.createCube = true;
+        CreateCube();
     }
 
     void Update()
     {
+        //delay秒後にcubeを生成する
         if (this.createCube == false)
         {
-            CreateCube();
+            this.createCube = true;
+            Invoke("CreateCube", this.delay);
         }
     }
 
@@ -39,7 +47,6 @@ public class TSCubeGeneratorController : MonoBehaviour
     /// </summary>
     void CreateCube()
     {
-        this.createCube = true;
         switch (this.tutorialSceneManagerController.lesson)
         {
             case 1:
