@@ -5,6 +5,10 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     /// <summary>
+    /// オブジェクトの色の変化を管理する
+    /// </summary>
+    public Gradient gradiate;
+    /// <summary>
     /// Playerオブジェクト
     /// </summary>
     public GameObject Player;
@@ -51,7 +55,11 @@ public class BossController : MonoBehaviour
     /// <summary>
     /// オブジェクトの体力
     /// </summary>
-    public int life;
+    [SerializeField]private int life;
+    /// <summary>
+    /// オブジェクトの体力の最大値
+    /// </summary>
+    private int maxLife = 15;
     /// <summary>
     /// オブジェクト消滅時に生成されるParticleSystem
     /// </summary>
@@ -84,7 +92,7 @@ public class BossController : MonoBehaviour
     {
         //lengthが一定値を超えたら逃げ出す
         if ((this.uiController.length >= 75 && this.uiController.length <= 104)
-            || this.uiController.length >= 130)
+            || this.uiController.length >= 140)
         {
             Move09();
             return;
@@ -421,8 +429,11 @@ public class BossController : MonoBehaviour
         this.audioSource[0].Play();
         //life変数を引数分マイナスさせる
         this.life -= i;
-        int colorChange = 255 - ((15 - this.life) * 17);
-        this.spriteRenderer.color = new Color32(255, (byte)colorChange, (byte)colorChange, 255);
+        //int colorChange = 255 - ((15 - this.life) * 17);
+        //this.spriteRenderer.color = new Color32(255, (byte)colorChange, (byte)colorChange, 255);
+        //体力の現在値と最大値を参照してオブジェクトの色を変化させる
+        float v = 1.0f - (float)this.life / (float)this.maxLife;
+        this.spriteRenderer.color = this.gradiate.Evaluate(v);
         //life変数が1未満の場合はオブジェクトを破棄する
         if (this.life < 1)
         {
