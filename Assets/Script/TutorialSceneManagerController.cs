@@ -5,13 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class TutorialSceneManagerController : MonoBehaviour
 {
+    /// <summary>
+    /// チュートリアルの進行を管理する変数
+    /// </summary>
     public int lesson = 1;
+    /// <summary>
+    /// Playerオブジェクトの有無を表す
+    /// </summary>
     public bool isPlayer = true;
+    /// <summary>
+    /// Playerオブジェクト
+    /// </summary>
     [SerializeField] private GameObject player;
+    /// <summary>
+    /// LoadSceneを実行した際にtrueにする
+    /// </summary>
     private bool loadScene = false;
-
+    /// <summary>
+    /// HardPrefabオブジェクト
+    /// </summary>
     private GameObject hCube;
-
+    /// <summary>
+    /// HardPrefabオブジェクトのスクリプト
+    /// </summary>
     private TSCubeController tSCubeController;
 
     void Start()
@@ -27,6 +43,8 @@ public class TutorialSceneManagerController : MonoBehaviour
             LoadScene();
         }
 
+        //Playerオブジェクトが破棄されたとき、新しいPlayerオブジェクトを生成する
+        //lesson4Start変数を切り替えてlesson4を仕切り直す
         if (this.isPlayer == false)
         {
             this.isPlayer = true;
@@ -36,7 +54,6 @@ public class TutorialSceneManagerController : MonoBehaviour
             this.hCube = GameObject.Find("TutrialSceneHardPrefab(Clone)");
             this.tSCubeController = this.hCube.GetComponent<TSCubeController>();
             this.tSCubeController.lesson4Start = false;
-            this.lesson++;
         }
     }
 

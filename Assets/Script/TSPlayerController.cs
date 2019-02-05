@@ -340,6 +340,5 @@ public class TSPlayerController : MonoBehaviour
     private void OnDestroy()
     {
         this.tutorialSceneManagerController.isPlayer = false;
-        this.tutorialSceneManagerController.lesson--;  
     }
 }
