@@ -237,7 +237,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     void GameClear()
     {
-        this.gameOverTextMaterial.SetColor("_OutlineColor", new Color32(255, 255, 0, 255));
+        this.gameOverTextMaterial.SetColor("_OutlineColor", new Color32(0, 0, 0, 100));
         this.gameOverTextUGUI.text = "Game Clear";
         this.clearScore.GetComponent<Text>().text = "Score:" + this.score.ToString() + "pts";
         this.runLengthText.GetComponent<Text>().text = " ";
