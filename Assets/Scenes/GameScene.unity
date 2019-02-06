@@ -1713,7 +1713,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1562797988}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 522310341fe240240bb5dbbbaacb7086, type: 3}
   m_Name: 
@@ -1721,20 +1721,20 @@ MonoBehaviour:
   gradiate:
     serializedVersion: 2
     key0: {r: 0.9811321, g: 0.0509078, b: 0.0509078, a: 1}
-    key1: {r: 0.98039216, g: 0.058823533, b: 0.4538534, a: 1}
-    key2: {r: 0.98039216, g: 0.34381968, b: 0.058823533, a: 0}
-    key3: {r: 1, g: 1, b: 1, a: 0}
-    key4: {r: 1, g: 1, b: 1, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
+    key1: {r: 1, g: 0.53488374, b: 0, a: 1}
+    key2: {r: 0.9737315, g: 1, b: 0, a: 0}
+    key3: {r: 0.52317333, g: 1, b: 0, a: 0}
+    key4: {r: 0, g: 1, b: 0.20307422, a: 0}
+    key5: {r: 0.050980378, g: 0.98039216, b: 0.93086123, a: 0}
+    key6: {r: 0.050980378, g: 0.98039216, b: 0.93086123, a: 0}
     key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 21781
-    ctime1: 43754
-    ctime2: 65535
-    ctime3: 65535
-    ctime4: 65535
-    ctime5: 0
-    ctime6: 0
+    ctime0: 1349
+    ctime1: 13107
+    ctime2: 26214
+    ctime3: 39321
+    ctime4: 52428
+    ctime5: 65535
+    ctime6: 65535
     ctime7: 0
     atime0: 0
     atime1: 65535
@@ -1745,8 +1745,9 @@ MonoBehaviour:
     atime6: 0
     atime7: 0
     m_Mode: 0
-    m_NumColorKeys: 3
+    m_NumColorKeys: 6
     m_NumAlphaKeys: 2
+  canvas: {fileID: 1050034879}
 --- !u!1 &1721847350 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8116148401185870980, guid: e2628e3ec1a8de24295ecb71bdd77753,
