@@ -53,9 +53,13 @@ public class TSCubeController : MonoBehaviour
     /// </summary>
     public bool lesson4Start;
     /// <summary>
-    /// 
+    /// playerオブジェクト
     /// </summary>
     [SerializeField] private GameObject player;
+
+    [SerializeField] private float delay;
+
+    private float count;
 
     void Start()
     {
@@ -83,8 +87,15 @@ public class TSCubeController : MonoBehaviour
                     transform.position = new Vector2(12.0f, 0.0f);
                     this.lesson4Start = true;
                 }
-                //キューブを移動させる
-                transform.Translate(this.speed, 0, 0);
+
+                this.count += Time.deltaTime;
+
+                if (this.delay <= this.count)
+                {
+                    //キューブを移動させる
+                    transform.Translate(this.speed * Time.deltaTime, 0, 0);
+                }
+                
                 
                 //画面外に出たら破棄する
                 if (transform.position.x < deadLine)

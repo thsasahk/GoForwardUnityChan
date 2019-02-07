@@ -183,7 +183,7 @@ public class UIController : MonoBehaviour
         if(this.isGameOver == false && this.clear == false)
         {
             //走った距離を計測する
-            this.length += this.speed;
+            this.length += this.speed * Time.deltaTime;
 
             //走った距離を表示する
             this.runLengthText.GetComponent<Text>().text = "Distance: " + length.ToString("F2") + "m";

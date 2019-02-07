@@ -28,7 +28,7 @@ public class BossBulletController : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(this.speed, 0, 0);
+        transform.Translate(this.speed * Time.deltaTime, 0, 0);
         if (transform.position.x < deadLine)
         {
             Destroy(this.gameObject);

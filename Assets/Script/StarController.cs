@@ -65,7 +65,7 @@ public class StarController : MonoBehaviour
     void Update()
     {
         //オブジェクトを円運動させる為に進行方向を変化させる
-        this.rollAngle += this.angleSpeed;
+        this.rollAngle += this.angleSpeed * Time.deltaTime;
         //オブジェクトを円運動させる
         iTween.MoveUpdate(this.gameObject,
             iTween.Hash("x", this.transform.position.x + this.rollSpeed * Mathf.Cos(this.rollAngle * Mathf.Deg2Rad),

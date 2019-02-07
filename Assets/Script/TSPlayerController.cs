@@ -330,7 +330,7 @@ public class TSPlayerController : MonoBehaviour
 
         if (this.transform.position.x < -2.9f)
         {
-            this.transform.Translate(this.returnSpeed, 0.0f, 0.0f);
+            this.transform.Translate(this.returnSpeed * Time.deltaTime, 0.0f, 0.0f);
         }
     }
 

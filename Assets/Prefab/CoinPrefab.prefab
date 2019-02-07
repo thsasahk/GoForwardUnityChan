@@ -141,5 +141,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinSound: {fileID: 7129419450744185624, guid: c3698aca1ba5d9448bb043f1118e5b19,
     type: 3}
-  speed: -0.2
+  speed: -9
   deadLine: -10

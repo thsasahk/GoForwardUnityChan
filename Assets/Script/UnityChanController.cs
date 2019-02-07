@@ -229,7 +229,7 @@ public class UnityChanController : MonoBehaviour
     {
         if(this.transform.position.x <= 0)
         {
-            this.transform.Translate(this.clearWalk,0,0);
+            this.transform.Translate(this.clearWalk * Time.deltaTime, 0, 0);
             this.isGround = (this.transform.position.y > this.groundLevel) ? false : true;
             if (isGround)
             {
@@ -330,7 +330,7 @@ public class UnityChanController : MonoBehaviour
 
         if(this.transform.position.x < -2.9f)
         {
-            this.transform.Translate(this.returnSpeed, 0.0f, 0.0f);
+            this.transform.Translate(this.returnSpeed * Time.deltaTime, 0.0f, 0.0f);
         }
     }
 }

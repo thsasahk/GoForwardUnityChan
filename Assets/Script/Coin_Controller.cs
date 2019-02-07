@@ -35,7 +35,7 @@ public class Coin_Controller : MonoBehaviour
     void Update()
     {
         //Coinを移動させる
-        this.transform.Translate(this.speed, 0,0);
+        this.transform.Translate(this.speed * Time.deltaTime, 0, 0);
         //deadLineを超えたら破棄
         if(transform.position.x < this.deadLine)
         {

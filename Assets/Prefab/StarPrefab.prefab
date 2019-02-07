@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98f30f058db5f0146bab2214a60766dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  angleSpeed: 5
+  angleSpeed: 200
   rollSpeed: 0.5
   fallTime: 10
   distanceX: -30

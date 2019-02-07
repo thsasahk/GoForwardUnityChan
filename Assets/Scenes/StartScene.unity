@@ -651,7 +651,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7924b7a2f8f07b94099e2897768128c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: -0.03
+  scrollSpeed: -1.2
   canvas: {fileID: 719616876}
 --- !u!1 &781933931 stripped
 GameObject:
@@ -671,7 +671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7924b7a2f8f07b94099e2897768128c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollSpeed: -0.03
+  scrollSpeed: -1.2
   canvas: {fileID: 719616876}
 --- !u!1001 &824789340
 PrefabInstance:
@@ -743,12 +743,12 @@ PrefabInstance:
     - target: {fileID: 8644011220943506607, guid: 4ae60e57bdd1dc146beea123b0b43502,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 166
+      value: 185
       objectReference: {fileID: 0}
     - target: {fileID: 8644011220943506607, guid: 4ae60e57bdd1dc146beea123b0b43502,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8644011220943506607, guid: 4ae60e57bdd1dc146beea123b0b43502,
         type: 3}
@@ -793,12 +793,12 @@ PrefabInstance:
     - target: {fileID: 8644011220943506601, guid: 4ae60e57bdd1dc146beea123b0b43502,
         type: 3}
       propertyPath: m_Text
-      value: "Sound Credit:\u9B54\u738B\u9B42"
+      value: "Sound Credit\n\u9B54\u738B\u9B42"
       objectReference: {fileID: 0}
     - target: {fileID: 8644011220943506601, guid: 4ae60e57bdd1dc146beea123b0b43502,
         type: 3}
       propertyPath: m_FontData.m_FontSize
-      value: 25
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8644011220943506600, guid: 4ae60e57bdd1dc146beea123b0b43502,
         type: 3}
@@ -2000,15 +2000,30 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2129675403995322513, guid: f44db72ee7fd3c64ebcf67f702249926,
+        type: 3}
+      propertyPath: scrollSpeed
+      value: -0.2
+      objectReference: {fileID: 0}
     - target: {fileID: 2129675404609815272, guid: f44db72ee7fd3c64ebcf67f702249926,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129675404609815272, guid: f44db72ee7fd3c64ebcf67f702249926,
+        type: 3}
+      propertyPath: scrollSpeed
+      value: -0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129675404877865273, guid: f44db72ee7fd3c64ebcf67f702249926,
         type: 3}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2129675404877865273, guid: f44db72ee7fd3c64ebcf67f702249926,
         type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: scrollSpeed
+      value: -0.084
       objectReference: {fileID: 0}
     - target: {fileID: 2129675404786223319, guid: f44db72ee7fd3c64ebcf67f702249926,
         type: 3}

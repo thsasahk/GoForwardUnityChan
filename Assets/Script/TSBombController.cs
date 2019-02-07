@@ -25,11 +25,11 @@ public class TSBombController : MonoBehaviour
         switch (this.attack)
         {
             case 1:
-                transform.Translate(this.bombSpeed, 0, 0);
+                transform.Translate(this.bombSpeed * Time.deltaTime, 0, 0);
                 break;
 
             default:
-                transform.Translate(0, this.bombSpeed, 0);
+                transform.Translate(0, this.bombSpeed * Time.deltaTime, 0);
                 break;
 
         }

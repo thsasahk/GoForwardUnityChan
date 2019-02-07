@@ -36,7 +36,7 @@ public class TSBackGroundController : MonoBehaviour
         if (this.tutorialSceneManagerController.lesson == 4)
         {
             //背景を移動する
-            transform.Translate(this.scrollSpeed, 0, 0);
+            transform.Translate(this.scrollSpeed * Time.deltaTime, 0, 0);
             //画面外に出たら画面右端に移動する
             if (this.transform.position.x < this.deadLine)
             {

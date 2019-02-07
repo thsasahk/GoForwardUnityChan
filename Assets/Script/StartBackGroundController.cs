@@ -31,7 +31,7 @@ public class StartBackGroundController : MonoBehaviour
     void Update()
     {
         //背景を移動する
-        transform.Translate(scrollSpeed, 0, 0);
+        transform.Translate(this.scrollSpeed * Time.deltaTime, 0, 0);
         //画面外に出たら画面右端に移動する
         if(transform.position.x < deadLine)
         {

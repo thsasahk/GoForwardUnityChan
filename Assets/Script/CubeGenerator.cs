@@ -101,8 +101,8 @@ public class CubeGenerator : MonoBehaviour
                 Invoke("CreateBoss", 3.0f);
             }
         }
-        //UIControllerの変数lengthが147以上になると破棄する
-        if(this.uiController.length >= 147)
+        //UIControllerの変数lengthが145以上になると破棄する
+        if(this.uiController.length >= 145)
         {
             Destroy(gameObject);
         }
@@ -144,8 +144,8 @@ public class CubeGenerator : MonoBehaviour
             }
             else
             {
-                //キューブの色を選択する
-                int x = Random.Range(0, 4);
+                //生成するキューブの色を選択
+                int x = Random.Range(0,4);
                 //キューブの生成
                 GameObject go = Instantiate(cubePrefab[x]) as GameObject;
                 go.transform.position = new Vector2(this.genPosX, this.offsetY + i * spaceY);
