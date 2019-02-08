@@ -68,8 +68,10 @@ public class StarController : MonoBehaviour
         this.rollAngle += this.angleSpeed * Time.deltaTime;
         //オブジェクトを円運動させる
         iTween.MoveUpdate(this.gameObject,
-            iTween.Hash("x", this.transform.position.x + this.rollSpeed * Mathf.Cos(this.rollAngle * Mathf.Deg2Rad),
-                "y", this.transform.position.y + this.rollSpeed * Mathf.Sin(this.rollAngle * Mathf.Deg2Rad),
+            iTween.Hash("x", this.transform.position.x +
+            this.rollSpeed * Mathf.Cos(this.rollAngle * Mathf.Deg2Rad) * Time.deltaTime,
+                "y", this.transform.position.y +
+                this.rollSpeed * Mathf.Sin(this.rollAngle * Mathf.Deg2Rad) * Time.deltaTime,
                     "easeType", "linear"));
         //画面外に出たら破棄
         if(this.transform.position.y <= -5.5f ||

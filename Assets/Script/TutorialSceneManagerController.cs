@@ -37,6 +37,14 @@ public class TutorialSceneManagerController : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+            #elif UNITY_STANDALONE
+                Application.Quit();
+            #endif
+        }
         if ((this.lesson == 5 || Input.GetKeyDown(KeyCode.RightShift)|| Input.GetKeyDown(KeyCode.LeftShift)) 
             && this.loadScene == false)
         {

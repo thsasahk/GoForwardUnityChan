@@ -264,6 +264,7 @@ MonoBehaviour:
     m_Mode: 0
     m_NumColorKeys: 6
     m_NumAlphaKeys: 2
+  canvas: {fileID: 0}
 --- !u!114 &536107372
 MonoBehaviour:
   m_ObjectHideFlags: 0

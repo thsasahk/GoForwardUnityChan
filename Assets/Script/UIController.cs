@@ -154,6 +154,14 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+            #elif UNITY_STANDALONE
+                Application.Quit();
+            #endif
+        }
         if (this.cubeGeneratorController.isBoss)
         {
             DangerTextPlay();
