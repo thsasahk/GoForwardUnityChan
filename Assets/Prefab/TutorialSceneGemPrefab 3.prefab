@@ -238,11 +238,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialSceneManager: {fileID: 0}
   cubeGenerator: {fileID: 0}
-  life: 3
-  speed: -7
+  life: 2
+  speed: -5.5
   deadLine: -12
-  particlePrefab: {fileID: 6409366848875675875, guid: 2226024090decc449a46784b1f6f1b5a,
+  particlePrefab: {fileID: 6409366848875675875, guid: f6082426102b8ea478fe0a602d2fa5c6,
     type: 3}
   manualText: {fileID: 0}
   lesson4Start: 0
   player: {fileID: 1626546840, guid: 301579eb75a5b054da97f4fedfc65d2b, type: 3}
+  delay: 0

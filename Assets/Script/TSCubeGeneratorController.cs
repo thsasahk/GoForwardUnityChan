@@ -52,13 +52,13 @@ public class TSCubeGeneratorController : MonoBehaviour
             case 1:
             case 2:
                 int n = Random.Range(0, 4);
-                Instantiate(this.cube[n], new Vector2(5.0f, 0.0f), Quaternion.identity);
+                Instantiate(this.cube[n], new Vector2(5.0f, 0.0f), Quaternion.identity);//{16:9 5.0_1028:786 5}
                 break;
 
             case 3:
                 int m = Random.Range(0, 4);
-                Instantiate(this.cube[4], new Vector2(5.0f, 0.0f), Quaternion.identity);
-                Instantiate(this.cube[m], new Vector2(7.0f, 0.0f), Quaternion.identity);
+                Instantiate(this.cube[4], new Vector2(3.0f, 0.0f), Quaternion.identity);//{16:9 5_1028:786 3}
+                Instantiate(this.cube[m], new Vector2(5.0f, 0.0f), Quaternion.identity);//{16:9 7_1028:786 5}
                 GameObject lesson3Cube = GameObject.Find("TutrialSceneHardPrefab");
                 break;
 

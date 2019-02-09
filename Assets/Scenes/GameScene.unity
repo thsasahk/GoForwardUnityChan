@@ -2542,6 +2542,11 @@ PrefabInstance:
       propertyPath: clearWalk
       value: -4
       objectReference: {fileID: 0}
+    - target: {fileID: 8116148401185870984, guid: e2628e3ec1a8de24295ecb71bdd77753,
+        type: 3}
+      propertyPath: deadLine
+      value: -7.4
+      objectReference: {fileID: 0}
     - target: {fileID: 8116148401185870988, guid: e2628e3ec1a8de24295ecb71bdd77753,
         type: 3}
       propertyPath: m_Mass

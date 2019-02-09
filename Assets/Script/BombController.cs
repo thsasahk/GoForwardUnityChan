@@ -7,7 +7,7 @@ public class BombController : MonoBehaviour
     /// <summary>
     /// bombの移動速度
     /// </summary>
-    public float bombSpeed;
+    public float bombSpeed;//16:9LV0.9LV1.8LV2.7_1024:768LV0.7LV1.6LV2.5
     /// <summary>
     /// bombがオブジェクトに与えるダメージ量
     /// </summary>
@@ -28,6 +28,10 @@ public class BombController : MonoBehaviour
     /// Bulletオブジェクトのスクリプト
     /// </summary>
     private BossBulletController bossBulletController;
+    /// <summary>
+    /// オブジェクトを破棄するx座標
+    /// </summary>
+    [SerializeField] private float deadLine;//{16:9 10_1028:786 8}
 
     void Start(){}
 
@@ -46,7 +50,7 @@ public class BombController : MonoBehaviour
 
         }
         //画面外に出たらbombオブジェクトを破棄する
-        if(transform.position.x >= 10.0f)
+        if(transform.position.x >= this.deadLine)
         {
             Destroy(gameObject);
         }

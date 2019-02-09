@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15cbc4e9f2ceba640ae0f4914b9a6c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -7
+  speed: -5.5
   deadLine: -10
   particlePrefab: {fileID: 6409366848875675875, guid: 2226024090decc449a46784b1f6f1b5a,
     type: 3}

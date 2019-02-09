@@ -38,22 +38,6 @@ public class StartSceneManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-            #elif UNITY_STANDALONE
-                Application.Quit();
-            #endif
-        }
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-            #elif UNITY_STANDALONE
-               Application.Quit();
-            #endif
-        }
         //ハイスコアの表示
         this.highScoreText.GetComponent<Text>().text = "High Score:" + PlayerPrefs.GetInt("highScore_Key",0) + "pts";
 
@@ -83,7 +67,7 @@ public class StartSceneManager : MonoBehaviour
             }
     }
     /// <summary>
-    /// GameSceneをロードする
+    /// TutorialSceneをロードする
     /// </summary>
     void LoadScene()
     {

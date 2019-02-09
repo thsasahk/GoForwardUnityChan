@@ -28,7 +28,7 @@ public class UnityChanController : MonoBehaviour
     /// <summary>
     /// ゲームオーバーになる位置
     /// </summary>
-    public float deadLine=-9;
+    public float deadLine;//{16:9 -9_1028:786 -7.4}
     /// <summary>
     /// chargeLV0で発射される弾
     /// </summary>

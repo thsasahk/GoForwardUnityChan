@@ -27,7 +27,7 @@ public class TSCubeController : MonoBehaviour
     /// <summary>
     /// キューブの移動速度
     /// </summary>
-    public float speed = -0.2f;
+    public float speed;//{16:9 -7_1028:786 -5.5}
     /// <summary>
     /// 消滅位置
     /// </summary>

@@ -7,7 +7,7 @@ public class BossBulletController : MonoBehaviour
     /// <summary>
     /// キューブの移動速度
     /// </summary>
-    public float speed = -0.2f;
+    public float speed = -0.2f;//16:9.-5_1024:768.-4
     /// <summary>
     /// 消滅位置
     /// </summary>

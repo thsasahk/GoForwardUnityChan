@@ -110,8 +110,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 741274e2c7cc97249b897d1fb2f3a575, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombSpeed: 9
+  bombSpeed: 7
   attack: 1
+  deadLine: 8
 --- !u!82 &1890798111662098439
 AudioSource:
   m_ObjectHideFlags: 0

@@ -208,3 +208,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bombSpeed: 6
   attack: 5
+  deadLine: 8

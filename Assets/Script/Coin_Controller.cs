@@ -19,7 +19,7 @@ public class Coin_Controller : MonoBehaviour
     /// <summary>
     /// Coinオブジェクトの移動速度
     /// </summary>
-    public float speed;
+    public float speed;//{16:9 -9_1028:786 -7}
     /// <summary>
     /// 移動終了位置
     /// </summary>

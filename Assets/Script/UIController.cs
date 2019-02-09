@@ -154,24 +154,6 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-            #elif UNITY_STANDALONE
-                Application.Quit();
-            #endif
-        }
-        if (this.cubeGeneratorController.isBoss)
-        {
-            DangerTextPlay();
-        }
-        else
-        {
-            this.alertTime = 0;
-            this.oneplay = false;
-        }
-
         //Gameover状態でなくlengthが150以上のときにunityChanオブジェクトのposition.xを参照する
         if(this.isGameOver == false && length >= 150)
         {

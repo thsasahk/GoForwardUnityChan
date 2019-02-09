@@ -38,9 +38,9 @@ public class JumpBallController : MonoBehaviour
 
     void Update()
     {
-        transform.Translate(this.speed * Time.deltaTime, 0, 0);
+        transform.Translate(this.speed * Time.deltaTime, 0, 0);//{16:9 -7_1028:786 -5.5}B{16:9 -6_1028:786 -5}
         //画面外に出たら破棄する
-        if(transform.position.x < deadLine)
+        if (transform.position.x < deadLine)
         {
             Destroy(this.gameObject);
         }

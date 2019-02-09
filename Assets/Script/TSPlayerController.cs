@@ -40,7 +40,7 @@ public class TSPlayerController : MonoBehaviour
     /// <summary>
     /// ゲームオーバーになる位置
     /// </summary>
-    [SerializeField] private  float deadLine = -9;
+    [SerializeField] private  float deadLine;//{16:9 -9_1028:786 -7.4}
     /// <summary>
     /// 右クリックを押してからたった時間
     /// </summary>

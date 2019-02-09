@@ -13,7 +13,7 @@ public class ParticleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(-7f * Time.deltaTime, 0, 0);
+        transform.Translate(-5.5f * Time.deltaTime, 0, 0);//{16:9 -7_1028:786 -5.5}
         Destroy(gameObject, 3.0f);
     }
 }

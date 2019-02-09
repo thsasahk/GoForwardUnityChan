@@ -37,20 +37,12 @@ public class TutorialSceneManagerController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Escape))
-        {
-            #if UNITY_EDITOR
-                UnityEditor.EditorApplication.isPlaying = false;
-            #elif UNITY_STANDALONE
-                Application.Quit();
-            #endif
-        }
-        if ((this.lesson == 5 || Input.GetKeyDown(KeyCode.RightShift)|| Input.GetKeyDown(KeyCode.LeftShift)) 
+        //lessonが5になるかShiftキーでゲームシーンへ移行
+        if ((this.lesson == 5||Input.GetKeyDown(KeyCode.LeftShift)|| Input.GetKeyDown(KeyCode.RightShift))
             && this.loadScene == false)
         {
             LoadScene();
         }
-
         //Playerオブジェクトが破棄されたとき、新しいPlayerオブジェクトを生成する
         //lesson4Start変数を切り替えてlesson4を仕切り直す
         if (this.isPlayer == false)

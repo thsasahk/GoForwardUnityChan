@@ -180,13 +180,13 @@ public class BossController : MonoBehaviour
      }
      
     /// <summary>
-    /// (7.5,-4)に移動してランダムで1～3発の攻撃を行う
+    /// (7.5,-4)に移動してランダムで1～3発の攻撃を行う{1024:768.(6,-4)}
     /// </summary>
     void Move01()
     {
         this.time = 0;
         this.coolTime = 4.5f;
-        iTween.MoveTo(gameObject, iTween.Hash("x", 7.5f, "y", -4, "time", 3.0f));
+        iTween.MoveTo(gameObject, iTween.Hash("x", 6.0f, "y", -4, "time", 3.0f));
         int i = Random.Range(1, 4);
         switch (i)
         {
@@ -215,7 +215,8 @@ public class BossController : MonoBehaviour
         this.time = 0;
         this.coolTime = 6.0f;
         //X座標は一定値からランダムで選択、Y座標は2.5で固定
-        float posX = Random.Range(3f, 8f);
+        //{ 16:9.3～8_1024:768.2～6}
+        float posX = Random.Range(2f, 6f);
         iTween.MoveTo(gameObject, iTween.Hash("x", posX, "y", 1.0f, "time", 3.0f));
         //オブジェクトとPlayerを結ぶ角度angleを求める
         //オブジェクトのz角が0の時、spriteは180度の方向を向いているので注意
@@ -231,12 +232,13 @@ public class BossController : MonoBehaviour
 
     /// <summary>
     /// 徐々に下降しながら5回攻撃
+    /// x={16:9.7.5_1028:786.6}
     /// </summary>
     void Move03()
     {
         this.time = 0;
         this.coolTime = 7.5f;
-        iTween.MoveTo(gameObject, iTween.Hash("x", 7.5f, "y", 0.0f, "time", 3.0f));
+        iTween.MoveTo(gameObject, iTween.Hash("x", 6.0f, "y", 0.0f, "time", 3.0f));
         iTween.MoveTo(gameObject, iTween.Hash("y", -4.0f, "time", 4.0f, "delay", 3.0f, "easeType", "linear"));
         Invoke("Attack01", 3.0f);
         Invoke("Attack01", 4.0f);
@@ -247,12 +249,13 @@ public class BossController : MonoBehaviour
 
     /// <summary>
     /// 徐々に上昇しながら5回攻撃
+    /// x={16:9.7.5_1028:786.6}
     /// </summary>
     void Move04()
     {
         this.time = 0;
         this.coolTime = 7.5f;
-        iTween.MoveTo(gameObject, iTween.Hash("x", 7.5f, "y", -4.0f, "time", 3.0f));
+        iTween.MoveTo(gameObject, iTween.Hash("x", 6.0f, "y", -4.0f, "time", 3.0f));
         iTween.MoveTo(gameObject, iTween.Hash("y", 0.0f, "time", 4.0f, "delay", 3.0f, "easeType", "linear"));
         Invoke("Attack01", 3.0f);
         Invoke("Attack01", 4.0f);
@@ -262,13 +265,14 @@ public class BossController : MonoBehaviour
     }
 
     /// <summary>
-    /// (7.5,-4.0)に移動した後予備モーションをして真っすぐ体当たり
+    /// 開始位置に移動した後予備モーションをして真っすぐ体当たり
+    /// x={16:9.7.5_1028:786.6} y=-4
     /// </summary>
     void Move05()
     {
         this.time = 0;
         this.coolTime = 10.5f;
-        iTween.MoveTo(gameObject, iTween.Hash("x", 7.5f, "y", -4.0f, "time", 3.0f));
+        iTween.MoveTo(gameObject, iTween.Hash("x", 6.0f, "y", -4.0f, "time", 3.0f));
         iTween.PunchScale(gameObject, iTween.Hash("x", 2.0f, "y", 2.0f, "time", 3.0f,
             "delay", 3.0f, "easeType", "linear"));
         iTween.MoveTo(gameObject, iTween.Hash("x", -15.0f, "time", 4.0f, "delay", 4.0f, "easeType", "linear"));
@@ -277,14 +281,15 @@ public class BossController : MonoBehaviour
     }
 
     /// <summary>
-    /// (8.7,0.0)に移動した後予備モーションを行い、jumpMonsterオブジェクトを召喚
+    /// 開始位置に移動した後予備モーションを行い、jumpMonsterオブジェクトを召喚
+    /// x={16:9 8.7_1028:786 6.8}
     /// lengthが75以上なら召喚するオブジェクトにstarオブジェクトが追加される
     /// </summary>
     void Move06()
     {
         this.time = 0;
         this.coolTime = 10.0f;
-        iTween.MoveTo(gameObject, iTween.Hash("x", 8.7f, "y", 0.0f, "time", 3.0f));
+        iTween.MoveTo(gameObject, iTween.Hash("x", 6.8f, "y", 0.0f, "time", 3.0f));
         iTween.PunchScale(gameObject, iTween.Hash("x", 2.0f, "y", 2.0f, "time", 3.0f,
             "delay", 3.0f, "easeType", "linear"));
         if (this.uiController.length < 75)
@@ -309,12 +314,13 @@ public class BossController : MonoBehaviour
 
     /// <summary>
     /// (pos,-2.0)に移動し、y=-4～0の間を移動しながら5回攻撃
+    /// x={16:9 6～9_1028:786 4.6～7}
     /// </summary>
     void Move07()
     {
         this.time = 0;
         this.coolTime = 7.5f;
-        float pos = Random.Range(6.0f, 9.0f);
+        float pos = Random.Range(4.6f, 7.0f);
         iTween.MoveTo(gameObject, iTween.Hash("x", pos, "y", -2.0f, "time", 3.0f));
         pos = Random.Range(-4.0f, 0.0f);
         iTween.MoveTo(gameObject, iTween.Hash("y", pos, "delay", 3.0f, "time", 1.0f, "easeType", "linear"));
@@ -333,13 +339,14 @@ public class BossController : MonoBehaviour
     }
 
     /// <summary>
-    /// (6.9,-1.0)に移動し、予備動作の後放射状に一気に攻撃する
+    /// 開始位置に移動し、予備動作の後放射状に一気に攻撃する
+    /// x={16:9 6.0_1028:786 4.7}
     /// </summary>
     void Move08()
     {
         this.time = 0;
         this.coolTime = 9.0f;
-        iTween.MoveTo(gameObject, iTween.Hash("x", 6.0, "y", -1.0f, "time", 3.0f));
+        iTween.MoveTo(gameObject, iTween.Hash("x", 4.7f, "y", -1.0f, "time", 3.0f));
         iTween.ShakePosition(gameObject, iTween.Hash("y", 0.2f, "delay", 3.0f, "time", 4.0f));
         Invoke("Attack04", 7.0f);
     }
@@ -372,7 +379,8 @@ public class BossController : MonoBehaviour
     void Attack02()
     {
         this.animator.SetTrigger("Boss_Attack");
-        Instantiate(this.jumpMonster, new Vector2(6.0f, 0.3f), Quaternion.identity);
+        Instantiate(this.jumpMonster, new Vector2(transform.position.x - 2.7f, transform.position.y + 0.3f),
+            Quaternion.identity);
     }
 
     /// <summary>

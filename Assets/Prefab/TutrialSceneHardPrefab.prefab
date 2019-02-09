@@ -338,7 +338,7 @@ MonoBehaviour:
   tutorialSceneManager: {fileID: 0}
   cubeGenerator: {fileID: 0}
   life: 3
-  speed: -7
+  speed: -5.5
   deadLine: -20
   particlePrefab: {fileID: 6409366848875675875, guid: 2226024090decc449a46784b1f6f1b5a,
     type: 3}
