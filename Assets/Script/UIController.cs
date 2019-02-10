@@ -155,7 +155,7 @@ public class UIController : MonoBehaviour
     void Update()
     {
         //Gameover状態でなくlengthが150以上のときにunityChanオブジェクトのposition.xを参照する
-        if(this.isGameOver == false && length >= 150)
+        if (this.isGameOver == false && length >= 150)
         {
             //unityChanオブジェクトがx=0に移動してGameClearとなる
             if(this.unityChan.transform.position.x >= 0)
@@ -196,6 +196,15 @@ public class UIController : MonoBehaviour
         }
 
         DistanceToBoss();
+        if (this.cubeGeneratorController.isBoss)
+        {
+            DangerTextPlay();
+        }
+        else
+        {
+            this.alertTime = 0;
+            this.oneplay = false;
+        }
     }
 
     /// <summary>
@@ -252,7 +261,7 @@ public class UIController : MonoBehaviour
     /// DangerTextにDANGERと表示する
     /// DangerTextのAudioSource、Animatorを再生する
     /// </summary>
-    void DangerTextPlay()
+    public void DangerTextPlay()
     {
         if (this.oneplay == false)
         {
