@@ -32,6 +32,10 @@ public class BackgroundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (this.uiController.isGameOver)
+        {
+            return;
+        }
         //lengthが150を超えたら背景のスクロールは停止する
         if(this.uiController.length >= 150)
         {
