@@ -110,6 +110,10 @@ public class UnityChanController : MonoBehaviour
     /// </summary>
     private float jumpTime = 0;
 
+    [SerializeField] private GameObject stalker;
+
+    private float posX;
+
     void Start()
     {
         this.animator = GetComponent<Animator>();
@@ -124,8 +128,6 @@ public class UnityChanController : MonoBehaviour
         //デッドラインを超えた場合ゲームオーバーにする
         if(transform.position.x < deadLine)
         {
-            //UIControllerのGameOver関数を呼び出して画面上に「GameOver」と表示する
-            GameObject.Find("Canvas").GetComponent<UIController>().GameOver();
             //ユニティちゃんを破棄する
             Destroy(gameObject);
         }
@@ -137,7 +139,10 @@ public class UnityChanController : MonoBehaviour
             return;
         }
 
-        if(this.transform.position.x != -2.9f|| this.transform.position.y >= this.maxHigh)
+        //オブジェクトの定位置をstalkerオブジェクトの位置を参考にしながら決定
+        //ずれている場合はそのポイントへ徐々に戻る
+        this.posX = this.stalker.transform.position.x + 6.7f;
+        if(this.transform.position.x != this.posX|| this.transform.position.y >= this.maxHigh)
         {
             Return();
         }
@@ -323,14 +328,12 @@ public class UnityChanController : MonoBehaviour
     /// </summary>
     void Return()
     {
-        if (this.transform.position.x > -2.9f)
-        {
-            this.transform.position = new Vector2(-2.9f, this.transform.position.y);
-        }
+        transform.Translate((this.posX - transform.position.x) * this.returnSpeed * Time.deltaTime, 0.0f, 0.0f);
+    }
 
-        if(this.transform.position.x < -2.9f)
-        {
-            this.transform.Translate(this.returnSpeed * Time.deltaTime, 0.0f, 0.0f);
-        }
+    private void OnDestroy()
+    {
+        //UIControllerのGameOver関数を呼び出して画面上に「GameOver」と表示する
+        GameObject.Find("Canvas").GetComponent<UIController>().GameOver();
     }
 }

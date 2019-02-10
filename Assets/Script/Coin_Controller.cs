@@ -34,6 +34,10 @@ public class Coin_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (this.uiController.isGameOver)
+        {
+            return;
+        }
         //Coinを移動させる
         this.transform.Translate(this.speed * Time.deltaTime, 0, 0);
         //deadLineを超えたら破棄

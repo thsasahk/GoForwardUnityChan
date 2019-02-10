@@ -53,7 +53,7 @@ public class StarGenerator : MonoBehaviour
             return;
         }
         //lengthが140を超えたら破棄する
-        if (this.uiController.length >= 140)
+        if (this.uiController.length >= 140 || this.uiController.isGameOver)
         {
             Destroy(gameObject);
         }

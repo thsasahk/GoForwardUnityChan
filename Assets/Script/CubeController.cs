@@ -42,6 +42,10 @@ public class CubeController : MonoBehaviour
 
     void Update()
     {
+        if (this.uiController.isGameOver)
+        {
+            return;
+        }
         //キューブを移動させる
         transform.Translate(this.speed * Time.deltaTime, 0, 0);
         //画面外に出たら破棄する

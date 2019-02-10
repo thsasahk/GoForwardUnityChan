@@ -130,12 +130,15 @@ public class BossController : MonoBehaviour
                     Move04();
                     break;
 
-                case 5:
-                    Move05();
-                    break;
+                //case 5:
+                //    Move05();
+                //    break;
 
                 case 6:
                     Move06();
+                    break;
+
+                default:
                     break;
             }
         }
@@ -160,9 +163,9 @@ public class BossController : MonoBehaviour
                         Move04();
                         break;
 
-                    case 5:
-                        Move05();
-                        break;
+                    //case 5:
+                    //    Move05();
+                    //    break;
 
                     case 6:
                         Move06();
@@ -174,6 +177,9 @@ public class BossController : MonoBehaviour
 
                     case 8:
                         Move08();
+                        break;
+
+                    default:
                         break;
                  }
          }

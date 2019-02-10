@@ -66,7 +66,7 @@ public class CoinGenerator : MonoBehaviour
             return;
         }
         //UIControllerのlengthが147を超えたら破棄される
-        if (this.uiController.length >= 147)
+        if (this.uiController.length >= 147 || this.uiController.isGameOver)
         {
             Destroy(gameObject);
         }

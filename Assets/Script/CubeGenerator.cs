@@ -102,7 +102,7 @@ public class CubeGenerator : MonoBehaviour
             }
         }
         //UIControllerの変数lengthが145以上になると破棄する
-        if(this.uiController.length >= 145)
+        if(this.uiController.length >= 145 || this.uiController.isGameOver)
         {
             Destroy(gameObject);
         }
