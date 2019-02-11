@@ -154,33 +154,27 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        //Gameover状態でなくlengthが150以上のときにunityChanオブジェクトのposition.xを参照する
-        if (this.isGameOver == false && length >= 150)
-        {
-            //unityChanオブジェクトがx=0に移動してGameClearとなる
-            if(this.unityChan.transform.position.x >= 0)
-            {
-                GameClear();
-            }
-        }
-        //scoreを計算
-        this.score = this.cubeScore + this.coinScore + this.starScore + this.bossScore + Mathf.FloorToInt(this.length);
-        //scoreを表示
-        if(this.clear == false)
-        {
-            this.scoreText.GetComponent<Text>().text = "Score:" + this.score.ToString() + "pts";
-        }
         if(this.isGameOver == false && this.clear == false)
         {
             //走った距離を計測する
             this.length += this.speed * Time.deltaTime;
-
+            if (this.length >= 150.0f)
+            {
+                this.length = 150.0f;
+            }
             //走った距離を表示する
             this.runLengthText.GetComponent<Text>().text = "Distance: " + length.ToString("F2") + "m";
         }
+        //scoreを計算
+        this.score = this.cubeScore + this.coinScore + this.starScore + this.bossScore + Mathf.FloorToInt(this.length);
+        //scoreを表示
+        if (this.clear == false)
+        {
+            this.scoreText.GetComponent<Text>().text = "Score:" + this.score.ToString() + "pts";
+        }
 
         //ゲームオーバーになった場合
-        if((this.isGameOver || this.clear)
+        if ((this.isGameOver || this.clear)
             && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space))
                 && this.sceneLoad == false)
         {
@@ -234,7 +228,7 @@ public class UIController : MonoBehaviour
     /// テキストにGame Clearを表示し、clearをtrueに変更、BGMも変更する
     /// 獲得スコアがハイスコアより高い場合ハイスコアを変更して記録する
     /// </summary>
-    void GameClear()
+    public void GameClear()
     {
         this.gameOverTextMaterial.SetColor("_OutlineColor", new Color32(0, 0, 0, 100));
         this.gameOverTextUGUI.text = "Game Clear";
@@ -249,6 +243,7 @@ public class UIController : MonoBehaviour
             PlayerPrefs.SetInt("highScore_Key",this.highScore);
             PlayerPrefs.Save();
         }
+        //BGMの変更
         if(this.changeBGM == false)
         {
             this.bgm[0].Stop();

@@ -24,23 +24,47 @@ public class BackgroundController : MonoBehaviour
     /// Canvasオブジェクトのコンポーネントのスクリプト
     /// </summary>
     private UIController uiController;
+    /// <summary>
+    /// Stalkerオブジェクト
+    /// </summary>
+    [SerializeField]private GameObject stalker;
+    /// <summary>
+    /// Stalkerオブジェクトのスクリプト
+    /// </summary>
+    private StalkerController stalkerController;
+    /// <summary>
+    /// 時間計測用の変数
+    /// </summary>
+    private float count;
+
     void Start()
     {
         this.uiController = this.canvas.GetComponent<UIController>();
+        this.stalkerController = this.stalker.GetComponent<StalkerController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (this.uiController.isGameOver)
+        //StalkerControllerから背景のスクロールを制御する
+        if (this.stalkerController.scrollStop)
+        {
+            this.count += Time.deltaTime;
+            if (this.count >= 2.5f)
+            {
+                this.stalkerController.scrollStop = false;
+            }
+            return;
+        }
+
+        if (this.uiController.isGameOver || this.uiController.clear)
         {
             return;
         }
         //lengthが150を超えたら背景のスクロールは停止する
-        if(this.uiController.length >= 150)
-        {
-            return;
-        }
+        //if(this.uiController.length >= 150)
+        //{
+        //    return;
+        //}
         //背景を移動する
         transform.Translate(this.scrollSpeed * Time.deltaTime, 0, 0);
         //画面外に出たら画面右端に移動する

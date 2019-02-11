@@ -14,6 +14,7 @@ TagManager:
   - Star
   - Boss
   - Bullet
+  - Plazm
   layers:
   - Default
   - TransparentFX

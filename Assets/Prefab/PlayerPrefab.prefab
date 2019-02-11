@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 37cd144163b5aec4097183f17236a29d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -331,8 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitySE: []
-  dump: 0.8
-  jumpVelocity: 20
+  jumpPower: 0
   deadLine: -9
   bombLv0: {fileID: 3496292481898863473, guid: bee9842bedfeed34088278f25492f3ed, type: 3}
   bombLv1: {fileID: 793018430437199667, guid: f2cae45b1d744e647ac109c437cb8178, type: 3}
@@ -348,6 +347,10 @@ MonoBehaviour:
   clearParticleYG: {fileID: 7872717802261990808, guid: e94f7e6d9b30e2646b623d4d1f2995af,
     type: 3}
   jet: {fileID: 8116148401971171496}
+  returnSpeed: 0
+  maxHigh: 0
+  jumpLimit: 0
+  stalker: {fileID: 0}
 --- !u!61 &8116148401185870991
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -109,10 +109,22 @@ public class UnityChanController : MonoBehaviour
     /// 現在jumpを続けている時間
     /// </summary>
     private float jumpTime = 0;
-
+    /// <summary>
+    /// Clear関数を繰り返し呼び出さないようにする
+    /// </summary>
+    private bool oneTime = false;
+    /// <summary>
+    /// Stalkerオブジェクト
+    /// </summary>
     [SerializeField] private GameObject stalker;
-
+    /// <summary>
+    /// Playerオブジェクトが目標にする立ち位置
+    /// </summary>
     private float posX;
+    /// <summary>
+    /// RunAnimeとSEの終了させる変数
+    /// </summary>
+    private bool runEND = false;
 
     void Start()
     {
@@ -125,30 +137,12 @@ public class UnityChanController : MonoBehaviour
 
     void Update()
     {
-        //デッドラインを超えた場合ゲームオーバーにする
-        if(transform.position.x < deadLine)
-        {
-            //ユニティちゃんを破棄する
-            Destroy(gameObject);
-        }
-
-        //走行距離150で終了
-        if(this.uiController.length >= 150.0f)
-        {
-            Clear();
-            return;
-        }
-
-        //オブジェクトの定位置をstalkerオブジェクトの位置を参考にしながら決定
-        //ずれている場合はそのポイントへ徐々に戻る
-        this.posX = this.stalker.transform.position.x + 6.7f;
-        if(this.transform.position.x != this.posX|| this.transform.position.y >= this.maxHigh)
-        {
-            Return();
-        }
-
         //着地しているかどうかを調べる
         this.isGround = (this.transform.position.y > this.groundLevel) ? false : true;
+        if (transform.localEulerAngles.y <= 0.0f)
+        {
+            isGround = false;
+        }
         if (isGround)
         {
             this.animator.SetBool("Run", true);
@@ -162,6 +156,20 @@ public class UnityChanController : MonoBehaviour
 
         //ジャンプ状態のときはボリュームを0にする
         this.unitySE[1].volume = (isGround) ? 1 : 0;
+        //走行距離150で終了
+        if (this.uiController.length >= 150.0f)
+        {
+            Clear();
+            return;
+        }
+
+        //オブジェクトの定位置をstalkerオブジェクトの位置を参考にしながら決定
+        //ずれている場合はそのポイントへ徐々に戻る
+        this.posX = this.stalker.transform.position.x + 6.7f;
+        if(this.transform.position.x != this.posX|| this.transform.position.y >= this.maxHigh)
+        {
+            Return();
+        }
 
         if((Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space)) && this.jumpTime < this.jumpLimit)
         {
@@ -232,6 +240,18 @@ public class UnityChanController : MonoBehaviour
     /// </summary>
     void Clear()
     {
+        if (this.oneTime)
+        {
+            return;
+        }
+        this.unitySE[0].Stop();
+        iTween.MoveTo(gameObject, iTween.Hash("x", 9.0f, "y", -3.9f, "time", 1.0f, "delay",1.0f,"easeType", "linear"));
+        iTween.RotateTo(gameObject, iTween.Hash("y", 0.0f, "delay",2.0f));
+        iTween.MoveTo(gameObject, iTween.Hash("x", 7.0f, "time", 2.0f, "delay", 3.0f,"easeType","linear"));
+        iTween.MoveTo(gameObject, iTween.Hash("x", 0.0f, "time", 4.0f, "delay", 8.0f, "easeType", "linear"));
+        Invoke("GameClearCall", 12.4f);
+        this.oneTime = true;
+        /*
         if(this.transform.position.x <= 0)
         {
             this.transform.Translate(this.clearWalk * Time.deltaTime, 0, 0);
@@ -249,11 +269,9 @@ public class UnityChanController : MonoBehaviour
                 Instantiate(this.clearParticleWR,new Vector2(-4.5f,-4.9f),Quaternion.identity);
                 Instantiate(this.clearParticleYG,new Vector2(4.5f,-4.9f),Quaternion.identity);
                 this.isGoalParticle = true;
-            
+
             }
-        }
-        this.unitySE[0].Stop();
-        this.unitySE[1].Stop();
+        }*/
     }
 
     /// <summary>
@@ -323,17 +341,21 @@ public class UnityChanController : MonoBehaviour
     }
 
     /// <summary>
-    /// オブジェクトが画面右に行くのを禁止
-    /// オブジェクトが画面左に押し込まれても、徐々にスタート位置に帰ってくる
+    /// Stalkerオブジェクトと一定の距離を置ける位置に徐々に移動していく
     /// </summary>
     void Return()
     {
         transform.Translate((this.posX - transform.position.x) * this.returnSpeed * Time.deltaTime, 0.0f, 0.0f);
     }
 
-    private void OnDestroy()
+    void OnDestroy()
     {
         //UIControllerのGameOver関数を呼び出して画面上に「GameOver」と表示する
         GameObject.Find("Canvas").GetComponent<UIController>().GameOver();
+    }
+
+    void GameClearCall()
+    {
+        this.uiController.GameClear();
     }
 }

@@ -117,6 +117,7 @@ MonoBehaviour:
   posMin: -8.7
   speed: -0.4
   span: 10
+  back: {fileID: 2129675405466904464, guid: f44db72ee7fd3c64ebcf67f702249926, type: 3}
 --- !u!61 &2409627569322899312
 BoxCollider2D:
   m_ObjectHideFlags: 0

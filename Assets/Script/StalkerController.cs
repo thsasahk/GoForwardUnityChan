@@ -37,6 +37,10 @@ public class StalkerController : MonoBehaviour
 
     private UIController uIController;
 
+    private bool oneTime = false;
+
+    public bool scrollStop = false;
+
     void Start()
     {
         this.posX = this.posMin;
@@ -47,9 +51,15 @@ public class StalkerController : MonoBehaviour
 
     void Update()
     {
-        if (this.uIController.isGameOver)
+        if (this.uIController.isGameOver || this.oneTime)
         {
             return;
+        }
+
+        if (this.uIController.length >= 150 && this.oneTime == false)
+        {
+            iTween.MoveTo(gameObject, iTween.Hash("x", -6.0f, "time", 2.0f, "easeType", "linear"));
+            this.oneTime = true;
         }
 
         //カウントを数える
@@ -72,8 +82,20 @@ public class StalkerController : MonoBehaviour
             case "Player":
                 Destroy(other.gameObject);
                 this.animator.SetTrigger("Eat");
-                iTween.PunchScale(gameObject, iTween.Hash("x", 3.5f, "time",10.0f, "delay", 0.1f));
-                Invoke("GameEnd", 7.0f);
+                iTween.PunchScale(gameObject, iTween.Hash("x", 3.0f, "time", 2.5f, "delay", 0.1f));
+                iTween.PunchScale(gameObject, iTween.Hash("x", 2.9f, "time", 2.5f, "delay", 1.0f));
+                iTween.PunchScale(gameObject, iTween.Hash("x", 2.8f, "time", 2.5f, "delay", 1.0f));
+                iTween.PunchScale(gameObject, iTween.Hash("x", 2.7f, "time", 2.5f, "delay", 1.0f));
+                iTween.PunchScale(gameObject, iTween.Hash("x", 2.6f, "time", 2.5f, "delay", 1.0f));
+                iTween.PunchScale(gameObject, iTween.Hash("x", 2.5f, "time", 2.5f, "delay", 1.0f));
+                iTween.PunchScale(gameObject, iTween.Hash("x", 2.4f, "time", 2.5f, "delay", 1.0f));
+                Invoke("GameEnd", 4.5f);
+                break;
+
+            case "Plazm":
+                this.animator.SetTrigger("Death");
+                this.scrollStop = true;
+                iTween.MoveTo(gameObject, iTween.Hash("x", -13.0f, "time", 4.0f, "delay", 2.5f, "easeType", "linear"));
                 break;
 
             default:
