@@ -21,9 +21,12 @@ public class CanonController : MonoBehaviour
     /// </summary>
     private bool oneTime = false;
 
+    private AudioSource se;
+
     void Start()
     {
         this.uIController = this.canvas.GetComponent<UIController>();
+        this.se = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -50,8 +53,17 @@ public class CanonController : MonoBehaviour
 
     void PrazmShot()
     {
+        this.se.Stop();
         GameObject go = Instantiate(prazm) as GameObject;
         go.transform.position = new Vector2(0.6f, -2.4f);
         go.transform.Rotate(new Vector2(0.0f, 0.0f));
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Player")
+        {
+            this.se.Play();
+        }
     }
 }

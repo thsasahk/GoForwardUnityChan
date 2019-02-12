@@ -93,7 +93,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: fe4851b77a93e854abaa5232e24aefa5, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
@@ -208,6 +208,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: -7
+  particle: {fileID: 3813207438114563394, guid: 2b22cb9153368fc4f8da420fa82f0260,
+    type: 3}
 --- !u!50 &6526127048112116274
 Rigidbody2D:
   serializedVersion: 4

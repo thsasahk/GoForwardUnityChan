@@ -41,12 +41,15 @@ public class StalkerController : MonoBehaviour
 
     public bool scrollStop = false;
 
+    private AudioSource[] se;
+
     void Start()
     {
         this.posX = this.posMin;
         this.animator = GetComponent<Animator>();
         this.canvas = GameObject.Find("Canvas");
         this.uIController = this.canvas.GetComponent<UIController>();
+        this.se = GetComponents<AudioSource>();
     }
 
     void Update()
@@ -82,6 +85,7 @@ public class StalkerController : MonoBehaviour
             case "Player":
                 Destroy(other.gameObject);
                 this.animator.SetTrigger("Eat");
+                this.se[1].Play();
                 iTween.PunchScale(gameObject, iTween.Hash("x", 3.0f, "time", 2.5f, "delay", 0.1f));
                 iTween.PunchScale(gameObject, iTween.Hash("x", 2.9f, "time", 2.5f, "delay", 1.0f));
                 iTween.PunchScale(gameObject, iTween.Hash("x", 2.8f, "time", 2.5f, "delay", 1.0f));
@@ -93,6 +97,7 @@ public class StalkerController : MonoBehaviour
                 break;
 
             case "Plazm":
+                this.se[0].Play();
                 this.animator.SetTrigger("Death");
                 this.scrollStop = true;
                 iTween.MoveTo(gameObject, iTween.Hash("x", -13.0f, "time", 4.0f, "delay", 2.5f, "easeType", "linear"));
@@ -105,6 +110,7 @@ public class StalkerController : MonoBehaviour
 
     private void GameEnd()
     {
+        this.se[1].Stop();
         this.animator.SetTrigger("End");
         iTween.RotateTo(gameObject, iTween.Hash("y", 0.0f));
         iTween.MoveTo(gameObject, iTween.Hash("x", -12.0f, "time", 3.0f, "delay", 0.1f, "easeType", "linear"));
