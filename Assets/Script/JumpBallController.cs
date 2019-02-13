@@ -23,7 +23,7 @@ public class JumpBallController : MonoBehaviour
     /// <summary>
     /// JumpBallのAudio Source
     /// </summary>
-    private AudioSource jSE;
+    private AudioSource[] jSE;
     /// <summary>
     /// JumpBallが破棄されたときに生成されるParticleSystem
     /// </summary>
@@ -31,7 +31,7 @@ public class JumpBallController : MonoBehaviour
 
     void Start()
     {
-        this.jSE = GetComponent<AudioSource>();
+        this.jSE = GetComponents<AudioSource>();
         this.canvas = GameObject.Find("Canvas");
         this.uiController = this.canvas.GetComponent<UIController>();
     }
@@ -40,7 +40,7 @@ public class JumpBallController : MonoBehaviour
     {
         transform.Translate(this.speed * Time.deltaTime, 0, 0);//{16:9 -7_1028:786 -5.5}B{16:9 -6_1028:786 -5}
         //画面外に出たら破棄する
-        if (transform.position.x < deadLine)
+        if (transform.position.y < deadLine)
         {
             Destroy(this.gameObject);
         }
@@ -49,7 +49,7 @@ public class JumpBallController : MonoBehaviour
     void OnDestroy()
     {
         //スクロールによる破棄やシーンのロードではParticleSystemを生成しない
-        if(transform.position.x > deadLine
+        if(transform.position.y > deadLine
         && this.uiController.isGameOver == false)
         {
             Instantiate(this.particlePrefab,transform.position,Quaternion.identity);
@@ -60,7 +60,19 @@ public class JumpBallController : MonoBehaviour
     {
         if(other.gameObject.tag == "Player")
         {
-            this.jSE.Play();
+            this.jSE[0].Play();
+        }
+    }
+
+    /// <summary>
+    /// Stalkerオブジェクト接触した際にAudioSorceを再生する
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Stalker")
+        {
+            this.jSE[1].Play();
         }
     }
 }

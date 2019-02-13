@@ -376,7 +376,7 @@ public class BossController : MonoBehaviour
     {
         this.animator.SetTrigger("Boss_Attack");
         Instantiate(this.bossBullet, new Vector2(transform.position.x - 2.5f, 
-            transform.position.y + 1.0f), Quaternion.identity);
+        transform.position.y + 1.0f), Quaternion.identity);
     }
 
     /// <summary>

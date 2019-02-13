@@ -49,7 +49,7 @@ public class CubeController : MonoBehaviour
         //キューブを移動させる
         transform.Translate(this.speed * Time.deltaTime, 0, 0);
         //画面外に出たら破棄する
-        if(transform.position.x < deadLine)
+        if(transform.position.y < deadLine)
         {
             Destroy(this.gameObject);
         }
@@ -86,6 +86,30 @@ public class CubeController : MonoBehaviour
             //キューブが破壊された際にスコアに加算する
             this.uiController.cubeScore += 10;
             Destroy(gameObject);
+        }
+    }
+
+    /// <summary>
+    /// Stalkerオブジェクト接触した際にAudioSorceを再生する
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Stalker")
+        {
+            switch (gameObject.tag)
+            {
+                case "Block":
+                    this.SE[1].Play();
+                    break;
+
+                case "HBlock":
+                    this.SE[2].Play();
+                    break;
+
+                default:
+                    break;
+            }
         }
     }
 }
