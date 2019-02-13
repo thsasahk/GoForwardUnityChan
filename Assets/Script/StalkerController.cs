@@ -43,6 +43,26 @@ public class StalkerController : MonoBehaviour
 
     private AudioSource[] se;
 
+    private float verticalPower;
+
+    [SerializeField] private float vPowerMin;
+
+    [SerializeField] private float vPowerMax;
+
+    private float horizontalPower;
+
+    [SerializeField] private float hPowerMin;
+
+    [SerializeField] private float hPowerMax;
+
+    private float rollSpeed;
+
+    [SerializeField] private float rsMin;
+
+    [SerializeField] private float rsMax;
+
+    [SerializeField] private float fallTime;
+
     void Start()
     {
         this.posX = this.posMin;
@@ -101,6 +121,30 @@ public class StalkerController : MonoBehaviour
                 this.animator.SetTrigger("Death");
                 this.scrollStop = true;
                 iTween.MoveTo(gameObject, iTween.Hash("x", -13.0f, "time", 4.0f, "delay", 2.5f, "easeType", "linear"));
+                break;
+
+            case "Block":
+            case "HBlock":
+                this.verticalPower = Random.Range(this.vPowerMin, this.vPowerMax);
+                this.horizontalPower = Random.Range(this.hPowerMin, this.hPowerMax);
+                other.GetComponent<Rigidbody2D>().AddForce(new Vector2(this.horizontalPower * Time.deltaTime,
+                    this.verticalPower * Time.deltaTime));
+                this.rollSpeed = Random.Range(this.rsMin, this.rsMax);
+                iTween.RotateTo(other.gameObject, iTween.Hash("z", this.rollSpeed, "time", this.fallTime));
+                other.GetComponent<CubeController>().speed = 0;
+                other.GetComponent<BoxCollider2D>().enabled = false;
+                break;
+
+            case "JumpBall":
+                this.verticalPower = Random.Range(this.vPowerMin, this.vPowerMax);
+                this.horizontalPower = Random.Range(this.hPowerMin, this.hPowerMax);
+                other.GetComponent<Rigidbody2D>().AddForce(new Vector2(this.horizontalPower * Time.deltaTime,
+                    this.verticalPower * Time.deltaTime));
+                this.rollSpeed = Random.Range(this.rsMin, this.rsMax);
+                iTween.RotateTo(other.gameObject, iTween.Hash("z", this.rollSpeed, "time", this.fallTime));
+                other.GetComponent<JumpBallController>().speed = 0;
+                other.GetComponent<BoxCollider2D>().enabled = false;
+                other.GetComponent<CircleCollider2D>().enabled = false;
                 break;
 
             default:

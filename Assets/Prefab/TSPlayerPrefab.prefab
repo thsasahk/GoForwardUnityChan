@@ -5049,6 +5049,7 @@ MonoBehaviour:
   returnSpeed: -0.01
   maxHigh: 1
   jumpLimit: 5
+  stalker: {fileID: 0}
 --- !u!61 &1626546842
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5096,9 +5097,7 @@ MonoBehaviour:
   deadLine: -10
   maxCharge: 1
   chargeLV: 0
-  chargeSlider: {fileID: 0}
   jet: {fileID: 1080228562}
   returnSpeed: -0.01
   maxHigh: 1
   jumpLimit: 5
-  hCube: {fileID: 719800211, guid: aa07b521c77b24e4fa55e6c1de528805, type: 3}
