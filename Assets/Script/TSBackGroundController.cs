@@ -33,6 +33,11 @@ public class TSBackGroundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (this.tutorialSceneManagerController.loadScene)
+        {
+            return;
+        }
+
         if (this.tutorialSceneManagerController.lesson == 4)
         {
             //背景を移動する

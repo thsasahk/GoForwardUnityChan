@@ -763,7 +763,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8116148401185870984, guid: e2628e3ec1a8de24295ecb71bdd77753, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: e2628e3ec1a8de24295ecb71bdd77753, type: 3}
 --- !u!1 &935010806
 GameObject:
@@ -860,6 +861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed: 0
   canvas: {fileID: 719616876}
+  stalker: {fileID: 0}
 --- !u!114 &935010810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1698,6 +1700,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed: 0
   canvas: {fileID: 719616876}
+  stalker: {fileID: 0}
 --- !u!114 &1826929845
 MonoBehaviour:
   m_ObjectHideFlags: 0

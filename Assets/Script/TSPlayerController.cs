@@ -104,6 +104,10 @@ public class TSPlayerController : MonoBehaviour
 
     void Update()
     {
+        if (this.tutorialSceneManagerController.loadScene)
+        {
+            return;
+        }
         //lesson変数を参照してPlayerに許可する行動を決定する
         switch (this.tutorialSceneManagerController.lesson)
         {

@@ -20,7 +20,7 @@ public class TutorialSceneManagerController : MonoBehaviour
     /// <summary>
     /// LoadSceneを実行した際にtrueにする
     /// </summary>
-    private bool loadScene = false;
+    public bool loadScene = false;
     /// <summary>
     /// HardPrefabオブジェクト
     /// </summary>

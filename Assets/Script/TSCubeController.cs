@@ -138,6 +138,10 @@ public class TSCubeController : MonoBehaviour
     /// </summary>
     private void OnDestroy()
     {
+        if (this.tutorialSceneManagerController.loadScene)
+        {
+            return;
+        }
         this.tutorialSceneManagerController.lesson++;
         this.tSUIController.TextMoveBotom();
         this.tSCubeGeneratorController.createCube = false;

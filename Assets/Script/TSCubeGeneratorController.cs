@@ -34,6 +34,10 @@ public class TSCubeGeneratorController : MonoBehaviour
 
     void Update()
     {
+        if (this.tutorialSceneManagerController.loadScene)
+        {
+            return;
+        }
         //delay秒後にcubeを生成する
         if (this.createCube == false)
         {

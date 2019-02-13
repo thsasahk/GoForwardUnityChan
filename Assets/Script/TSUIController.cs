@@ -48,6 +48,10 @@ public class TSUIController : MonoBehaviour
     /// </summary>
     public void TextMoveTop()
     {
+        if (this.tutorialSceneManagerController.loadScene)
+        {
+            return;
+        }
         this.lessonManual.text = " ";
         this.animator.SetTrigger("NextLesson");
         Invoke("TextMoveCenter", 1.0f);
@@ -89,7 +93,10 @@ public class TSUIController : MonoBehaviour
     /// </summary>
     public void TextMoveBotom()
     {
-        this.animator.SetTrigger("LessonClear");
+        if (this.tutorialSceneManagerController.lesson != 5)
+        {
+            this.animator.SetTrigger("LessonClear");
+        }
         Invoke("TextMoveTop", 1.0f);
     }
 }
