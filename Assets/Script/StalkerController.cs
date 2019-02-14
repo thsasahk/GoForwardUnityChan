@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class StalkerController : MonoBehaviour
 {
@@ -63,6 +64,10 @@ public class StalkerController : MonoBehaviour
 
     [SerializeField] private float fallTime;
 
+    [SerializeField] private GameObject gameOverTimeLine;
+
+    private PlayableDirector gameOverTimeLineDirector;
+
     void Start()
     {
         this.posX = this.posMin;
@@ -70,10 +75,16 @@ public class StalkerController : MonoBehaviour
         this.canvas = GameObject.Find("Canvas");
         this.uIController = this.canvas.GetComponent<UIController>();
         this.se = GetComponents<AudioSource>();
+        this.gameOverTimeLineDirector = this.gameOverTimeLine.GetComponent<PlayableDirector>();
     }
 
     void Update()
     {
+        if (transform.position.x <= -13)
+        {
+            Destroy(gameObject);
+        }
+
         if (this.uIController.isGameOver || this.oneTime)
         {
             return;
@@ -104,6 +115,9 @@ public class StalkerController : MonoBehaviour
         {
             case "Player":
                 Destroy(other.gameObject);
+                this.gameOverTimeLineDirector.enabled = true;
+                /*TimeLineを使用しない場合のGameOverSceneを演出するスクリプト
+                Destroy(other.gameObject);
                 this.animator.SetTrigger("Eat");
                 this.se[1].Play();
                 iTween.PunchScale(gameObject, iTween.Hash("x", 3.0f, "time", 2.5f, "delay", 0.1f));
@@ -114,6 +128,7 @@ public class StalkerController : MonoBehaviour
                 iTween.PunchScale(gameObject, iTween.Hash("x", 2.5f, "time", 2.5f, "delay", 1.0f));
                 iTween.PunchScale(gameObject, iTween.Hash("x", 2.4f, "time", 2.5f, "delay", 1.0f));
                 Invoke("GameEnd", 4.5f);
+                */
                 break;
 
             case "Plazm":
@@ -152,6 +167,7 @@ public class StalkerController : MonoBehaviour
         }
     }
 
+    /*TimeLineを使用しない場合のGameOverSceneを演出するスクリプト
     private void GameEnd()
     {
         this.se[1].Stop();
@@ -159,5 +175,5 @@ public class StalkerController : MonoBehaviour
         iTween.RotateTo(gameObject, iTween.Hash("y", 0.0f));
         iTween.MoveTo(gameObject, iTween.Hash("x", -12.0f, "time", 3.0f, "delay", 0.1f, "easeType", "linear"));
         Destroy(gameObject, 3.1f);
-    }
+    }*/
 }
