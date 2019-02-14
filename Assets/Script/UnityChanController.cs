@@ -137,12 +137,18 @@ public class UnityChanController : MonoBehaviour
 
     void Update()
     {
+        //ClearSceneに入ったら操作不能
+        if (this.uiController.clearScene)
+        {
+            Invoke("Clear", 1.0f);
+            return;
+        }
         //着地しているかどうかを調べる
         this.isGround = (this.transform.position.y > this.groundLevel) ? false : true;
-        if (transform.localEulerAngles.y <= 0.0f)
+        /*if (transform.localEulerAngles.y <= 0.0f)
         {
             isGround = false;
-        }
+        }*/
         if (isGround)
         {
             this.animator.SetBool("Run", true);
@@ -156,12 +162,14 @@ public class UnityChanController : MonoBehaviour
 
         //ジャンプ状態のときはボリュームを0にする
         this.unitySE[1].volume = (isGround) ? 1 : 0;
-        //走行距離150で終了
+
+        /*走行距離150で終了
         if (this.uiController.length >= 150.0f)
         {
             Clear();
             return;
         }
+        */
 
         //オブジェクトの定位置をstalkerオブジェクトの位置を参考にしながら決定
         //ずれている場合はそのポイントへ徐々に戻る
@@ -245,12 +253,22 @@ public class UnityChanController : MonoBehaviour
             return;
         }
         this.unitySE[0].Stop();
+        this.unitySE[1].Stop();
+        this.animator.SetBool("Run", false);
+        this.oneTime = true;
+        /*
+        if (this.oneTime)
+        {
+            return;
+        }
+        this.unitySE[0].Stop();
         iTween.MoveTo(gameObject, iTween.Hash("x", 9.0f, "y", -3.9f, "time", 1.0f, "delay",1.0f,"easeType", "linear"));
         iTween.RotateTo(gameObject, iTween.Hash("y", 0.0f, "delay",2.0f));
         iTween.MoveTo(gameObject, iTween.Hash("x", 7.0f, "time", 2.0f, "delay", 3.0f,"easeType","linear"));
         iTween.MoveTo(gameObject, iTween.Hash("x", 0.0f, "time", 4.0f, "delay", 8.0f, "easeType", "linear"));
         Invoke("GameClearCall", 12.4f);
         this.oneTime = true;
+        */
         /*
         if(this.transform.position.x <= 0)
         {
@@ -361,8 +379,9 @@ public class UnityChanController : MonoBehaviour
         }
     }
 
+    /*
     void GameClearCall()
     {
         this.uiController.GameClear();
-    }
+    }*/
 }
