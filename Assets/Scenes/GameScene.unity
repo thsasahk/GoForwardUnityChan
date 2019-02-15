@@ -781,10 +781,10 @@ PlayableDirector:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 816249154}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: dba391fabbb98cb4597f122c6d307f3e, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -801,8 +801,6 @@ PlayableDirector:
     value: {fileID: 200573063}
   - key: {fileID: 114264559250264896, guid: dba391fabbb98cb4597f122c6d307f3e, type: 2}
     value: {fileID: 200573065}
-  - key: {fileID: 114838851485183536, guid: dba391fabbb98cb4597f122c6d307f3e, type: 2}
-    value: {fileID: 1721847354}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &816249156
@@ -978,7 +976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b20406ac8cd700b45afcbcba66701157, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  length: 140
+  length: 0
   speed: 1.2
   isGameOver: 0
   scoreText: {fileID: 500772905}
@@ -1456,6 +1454,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Stalker
+      objectReference: {fileID: 0}
+    - target: {fileID: 2543939852000399232, guid: 2bb17f128d1db8f4aada5002e8e2b0f5,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2409627569322899313, guid: 2bb17f128d1db8f4aada5002e8e2b0f5,
         type: 3}
@@ -1972,12 +1975,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 8116148401699592882}
   m_PrefabAsset: {fileID: 0}
---- !u!82 &1721847354 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 8116148401185870990, guid: e2628e3ec1a8de24295ecb71bdd77753,
-    type: 3}
-  m_PrefabInstance: {fileID: 8116148401699592882}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &1721847356 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8116148401185870981, guid: e2628e3ec1a8de24295ecb71bdd77753,
@@ -2139,6 +2136,11 @@ PrefabInstance:
     - target: {fileID: 6408485092539994499, guid: 3f3608719564ad644be5a5c1242dcc28,
         type: 3}
       propertyPath: m_Name
+      value: Canon
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408485092539994499, guid: 3f3608719564ad644be5a5c1242dcc28,
+        type: 3}
+      propertyPath: m_TagString
       value: Canon
       objectReference: {fileID: 0}
     - target: {fileID: 6408485092539994498, guid: 3f3608719564ad644be5a5c1242dcc28,
@@ -2781,6 +2783,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 8116148401185870990, guid: e2628e3ec1a8de24295ecb71bdd77753,
+        type: 3}
+      propertyPath: Loop
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8116148401185870987, guid: e2628e3ec1a8de24295ecb71bdd77753,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2906,11 +2913,6 @@ PrefabInstance:
       propertyPath: m_BodyType
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8116148401185870990, guid: e2628e3ec1a8de24295ecb71bdd77753,
-        type: 3}
-      propertyPath: Loop
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8116148401971171497, guid: e2628e3ec1a8de24295ecb71bdd77753,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2945,10 +2947,10 @@ PlayableDirector:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8976139399754872791}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: 4fb1bb30e4d1eed49861335df202efbd, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0

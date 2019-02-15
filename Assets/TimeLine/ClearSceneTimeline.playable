@@ -20,10 +20,10 @@ MonoBehaviour:
   - {fileID: 114547932187021392}
   - {fileID: 114893145984701220}
   - {fileID: 114264559250264896}
-  m_FixedDuration: 12.033333333333333
+  m_FixedDuration: 13.9
   m_EditorSettings:
     m_Framerate: 60
-  m_DurationMode: 1
+  m_DurationMode: 0
   m_Version: 0
 --- !u!74 &74342588878627638
 AnimationClip:

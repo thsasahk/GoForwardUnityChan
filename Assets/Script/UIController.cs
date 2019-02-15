@@ -242,7 +242,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void GameClear()
     {
-        this.clearSceneTimeLineDirector.Stop();
+        this.clearSceneTimeLineDirector.playableGraph.GetRootPlayable(0).SetSpeed(0);
         this.gameOverTextMaterial.SetColor("_OutlineColor", new Color32(0, 0, 0, 100));
         this.gameOverTextUGUI.text = "Game Clear";
         this.clearScore.GetComponent<Text>().text = "Score:" + this.score.ToString() + "pts";
