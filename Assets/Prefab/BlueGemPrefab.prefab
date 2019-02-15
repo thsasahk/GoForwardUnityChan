@@ -239,7 +239,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: -5.5
   deadLine: -10
-  particlePrefab: {fileID: 6409366848875675875, guid: 2226024090decc449a46784b1f6f1b5a,
+  particlePrefab: {fileID: 8874050835183737977, guid: 304877dcd4a938c4c9c0d54fd2f4b689,
     type: 3}
   life: 2
 --- !u!82 &5216324706628505537
