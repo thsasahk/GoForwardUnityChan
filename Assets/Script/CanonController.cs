@@ -17,26 +17,33 @@ public class CanonController : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject prazm;
     /// <summary>
-    /// Preparationを連続して実行しないための変数
+    /// 関数を連続して実行しないための変数
     /// </summary>
     private bool oneTime = false;
-
-    private AudioSource se;
+    //private AudioSource se;
 
     void Start()
     {
         this.uIController = this.canvas.GetComponent<UIController>();
-        this.se = GetComponent<AudioSource>();
+        //this.se = GetComponent<AudioSource>();
     }
 
     void Update()
     {
+        if (this.uIController.clearScene && this.oneTime == false)
+        {
+            this.oneTime = true;
+            Invoke("PrazmShot", 6.0f);
+        }
+        /*
         if (this.uIController.length >= 150)
         {
             Preparation();
         }
+        */
     }
 
+    /*
     void Preparation()
     {
         if (this.oneTime)
@@ -50,15 +57,17 @@ public class CanonController : MonoBehaviour
         Invoke("PrazmShot", 5.1f);
         this.oneTime = true;
     }
+    */
 
     void PrazmShot()
     {
-        this.se.Stop();
+        //this.se[0].stop();
         GameObject go = Instantiate(prazm) as GameObject;
         go.transform.position = new Vector2(0.6f, -2.4f);
         go.transform.Rotate(new Vector2(0.0f, 0.0f));
     }
 
+    /*
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
@@ -66,4 +75,5 @@ public class CanonController : MonoBehaviour
             this.se.Play();
         }
     }
+    */
 }

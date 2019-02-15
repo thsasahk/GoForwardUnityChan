@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.Playables;
 
 public class UIController : MonoBehaviour
 {
@@ -137,6 +138,12 @@ public class UIController : MonoBehaviour
     /// </summary>
     private float distanceToBoss;
 
+    public bool clearScene = false;
+
+    [SerializeField] private GameObject clearSceneTimeLine;
+
+    private PlayableDirector clearSceneTimeLineDirector;
+
 
     void Start()
     {
@@ -150,16 +157,20 @@ public class UIController : MonoBehaviour
         this.cubeGeneratorController = this.cubeGenerator.GetComponent<CubeGenerator>();
         this.DangerTextAnimator = this.DangerText.GetComponent<Animator>();
         this.DangerTextAudioSource = this.DangerText.GetComponent<AudioSource>();
+        this.clearSceneTimeLineDirector = this.clearSceneTimeLine.GetComponent<PlayableDirector>();
     }
 
     void Update()
     {
-        if(this.isGameOver == false && this.clear == false)
+        if(this.isGameOver == false && this.clearScene == false)
         {
             //走った距離を計測する
             this.length += this.speed * Time.deltaTime;
             if (this.length >= 150.0f)
             {
+                this.clearScene = true;
+                Invoke("ClearScene", 1.0f);
+                Invoke("GameClear", 13.0f);
                 this.length = 150.0f;
             }
             //走った距離を表示する
@@ -173,7 +184,7 @@ public class UIController : MonoBehaviour
             this.scoreText.GetComponent<Text>().text = "Score:" + this.score.ToString() + "pts";
         }
 
-        //ゲームオーバーになった場合
+        //ゲームオーバーかゲームクリアになった場合
         if ((this.isGameOver || this.clear)
             && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space))
                 && this.sceneLoad == false)
@@ -207,6 +218,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void GameOver()
     {
+        Destroy(this.clearSceneTimeLine);
         this.gameOverTextUGUI.text = "Game Over";
         this.isGameOver = true;
         //ハイスコアの更新
@@ -230,6 +242,7 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void GameClear()
     {
+        this.clearSceneTimeLineDirector.Stop();
         this.gameOverTextMaterial.SetColor("_OutlineColor", new Color32(0, 0, 0, 100));
         this.gameOverTextUGUI.text = "Game Clear";
         this.clearScore.GetComponent<Text>().text = "Score:" + this.score.ToString() + "pts";
@@ -250,6 +263,12 @@ public class UIController : MonoBehaviour
             this.bgm[2].Play();
             this.changeBGM = true;
         }
+    }
+
+    //操作を停止してから一定時間空けてからCleaSceneに入るために関数化
+    void ClearScene()
+    {
+        this.clearSceneTimeLineDirector.Play();
     }
 
     /// <summary>

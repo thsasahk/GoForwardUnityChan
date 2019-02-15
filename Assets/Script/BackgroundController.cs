@@ -45,7 +45,20 @@ public class BackgroundController : MonoBehaviour
 
     void Update()
     {
-        //StalkerControllerから背景のスクロールを制御する
+        if (this.uiController.isGameOver || this.uiController.clear)
+        {
+            return;
+        }
+
+        if (this.uiController.clearScene)
+        {
+            this.count += Time.deltaTime;
+            if (this.count >= 6.5 && this.count <= 9.0f)
+            {
+                return;
+            }
+        }
+        /*StalkerControllerから背景のスクロールを制御する
         if (this.stalkerController.scrollStop)
         {
             this.count += Time.deltaTime;
@@ -54,12 +67,8 @@ public class BackgroundController : MonoBehaviour
                 this.stalkerController.scrollStop = false;
             }
             return;
-        }
+        }*/
 
-        if (this.uiController.isGameOver || this.uiController.clear)
-        {
-            return;
-        }
         //lengthが150を超えたら背景のスクロールは停止する
         //if(this.uiController.length >= 150)
         //{

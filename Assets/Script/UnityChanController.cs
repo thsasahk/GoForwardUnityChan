@@ -137,12 +137,6 @@ public class UnityChanController : MonoBehaviour
 
     void Update()
     {
-        //ClearSceneに入ったら操作不能
-        if (this.uiController.clearScene)
-        {
-            Invoke("Clear", 1.0f);
-            return;
-        }
         //着地しているかどうかを調べる
         this.isGround = (this.transform.position.y > this.groundLevel) ? false : true;
         /*if (transform.localEulerAngles.y <= 0.0f)
@@ -162,6 +156,19 @@ public class UnityChanController : MonoBehaviour
 
         //ジャンプ状態のときはボリュームを0にする
         this.unitySE[1].volume = (isGround) ? 1 : 0;
+
+        if (this.uiController.clear)
+        {
+            transform.position = Vector2.zero;
+            transform.Rotate(Vector2.zero);
+        }
+        //ClearSceneに入ったら操作不能
+        if (this.uiController.clearScene)
+        {
+            Invoke("Clear", 1.0f);
+            this.unitySE[0].Stop();
+            return;
+        }
 
         /*走行距離150で終了
         if (this.uiController.length >= 150.0f)
@@ -252,9 +259,7 @@ public class UnityChanController : MonoBehaviour
         {
             return;
         }
-        this.unitySE[0].Stop();
-        this.unitySE[1].Stop();
-        this.animator.SetBool("Run", false);
+
         this.oneTime = true;
         /*
         if (this.oneTime)
@@ -376,6 +381,15 @@ public class UnityChanController : MonoBehaviour
         else
         {
             this.uiController.GameOver();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == "Canon")
+        {
+            this.unitySE[1].Stop();
+            this.animator.SetBool("Run", false);
         }
     }
 

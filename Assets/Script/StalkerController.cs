@@ -38,7 +38,7 @@ public class StalkerController : MonoBehaviour
 
     private UIController uIController;
 
-    private bool oneTime = false;
+    //private bool oneTime = false;
 
     public bool scrollStop = false;
 
@@ -85,16 +85,18 @@ public class StalkerController : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (this.uIController.isGameOver || this.oneTime)
+        if (this.uIController.isGameOver || this.uIController.clearScene/* || this.oneTime*/)
         {
             return;
         }
 
+        /*
         if (this.uIController.length >= 150 && this.oneTime == false)
         {
             iTween.MoveTo(gameObject, iTween.Hash("x", -6.0f, "time", 2.0f, "easeType", "linear"));
             this.oneTime = true;
         }
+        */
 
         //カウントを数える
         this.count += Time.deltaTime;
@@ -115,7 +117,7 @@ public class StalkerController : MonoBehaviour
         {
             case "Player":
                 Destroy(other.gameObject);
-                this.gameOverTimeLineDirector.enabled = true;
+                this.gameOverTimeLineDirector.Play();
                 /*TimeLineを使用しない場合のGameOverSceneを演出するスクリプト
                 Destroy(other.gameObject);
                 this.animator.SetTrigger("Eat");
@@ -130,13 +132,15 @@ public class StalkerController : MonoBehaviour
                 Invoke("GameEnd", 4.5f);
                 */
                 break;
-
+            
+            /*
             case "Plazm":
                 this.se[0].Play();
                 this.animator.SetTrigger("Death");
                 this.scrollStop = true;
                 iTween.MoveTo(gameObject, iTween.Hash("x", -13.0f, "time", 4.0f, "delay", 2.5f, "easeType", "linear"));
                 break;
+            */
 
             case "Block":
             case "HBlock":
