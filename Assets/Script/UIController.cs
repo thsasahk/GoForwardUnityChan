@@ -174,7 +174,7 @@ public class UIController : MonoBehaviour
                 this.length = 150.0f;
             }
             //走った距離を表示する
-            this.runLengthText.GetComponent<Text>().text = "Distance: " + length.ToString("F2") + "m";
+            this.runLengthText.GetComponent<Text>().text = "Distance: " + length.ToString("F1") + "m";
         }
         //scoreを計算
         this.score = this.cubeScore + this.coinScore + this.starScore + this.bossScore + Mathf.FloorToInt(this.length);
@@ -314,13 +314,13 @@ public class UIController : MonoBehaviour
         {
             this.distanceToBoss = 50 - this.length;
             this.distanceToBossText.GetComponent<Text>().text 
-                = "Danger Zone: " + this.distanceToBoss.ToString("F2") + " m";
+                = "Danger Zone: " + this.distanceToBoss.ToString("F1") + " m";
         }
         else
         {
             this.distanceToBoss = 105 - this.length;
             this.distanceToBossText.GetComponent<Text>().text 
-                = "Danger Zone: " + this.distanceToBoss.ToString("F2") + " m";
+                = "Danger Zone: " + this.distanceToBoss.ToString("F1") + " m";
         }
     }
 }

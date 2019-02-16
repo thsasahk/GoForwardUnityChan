@@ -106,7 +106,11 @@ public class StalkerController : MonoBehaviour
             this.posX = Random.Range(this.posMin, this.posMax);
             this.count = 0;
         }
-
+        //140を超えたらクリアシーンの開始位置に移動しておく
+        if (this.uIController.length >= 140)
+        {
+            this.posX = this.posMin;
+        }
         // 目標地点に徐々に近づいていく、目標地点が遠いほど速度は速くなる
         transform.Translate((this.posX - transform.position.x) * this.speed * Time.deltaTime, 0.0f, 0.0f);
     }
