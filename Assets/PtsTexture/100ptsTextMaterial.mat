@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 20ptsTextureMaterial
+  m_Name: 100ptsTextMaterial
   m_Shader: {fileID: 4800000, guid: 5cd052ce7ea5a2f438f599e02de6a390, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 8400000, guid: e8d8201fa85fe504691303a9b1fc4829, type: 2}
+        m_Texture: {fileID: 8400000, guid: 4025de3c776e0b94aacad775668c32a8, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:

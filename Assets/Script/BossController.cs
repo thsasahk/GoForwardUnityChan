@@ -76,6 +76,11 @@ public class BossController : MonoBehaviour
     /// オブジェクトのAudioSource
     /// </summary>
     private AudioSource[] audioSource;
+    /// <summary>
+    /// 退却開始を表す
+    /// </summary>
+    private bool escape = false;
+
 
     void Start()
     {
@@ -86,10 +91,17 @@ public class BossController : MonoBehaviour
         this.cubeGeneratorScript = this.cubeGenerator.GetComponent<CubeGenerator>();
         this.audioSource = GetComponents<AudioSource>();
         this.spriteRenderer = GetComponent<SpriteRenderer>();
+
+        this.life = this.life + this.uiController.lifeRemainder;
     }
 
     void Update()
     {
+        //退却を始めたら他の行動は読み込まない
+        if (this.escape)
+        {
+            return;
+        }
         //lengthが一定値を超えたら逃げ出す
         if ((this.uiController.length >= 75 && this.uiController.length <= 104)
             || this.uiController.length >= 140)
@@ -362,6 +374,12 @@ public class BossController : MonoBehaviour
     /// </summary>
     void Move09()
     {
+        this.escape = true;
+        if (this.life < 0)
+        {
+            this.life = 0;
+        }
+        this.uiController.lifeRemainder = life;
         GetComponent<CircleCollider2D>().enabled = false;
         iTween.RotateTo(gameObject, iTween.Hash("z", 720.0f,"delay",0.1f));
         iTween.RotateTo(gameObject, iTween.Hash("y", 180.0f, "delay", 1.1f));

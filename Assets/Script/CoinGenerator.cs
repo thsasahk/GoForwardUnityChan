@@ -48,6 +48,10 @@ public class CoinGenerator : MonoBehaviour
     /// CubeGeneratorオブジェクトのスクリプト
     /// </summary>
     private CubeGenerator cubeGeneratorScript;
+    /// <summary>
+    /// コインを連続で生成するときの間隔
+    /// </summary>
+    private float offsetX = 1.3f;
 
     void Start()
     {
@@ -71,11 +75,18 @@ public class CoinGenerator : MonoBehaviour
             Destroy(gameObject);
         }
         this.waitTime += Time.deltaTime;
+
         if (this.waitTime >= this.span)
         {
             //Coinオブジェクトを生成するY座標を決定する
             float m = Random.Range(-4.5f,1.5f);
-            Instantiate(this.coinPrefab,new Vector2(12,m),Quaternion.identity);
+            //生成するコインの数を決定する
+            int n = Random.Range(0, 5);
+            for(int i = 0; i <= n; i++)
+            {
+                Instantiate(this.coinPrefab, new Vector2(12.0f + i * offsetX, m), Quaternion.identity);
+            }
+
             //次にCoinオブジェクトを生成するまでのspanを決定する
             this.span = Random.Range(this.span1,this.span2);
             //Coin生成から経った時間を初期化

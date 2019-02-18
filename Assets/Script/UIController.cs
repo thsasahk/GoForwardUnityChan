@@ -144,6 +144,8 @@ public class UIController : MonoBehaviour
 
     private PlayableDirector clearSceneTimeLineDirector;
 
+    public int lifeRemainder = 0;
+
 
     void Start()
     {
