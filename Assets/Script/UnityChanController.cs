@@ -137,6 +137,12 @@ public class UnityChanController : MonoBehaviour
 
     void Update()
     {
+        //Pause中はキー入力を受け付けない
+        if (Mathf.Approximately(Time.timeScale, 0f))
+        {
+            return;
+        }
+
         //着地しているかどうかを調べる
         this.isGround = (this.transform.position.y > this.groundLevel) ? false : true;
         /*if (transform.localEulerAngles.y <= 0.0f)
