@@ -140,6 +140,7 @@ public class UnityChanController : MonoBehaviour
         //Pause中はキー入力を受け付けない
         if (Mathf.Approximately(Time.timeScale, 0f))
         {
+            this.unitySE[1].volume = 0;
             return;
         }
 
