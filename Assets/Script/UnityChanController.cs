@@ -125,6 +125,10 @@ public class UnityChanController : MonoBehaviour
     /// RunAnimeとSEの終了させる変数
     /// </summary>
     private bool runEND = false;
+    /// <summary>
+    /// ジェットのSEが再生中かどうかを判別
+    /// </summary>
+    private bool jetSEPlay;
 
     void Start()
     {
@@ -204,6 +208,12 @@ public class UnityChanController : MonoBehaviour
         {
             this.transform.position = new Vector2(this.transform.position.x, this.maxHigh);
             this.rigid2D.velocity = Vector2.zero;
+        }
+        //SEを停止させる
+        if(Input.GetMouseButtonUp(0) || Input.GetKeyUp(KeyCode.Space) || this.jumpTime > this.jumpLimit)
+        {
+            this.unitySE[2].Stop();
+            this.jetSEPlay = false;
         }
 
         //チャージ音を再生する
@@ -365,6 +375,11 @@ public class UnityChanController : MonoBehaviour
     /// </summary>
     void Jump()
     {
+        if (this.jetSEPlay == false)
+        {
+            this.unitySE[2].Play();
+            this.jetSEPlay = true;
+        }
         this.rigid2D.AddForce(new Vector2(0f, this.jumpPower * Time.deltaTime));
         this.jetParticle.Play();
         this.jumpTime += Time.deltaTime;
