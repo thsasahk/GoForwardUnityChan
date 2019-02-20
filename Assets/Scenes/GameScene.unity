@@ -1696,6 +1696,11 @@ PrefabInstance:
       propertyPath: gameOverTimeLine
       value: 
       objectReference: {fileID: 8976139399754872791}
+    - target: {fileID: 2409627569322899279, guid: 2bb17f128d1db8f4aada5002e8e2b0f5,
+        type: 3}
+      propertyPath: cubeGeneratorObject
+      value: 
+      objectReference: {fileID: 958883081}
     - target: {fileID: 2543939852000399232, guid: 2bb17f128d1db8f4aada5002e8e2b0f5,
         type: 3}
       propertyPath: m_Volume

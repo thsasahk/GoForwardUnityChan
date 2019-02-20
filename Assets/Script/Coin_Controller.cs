@@ -52,7 +52,7 @@ public class Coin_Controller : MonoBehaviour
         //Playerに接触するとCoinSoundオブジェクトを生成してUIControllerのcoinScoreを加算し、消滅する
         if(other.gameObject.tag == "Player")
         {
-            Instantiate(this.coinSound,new Vector2(0,0),Quaternion.identity);
+            Instantiate(this.coinSound, transform.position, Quaternion.identity);
             this.uiController.coinScore += 20;
             Destroy(gameObject);
         }        

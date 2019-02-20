@@ -135,7 +135,7 @@ MonoBehaviour:
   speed: -4
   deadLine: -10
   life: 2
-  particlePrefab: {fileID: 6409366848875675875, guid: 2226024090decc449a46784b1f6f1b5a,
+  particlePrefab: {fileID: 6273265010922763858, guid: a51a5c2f3ae20d84999fcc6fba05c13c,
     type: 3}
 --- !u!82 &1058280604844928441
 AudioSource:

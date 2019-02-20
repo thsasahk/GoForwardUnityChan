@@ -68,6 +68,10 @@ public class StalkerController : MonoBehaviour
 
     private PlayableDirector gameOverTimeLineDirector;
 
+    [SerializeField] private GameObject cubeGeneratorObject;
+
+    private CubeGenerator cubeGenerator;
+
     void Start()
     {
         this.posX = this.posMin;
@@ -76,6 +80,7 @@ public class StalkerController : MonoBehaviour
         this.uIController = this.canvas.GetComponent<UIController>();
         this.se = GetComponents<AudioSource>();
         this.gameOverTimeLineDirector = this.gameOverTimeLine.GetComponent<PlayableDirector>();
+        this.cubeGenerator = this.cubeGeneratorObject.GetComponent<CubeGenerator>();
     }
 
     void Update()
@@ -106,8 +111,8 @@ public class StalkerController : MonoBehaviour
             this.posX = Random.Range(this.posMin, this.posMax);
             this.count = 0;
         }
-        //140を超えたらクリアシーンの開始位置に移動しておく
-        if (this.uIController.length >= 140)
+        //length140を超えるかボス出現中は後方に下がる
+        if (this.uIController.length >= 140 || this.cubeGenerator.isBoss)
         {
             this.posX = this.posMin;
         }
