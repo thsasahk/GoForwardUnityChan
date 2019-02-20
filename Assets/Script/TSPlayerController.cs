@@ -95,6 +95,10 @@ public class TSPlayerController : MonoBehaviour
     private bool jetSEPlay;
 
     private bool isComeBack = false;
+    /// <summary>
+    /// ポーズ中であることを示す変数
+    /// </summary>
+    private bool isPause = false;
 
     void Start()
     {
@@ -110,10 +114,20 @@ public class TSPlayerController : MonoBehaviour
 
     void Update()
     {
-        //TimeLineの再生が始まったら操作不能
-        if (this.tutorialSceneManagerController.loadScene)
+        //TimeLineの再生中、Pose中は操作不能
+        if (this.tutorialSceneManagerController.loadScene|| Mathf.Approximately(Time.timeScale, 0f))
         {
+            for(int n = 0; n <= 2; n++)
+            {
+                this.unitySE[n].Stop();
+            }
+            this.isPause = true;
             return;
+        }
+        if (this.isPause)
+        {
+            this.unitySE[1].Play();
+            this.isPause = false;
         }
         //定位置に戻ったら操作を可能にする
         if (transform.position.x >= -2.9f)

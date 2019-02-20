@@ -129,6 +129,10 @@ public class UnityChanController : MonoBehaviour
     /// ジェットのSEが再生中かどうかを判別
     /// </summary>
     private bool jetSEPlay;
+    /// <summary>
+    /// ポーズ中であることを示す変数
+    /// </summary>
+    private bool isPause = false;
 
     void Start()
     {
@@ -144,8 +148,17 @@ public class UnityChanController : MonoBehaviour
         //Pause中はキー入力を受け付けない
         if (Mathf.Approximately(Time.timeScale, 0f))
         {
-            this.unitySE[1].volume = 0;
+            for (int n = 0; n <= 2; n++)
+            {
+                this.unitySE[n].Stop();
+            }
+            this.isPause = true;
             return;
+        }
+        if (this.isPause)
+        {
+            this.unitySE[1].Play();
+            this.isPause = false;
         }
 
         //着地しているかどうかを調べる
@@ -179,6 +192,7 @@ public class UnityChanController : MonoBehaviour
         {
             Invoke("Clear", 1.0f);
             this.unitySE[0].Stop();
+            this.unitySE[2].Stop();
             return;
         }
 
