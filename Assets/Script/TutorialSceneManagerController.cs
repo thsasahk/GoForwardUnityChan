@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
 
 public class TutorialSceneManagerController : MonoBehaviour
 {
@@ -24,20 +25,34 @@ public class TutorialSceneManagerController : MonoBehaviour
     /// <summary>
     /// HardPrefabオブジェクト
     /// </summary>
-    private GameObject hCube;
+    //private GameObject hCube;
     /// <summary>
     /// HardPrefabオブジェクトのスクリプト
     /// </summary>
-    private TSCubeController tSCubeController;
+    //private TSCubeController tSCubeController;
+
+    [SerializeField] private GameObject tutorialTimeLine;
+
+    private PlayableDirector tutorialTimeLineDirector;
+
+    /*[SerializeField] private GameObject manualText;
+
+    private TSUIController tSUIController;*/
 
     void Start()
     {
-        
+        this.tutorialTimeLineDirector = this.tutorialTimeLine.GetComponent<PlayableDirector>();
+        //this.manualText = GameObject.Find("ManualText");
+        //this.tSUIController = this.manualText.GetComponent<TSUIController>();
     }
 
     void Update()
     {
-        //lessonが5になるかShiftキーでゲームシーンへ移行
+        if(Input.GetKeyDown(KeyCode.LeftShift)|| Input.GetKeyDown(KeyCode.RightShift))
+        {
+            TimeLine();
+        }
+        /*lessonが5になるかShiftキーでゲームシーンへ移行
         if ((this.lesson == 5||Input.GetKeyDown(KeyCode.LeftShift)|| Input.GetKeyDown(KeyCode.RightShift))
             && this.loadScene == false)
         {
@@ -54,12 +69,19 @@ public class TutorialSceneManagerController : MonoBehaviour
             this.hCube = GameObject.Find("TutrialSceneHardPrefab(Clone)");
             this.tSCubeController = this.hCube.GetComponent<TSCubeController>();
             this.tSCubeController.lesson4Start = false;
-        }
+        }*/
+    }
+
+    public void TimeLine()
+    {
+        loadScene = true;
+        this.tutorialTimeLineDirector.Play();
+        Invoke("LoadScene", 5.0f);
     }
 
     void LoadScene()
     {
-        loadScene = true;
+        this.tutorialTimeLineDirector.playableGraph.GetRootPlayable(0).SetSpeed(0);
         FadeManager.Instance.LoadScene("GameScene", 1.0f);
     }
 }

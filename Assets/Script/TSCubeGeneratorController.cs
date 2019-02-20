@@ -24,6 +24,10 @@ public class TSCubeGeneratorController : MonoBehaviour
     /// キューブ生成までの間
     /// </summary>
     [SerializeField] private float delay;
+    /// <summary>
+    /// 次に生成するキューブの種類を決定する変数
+    /// </summary>
+    private int count = 0;
 
     void Start()
     {
@@ -47,10 +51,22 @@ public class TSCubeGeneratorController : MonoBehaviour
     }
 
     /// <summary>
-    /// lesson変数を参照しながら決められたキューブを生成する
+    /// 通常のBlockとHardBlockを交互に生成する
     /// </summary>
     void CreateCube()
     {
+        this.count++;
+        if (this.count % 2 == 0)
+        {
+            int n = Random.Range(0, 4);
+            Instantiate(this.cube[n], new Vector2(12.0f, 0.0f), Quaternion.identity);
+        }
+        else
+        {
+            Instantiate(this.cube[4], new Vector2(12.0f, 0.0f), Quaternion.identity);
+        }
+        this.createCube = false;
+        /*lesson変数を参照しながら決められたキューブを生成する
         switch (this.tutorialSceneManagerController.lesson)
         {
             case 1:
@@ -69,5 +85,6 @@ public class TSCubeGeneratorController : MonoBehaviour
             default:
                 break;
         }
+        */
     }
 }

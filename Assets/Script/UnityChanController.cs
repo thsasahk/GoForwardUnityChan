@@ -150,7 +150,8 @@ public class UnityChanController : MonoBehaviour
 
         //着地しているかどうかを調べる
         this.isGround = (this.transform.position.y > this.groundLevel) ? false : true;
-        /*if (transform.localEulerAngles.y <= 0.0f)
+        /*
+        if (transform.localEulerAngles.y <= 0.0f)
         {
             isGround = false;
         }*/

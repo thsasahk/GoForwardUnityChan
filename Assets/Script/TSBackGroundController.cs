@@ -37,6 +37,18 @@ public class TSBackGroundController : MonoBehaviour
         {
             return;
         }
+        //背景を移動する
+        transform.Translate(this.scrollSpeed * Time.deltaTime, 0, 0);
+        //画面外に出たら画面右端に移動する
+        if (this.transform.position.x < this.deadLine)
+        {
+            this.transform.position = new Vector2(this.startLine, 0);
+        }
+        /*
+        if (this.tutorialSceneManagerController.loadScene)
+        {
+            return;
+        }
 
         if (this.tutorialSceneManagerController.lesson == 4)
         {
@@ -48,6 +60,6 @@ public class TSBackGroundController : MonoBehaviour
                 this.transform.position = new Vector2(this.startLine, 0);
             }
         
-        }
+        }*/
     }
 }

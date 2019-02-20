@@ -15,11 +15,11 @@ public class TSCubeController : MonoBehaviour
     /// <summary>
     /// CubeGeneratorオブジェクト
     /// </summary>
-    [SerializeField] private GameObject cubeGenerator;
+    //[SerializeField] private GameObject cubeGenerator;
     /// <summary>
     /// TutorialSceneManagerオブジェクトのスクリプト
     /// </summary>
-    private TSCubeGeneratorController tSCubeGeneratorController;
+    //private TSCubeGeneratorController tSCubeGeneratorController;
     /// <summary>
     /// オブジェクトの破棄条件を管理する変数
     /// </summary>
@@ -31,7 +31,7 @@ public class TSCubeController : MonoBehaviour
     /// <summary>
     /// 消滅位置
     /// </summary>
-    public float deadLine = -10;
+    public float deadLine;
     /// <summary>
     /// オブジェクトのAudioSource
     /// </summary>
@@ -64,9 +64,9 @@ public class TSCubeController : MonoBehaviour
     void Start()
     {
         this.tutorialSceneManager = GameObject.Find("TutorialSceneManager");
-        this.cubeGenerator = GameObject.Find("CubeGenerator");
         this.tutorialSceneManagerController = this.tutorialSceneManager.GetComponent<TutorialSceneManagerController>();
-        this.tSCubeGeneratorController = this.cubeGenerator.GetComponent<TSCubeGeneratorController>();
+        //this.cubeGenerator = GameObject.Find("CubeGenerator");
+        //this.tSCubeGeneratorController = this.cubeGenerator.GetComponent<TSCubeGeneratorController>();
         this.manualText = GameObject.Find("ManualText");
         this.tSUIController = this.manualText.GetComponent<TSUIController>();
         this.SE = GetComponents<AudioSource>();
@@ -74,7 +74,19 @@ public class TSCubeController : MonoBehaviour
 
     void Update()
     {
-        //lesson変数によってキューブの性質を変化させる
+        if (transform.position.x < this.deadLine)
+        {
+            Destroy(gameObject);
+        }
+
+        if (this.tutorialSceneManagerController.loadScene)
+        {
+            Destroy(gameObject);
+        }
+        //キューブを移動させる
+        transform.Translate(this.speed * Time.deltaTime, 0, 0);
+
+        /*lesson変数によってキューブの性質を変化させる
         switch (this.tutorialSceneManagerController.lesson)
         {
             case 2:
@@ -106,7 +118,7 @@ public class TSCubeController : MonoBehaviour
 
             default:
                 break;
-        }
+        }*/
     }
 
     /// <summary>
@@ -126,6 +138,7 @@ public class TSCubeController : MonoBehaviour
         //life変数が1未満の場合はオブジェクトを破棄する
         if (this.life < 1)
         {
+            this.tSUIController.score += 10;
             Instantiate(this.particlePrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
@@ -136,6 +149,7 @@ public class TSCubeController : MonoBehaviour
     /// createCubeをfalseにしてCubeの生成を許可する
     /// TextMeshProのアニメを再生する
     /// </summary>
+    /*
     private void OnDestroy()
     {
         if (this.tutorialSceneManagerController.loadScene)
@@ -145,7 +159,7 @@ public class TSCubeController : MonoBehaviour
         this.tutorialSceneManagerController.lesson++;
         this.tSUIController.TextMoveBotom();
         this.tSCubeGeneratorController.createCube = false;
-    }
+     }*/
 
     //生成され、着地した際にSE[0]を再生する
     void OnCollisionEnter2D(Collision2D other)
