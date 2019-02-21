@@ -278,7 +278,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: -5
   deadLine: -10
-  particlePrefab: {fileID: 5691426092906521813, guid: 24e941f4769a40a429a4bc0a7771ff9b,
+  particlePrefab: {fileID: 8831586614848771706, guid: c1685a1363092334ab6654993b0214e7,
     type: 3}
 --- !u!82 &3460533836937653754
 AudioSource:
