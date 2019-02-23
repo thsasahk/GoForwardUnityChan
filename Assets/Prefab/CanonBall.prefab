@@ -12,10 +12,9 @@ GameObject:
   - component: {fileID: 2375158549546283817}
   - component: {fileID: 1463050916624238292}
   - component: {fileID: 6644018255147557717}
-  - component: {fileID: 3899547905111688221}
   - component: {fileID: 6526127048112116274}
   m_Layer: 0
-  m_Name: Plazm
+  m_Name: CanonBall
   m_TagString: Plazm
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2375158549546283816}
   m_LocalRotation: {x: 0, y: 0, z: -0.08715578, w: 0.9961947}
-  m_LocalPosition: {x: -3, y: 2.56, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 9, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -195,21 +194,6 @@ CircleCollider2D:
   m_Offset: {x: -0.00862046, y: -0.022159154}
   serializedVersion: 2
   m_Radius: 0.18540128
---- !u!114 &3899547905111688221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2375158549546283816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bcb1f017bf3fba4284a81f22921e5d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: -7
-  particle: {fileID: 3813207438114563394, guid: 2b22cb9153368fc4f8da420fa82f0260,
-    type: 3}
 --- !u!50 &6526127048112116274
 Rigidbody2D:
   serializedVersion: 4

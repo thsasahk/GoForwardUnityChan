@@ -25,6 +25,10 @@ public class GameOverTextColorController : MonoBehaviour
     /// Canvasオブジェクトのスクリプト
     /// </summary>
     private UIController uIController;
+    /// <summary>
+    /// 色変数、NewRecordColorControllerクラスから参照する
+    /// </summary>
+    public Color color;
 
     void Start()
     {
@@ -49,7 +53,7 @@ public class GameOverTextColorController : MonoBehaviour
     private Color ColorGradiate()
     {
         float i = Mathf.Abs(Mathf.Sin(Time.time));
-        Color color = this.gradiate.Evaluate(i);
-        return color;
+        this.color = this.gradiate.Evaluate(i);
+        return this.color;
     }
 }

@@ -30,11 +30,13 @@ public class CanonController : MonoBehaviour
 
     void Update()
     {
+        /*
         if (this.uIController.clearScene && this.oneTime == false)
         {
             this.oneTime = true;
             Invoke("PrazmShot", 6.0f);
         }
+        */
         /*
         if (this.uIController.length >= 150)
         {

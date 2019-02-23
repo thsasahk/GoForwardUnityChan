@@ -235,11 +235,11 @@ public class BossController : MonoBehaviour
         //X座標は一定値からランダムで選択、Y座標は2.5で固定
         //{ 16:9.3～8_1024:768.2～6}
         float posX = Random.Range(2f, 6f);
-        iTween.MoveTo(gameObject, iTween.Hash("x", posX, "y", 1.0f, "time", 3.0f));
+        iTween.MoveTo(gameObject, iTween.Hash("x", posX, "y", 0.5f, "time", 3.0f));
         //オブジェクトとPlayerを結ぶ角度angleを求める
         //オブジェクトのz角が0の時、spriteは180度の方向を向いているので注意
         float distanceX = this.Player.transform.position.x - posX;
-        float distanceY = this.Player.transform.position.y - 1.0f;
+        float distanceY = this.Player.transform.position.y - 0.5f;
         float rad = Mathf.Atan2(distanceY, distanceX);
         this.angle = rad * Mathf.Rad2Deg - 180;
         iTween.RotateTo(gameObject, iTween.Hash("z", this.angle, "delay", 3.0f));

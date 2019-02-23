@@ -21,6 +21,10 @@ public class UIController : MonoBehaviour
     /// </summary>
     private Material gameOverTextMaterial;
     /// <summary>
+    /// GameOverオブジェクトのスクリプト
+    /// </summary>
+    private GameOverTextColorController gotColorController;
+    /// <summary>
     /// runLengthTextオブジェクト
     /// </summary>
     private GameObject runLengthText;
@@ -28,6 +32,10 @@ public class UIController : MonoBehaviour
     /// 走行距離
     /// </summary>
     public float length = 0;
+    /// <summary>
+    /// UIで表示するゴールまでの距離
+    /// </summary>
+    private float distance = 0;
     /// <summary>
     /// Playerが走る速度
     /// </summary>
@@ -44,6 +52,13 @@ public class UIController : MonoBehaviour
     /// ClearSoreオブジェクト
     /// </summary>
     public GameObject clearScore;
+    /// <summary>
+    /// Scoreの更新の有無を管理
+    /// </summary>
+    public string recordUpdate;
+    /// <summary>
+    /// ゲームシーンで獲得した得点
+    /// </summary>
     public int score = 0;
     /// <summary>
     /// HighScoreを記録するためのキー
@@ -160,6 +175,7 @@ public class UIController : MonoBehaviour
         this.DangerTextAnimator = this.DangerText.GetComponent<Animator>();
         this.DangerTextAudioSource = this.DangerText.GetComponent<AudioSource>();
         this.clearSceneTimeLineDirector = this.clearSceneTimeLine.GetComponent<PlayableDirector>();
+        this.gotColorController = this.gameOverText.GetComponent<GameOverTextColorController>();
     }
 
     void Update()
@@ -168,15 +184,16 @@ public class UIController : MonoBehaviour
         {
             //走った距離を計測する
             this.length += this.speed * Time.deltaTime;
+            this.distance = 150.0f - this.length;
             if (this.length >= 150.0f)
             {
                 this.clearScene = true;
                 Invoke("ClearScene", 1.0f);
                 Invoke("GameClear", 13.0f);
-                this.length = 150.0f;
+                this.distance = 0;
             }
             //走った距離を表示する
-            this.runLengthText.GetComponent<Text>().text = "Distance: " + length.ToString("F1") + "m";
+            this.runLengthText.GetComponent<Text>().text = "Distance: " + this.distance.ToString("F1") + "m";
         }
         //scoreを計算
         this.score = this.cubeScore + this.coinScore + this.starScore + this.bossScore + Mathf.FloorToInt(this.length);
@@ -244,27 +261,34 @@ public class UIController : MonoBehaviour
     /// </summary>
     public void GameClear()
     {
-        this.clearSceneTimeLineDirector.playableGraph.GetRootPlayable(0).SetSpeed(0);
-        this.gameOverTextMaterial.SetColor("_OutlineColor", new Color32(0, 0, 0, 100));
-        this.gameOverTextUGUI.text = "Game Clear";
-        this.clearScore.GetComponent<Text>().text = "Score:" + this.score.ToString() + "pts";
-        this.runLengthText.GetComponent<Text>().text = " ";
-        this.scoreText.GetComponent<Text>().text = " ";
-        this.clear = true;
         //ハイスコアの更新
-        if(this.highScore < this.score)
+        if (this.highScore < this.score)
         {
             this.highScore = this.score;
-            PlayerPrefs.SetInt("highScore_Key",this.highScore);
+            PlayerPrefs.SetInt("highScore_Key", this.highScore);
             PlayerPrefs.Save();
+            
+            this.recordUpdate = "Yes";
+        }
+        else
+        {
+            this.recordUpdate = "No";
         }
         //BGMの変更
-        if(this.changeBGM == false)
+        if (this.changeBGM == false)
         {
             this.bgm[0].Stop();
             this.bgm[2].Play();
             this.changeBGM = true;
         }
+
+        this.clearSceneTimeLineDirector.playableGraph.GetRootPlayable(0).SetSpeed(0);
+        this.gameOverTextMaterial.SetColor("_OutlineColor", new Color32(0, 0, 0, 100));
+        this.gameOverTextUGUI.text = "Game Clear";
+        
+        this.runLengthText.GetComponent<Text>().text = " ";
+        this.scoreText.GetComponent<Text>().text = " ";
+        this.clear = true;
     }
 
     //操作を停止してから一定時間空けてからCleaSceneに入るために関数化

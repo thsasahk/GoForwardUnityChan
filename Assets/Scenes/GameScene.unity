@@ -143,6 +143,56 @@ AudioSource:
     type: 3}
   m_PrefabInstance: {fileID: 2051809651}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &228410071
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 228410073}
+  - component: {fileID: 228410072}
+  m_Layer: 0
+  m_Name: CanonBallParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &228410072
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228410071}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!4 &228410073
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228410071}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1516862, y: -2.241327, z: 0.045288563}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 17
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &329297074 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2129675405466904464, guid: f44db72ee7fd3c64ebcf67f702249926,
@@ -801,8 +851,17 @@ PlayableDirector:
     value: {fileID: 200573063}
   - key: {fileID: 114264559250264896, guid: dba391fabbb98cb4597f122c6d307f3e, type: 2}
     value: {fileID: 200573065}
+  - key: {fileID: 114863357195970582, guid: dba391fabbb98cb4597f122c6d307f3e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 114396320260846326, guid: dba391fabbb98cb4597f122c6d307f3e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 114605031852041288, guid: dba391fabbb98cb4597f122c6d307f3e, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: 114146602246362678, guid: dba391fabbb98cb4597f122c6d307f3e, type: 2}
+    value: {fileID: 228410072}
   m_ExposedReferences:
-    m_References: []
+    m_References:
+    - 7e96d07fff1e1004e9b72334584e2c82: {fileID: 228410071}
 --- !u!4 &816249156
 Transform:
   m_ObjectHideFlags: 0
@@ -1456,6 +1515,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stalker
       objectReference: {fileID: 0}
+    - target: {fileID: 2543939852000399232, guid: 2bb17f128d1db8f4aada5002e8e2b0f5,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2409627569322899313, guid: 2bb17f128d1db8f4aada5002e8e2b0f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1541,11 +1605,6 @@ PrefabInstance:
       propertyPath: cubeGeneratorObject
       value: 
       objectReference: {fileID: 958883081}
-    - target: {fileID: 2543939852000399232, guid: 2bb17f128d1db8f4aada5002e8e2b0f5,
-        type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6530326334008742887, guid: 2bb17f128d1db8f4aada5002e8e2b0f5,
         type: 3}
       propertyPath: Loop

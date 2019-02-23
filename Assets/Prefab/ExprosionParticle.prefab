@@ -1363,9 +1363,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0.972549, b: 0.6901961, a: 0}
-        key1: {r: 1, g: 0.92941177, b: 0.3764706, a: 1}
-        key2: {r: 1, g: 0.49019608, b: 0.11764706, a: 1}
-        key3: {r: 1, g: 0, b: 0, a: 0}
+        key1: {r: 1, g: 0.7216981, b: 0.7987125, a: 1}
+        key2: {r: 1, g: 0.4009434, b: 0.69115317, a: 1}
+        key3: {r: 1, g: 0, b: 0.7267132, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -6120,9 +6120,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0.972549, b: 0.6901961, a: 0}
-        key1: {r: 1, g: 0.92941177, b: 0.3764706, a: 1}
-        key2: {r: 1, g: 0.49019608, b: 0.11764706, a: 1}
-        key3: {r: 1, g: 0, b: 0, a: 0}
+        key1: {r: 1, g: 0.7216981, b: 0.7987125, a: 1}
+        key2: {r: 1, g: 0.4009434, b: 0.69115317, a: 1}
+        key3: {r: 1, g: 0, b: 0.7267132, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -10876,9 +10876,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 0.972549, b: 0.6901961, a: 0}
-        key1: {r: 1, g: 0.92941177, b: 0.3764706, a: 1}
-        key2: {r: 1, g: 0.49019608, b: 0.11764706, a: 1}
-        key3: {r: 1, g: 0, b: 0, a: 0}
+        key1: {r: 1, g: 0.7216981, b: 0.7987125, a: 1}
+        key2: {r: 1, g: 0.4009434, b: 0.69115317, a: 1}
+        key3: {r: 1, g: 0, b: 0.7267132, a: 0}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -14495,7 +14495,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.60784316, b: 0.39215687, a: 1}
+      maxColor: {r: 1, g: 0.9764151, b: 0.980739, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
