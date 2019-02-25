@@ -246,6 +246,12 @@ public class UIController : MonoBehaviour
             this.highScore = this.score;
             PlayerPrefs.SetInt("highScore_Key",this.highScore);
             PlayerPrefs.Save();
+
+            this.recordUpdate = "Yes";
+        }
+        else
+        {
+            this.recordUpdate = "No";
         }
         if(this.changeBGM == false)
         {
@@ -268,11 +274,19 @@ public class UIController : MonoBehaviour
             PlayerPrefs.SetInt("highScore_Key", this.highScore);
             PlayerPrefs.Save();
             
+            //ハイスコアが更新されたことを記録
             this.recordUpdate = "Yes";
+
+            this.gameOverTextMaterial.SetColor("_OutlineColor", new Color32(0, 0, 0, 100));
+            this.gameOverTextUGUI.text = "Congratulations!!";
         }
         else
         {
+            //ハイスコアが更新されなかったことを記録
             this.recordUpdate = "No";
+
+            this.gameOverTextMaterial.SetColor("_OutlineColor", new Color32(0, 0, 0, 255));
+            this.gameOverTextUGUI.text = "Game Clear";
         }
         //BGMの変更
         if (this.changeBGM == false)
@@ -283,8 +297,10 @@ public class UIController : MonoBehaviour
         }
 
         this.clearSceneTimeLineDirector.playableGraph.GetRootPlayable(0).SetSpeed(0);
+        /*
         this.gameOverTextMaterial.SetColor("_OutlineColor", new Color32(0, 0, 0, 100));
         this.gameOverTextUGUI.text = "Game Clear";
+        */
         
         this.runLengthText.GetComponent<Text>().text = " ";
         this.scoreText.GetComponent<Text>().text = " ";
