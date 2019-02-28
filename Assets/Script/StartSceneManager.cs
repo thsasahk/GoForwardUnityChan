@@ -22,7 +22,7 @@ public class StartSceneManager : MonoBehaviour
     /// <summary>
     /// シーンのロード状況を管理する
     /// </summary>
-    private bool sceneLoad = false;
+    private bool stopLoad = false;
     /// <summary>
     /// Playerオブジェクト
     /// </summary>
@@ -31,6 +31,7 @@ public class StartSceneManager : MonoBehaviour
     /// PlayerオブジェクトのAnimator
     /// </summary>
     private Animator animator;
+
     void Start()
     {
         this.animator = this.player.GetComponent<Animator>();
@@ -57,22 +58,56 @@ public class StartSceneManager : MonoBehaviour
         {
             this.span = 0;
         }
-
-        //シーンのロード中に重ねて読み込むことはしない
-        if((Input.GetMouseButton(0)
-            ||Input.GetMouseButton(1)
-                || Input.GetKeyDown(KeyCode.Space))
-                && this.sceneLoad == false)
-            {
-                LoadScene();
-            }
+        /*
+        if ((Input.GetMouseButton(1)|| Input.GetKeyDown(KeyCode.Space))&&this.stopLoad == false)
+        {
+            this.stopLoad = true;
+            FadeManager.Instance.LoadScene("TutorialScene", 1.0f);
+        }
+        */
     }
+
+    private void LateUpdate()
+    {
+        if ((Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetKeyDown(KeyCode.Space)) 
+            && this.stopLoad == false)
+        {
+            this.stopLoad = true;
+            FadeManager.Instance.LoadScene("TutorialScene", 1.0f);
+        }
+    }
+
     /// <summary>
     /// TutorialSceneをロードする
+    /// イベントトリガーで使用
     /// </summary>
-    void LoadScene()
+    /*
+    public void LoadScene()
     {
-        FadeManager.Instance.LoadScene("TutorialScene", 1.0f);
-        this.sceneLoad = true;
+        Debug.Log("ok");
+        //シーンのロード中に重ねて読み込むことはしない
+        if (this.stopLoad == false)
+        {
+            this.stopLoad = true;
+            FadeManager.Instance.LoadScene("TutorialScene", 1.0f);
+        }
+    }
+    */
+
+    /// <summary>
+    /// イベントトリガーで使用
+    /// </summary>
+    public void startScroll()
+    {
+        this.stopLoad = true;
+        //Debug.Log("scroll");
+    }
+
+    /// <summary>
+    /// イベントトリガーで使用
+    /// </summary>
+    public void endScroll()
+    {
+        this.stopLoad = false;
     }
 }
