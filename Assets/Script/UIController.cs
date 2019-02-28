@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine.Playables;
+using NCMB;
 
 public class UIController : MonoBehaviour
 {
@@ -161,6 +162,8 @@ public class UIController : MonoBehaviour
 
     public int lifeRemainder = 0;
 
+    private NCMBObject ranking;
+
 
     void Start()
     {
@@ -176,6 +179,7 @@ public class UIController : MonoBehaviour
         this.DangerTextAudioSource = this.DangerText.GetComponent<AudioSource>();
         this.clearSceneTimeLineDirector = this.clearSceneTimeLine.GetComponent<PlayableDirector>();
         this.gotColorController = this.gameOverText.GetComponent<GameOverTextColorController>();
+        this.ranking = new NCMBObject("Ranking");
     }
 
     void Update()
@@ -253,7 +257,18 @@ public class UIController : MonoBehaviour
         {
             this.recordUpdate = "No";
         }
-        if(this.changeBGM == false)
+
+        NCMBSaveAsync(this.score);
+
+        /*
+        //現在のハイスコアをNCMBに記録
+        this.ranking = new NCMBObject("Ranking");
+        this.ranking["name"] = "Pumpkin_King";
+        this.ranking["score"] = PlayerPrefs.GetInt("highScore_Key", 0);
+        this.ranking.SaveAsync();
+        */
+
+        if (this.changeBGM == false)
         {
             this.bgm[0].Stop();
             this.bgm[1].Play();
@@ -288,6 +303,9 @@ public class UIController : MonoBehaviour
             this.gameOverTextMaterial.SetColor("_OutlineColor", new Color32(0, 0, 0, 255));
             this.gameOverTextUGUI.text = "Game Clear";
         }
+
+        NCMBSaveAsync(this.score);
+
         //BGMの変更
         if (this.changeBGM == false)
         {
@@ -364,5 +382,16 @@ public class UIController : MonoBehaviour
             this.distanceToBossText.GetComponent<Text>().text 
                 = "Danger Zone: " + this.distanceToBoss.ToString("F1") + " m";
         }
+    }
+
+    /// <summary>
+    /// スコアをNCMBに記録
+    /// </summary>
+    /// <param name="i">今回プレイヤーが記録したスコア</param>
+    void NCMBSaveAsync(int i)
+    {
+        this.ranking["name"] = "Pumpkin_King";
+        this.ranking["score"] = i;
+        this.ranking.SaveAsync();
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class StartSceneManager : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class StartSceneManager : MonoBehaviour
     /// <summary>
     /// HighScoreTextオブジェクト
     /// </summary>
-    public GameObject highScoreText;
+    public TextMeshProUGUI highScoreText;
     /// <summary>
     /// ClickToPlayオブジェクトの点滅表示を管理する
     /// </summary>
@@ -39,7 +40,7 @@ public class StartSceneManager : MonoBehaviour
     void Update()
     {
         //ハイスコアの表示
-        this.highScoreText.GetComponent<Text>().text = "High Score:" + PlayerPrefs.GetInt("highScore_Key",0) + "pts";
+        this.highScoreText.GetComponent<TextMeshProUGUI>().text = "Your High Score:" + PlayerPrefs.GetInt("highScore_Key",0) + "pts";
 
         //clickToPlayを点滅させる
         this.span += Time.deltaTime;
