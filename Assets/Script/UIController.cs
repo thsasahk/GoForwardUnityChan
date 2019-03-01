@@ -108,7 +108,7 @@ public class UIController : MonoBehaviour
     /// <summary>
     /// シーンのロード状況を管理する
     /// </summary>
-    private bool sceneLoad = false;
+    private bool stopLoad = false;
     /// <summary>
     /// DangerTextオブジェクト
     /// </summary>
@@ -162,8 +162,15 @@ public class UIController : MonoBehaviour
 
     public int lifeRemainder = 0;
 
-    private NCMBObject ranking;
+    //private NCMBObject ranking;
 
+    //private string playerName = "NoName";
+
+    //private TextMeshProUGUI inputField;
+
+    [SerializeField] private GameObject inputField;
+
+    [SerializeField] private GameObject savePanel;
 
     void Start()
     {
@@ -179,7 +186,7 @@ public class UIController : MonoBehaviour
         this.DangerTextAudioSource = this.DangerText.GetComponent<AudioSource>();
         this.clearSceneTimeLineDirector = this.clearSceneTimeLine.GetComponent<PlayableDirector>();
         this.gotColorController = this.gameOverText.GetComponent<GameOverTextColorController>();
-        this.ranking = new NCMBObject("Ranking");
+        //this.ranking = new NCMBObject("Ranking");
     }
 
     void Update()
@@ -208,6 +215,7 @@ public class UIController : MonoBehaviour
         }
 
         //ゲームオーバーかゲームクリアになった場合
+        /*
         if ((this.isGameOver || this.clear)
             && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space))
                 && this.sceneLoad == false)
@@ -215,6 +223,7 @@ public class UIController : MonoBehaviour
             FadeManager.Instance.LoadScene ("StartScene", 1.0f);
             this.sceneLoad = true;
         }
+        */
 
         //ハイスコアのリセット
         if(Input.GetKey(KeyCode.Space)
@@ -233,6 +242,26 @@ public class UIController : MonoBehaviour
             this.alertTime = 0;
             this.oneplay = false;
         }
+    }
+
+    private void LateUpdate()
+    {
+        //ゲームオーバーかゲームクリアになった場合
+        if ((this.isGameOver || this.clear)
+            && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.Space)))
+        {
+            Load();
+        }
+    }
+
+    public void Load()
+    {
+        if (this.stopLoad)
+        {
+            return;
+        }
+        FadeManager.Instance.LoadScene("StartScene", 1.0f);
+        this.stopLoad = true;
     }
 
     /// <summary>
@@ -258,14 +287,25 @@ public class UIController : MonoBehaviour
             this.recordUpdate = "No";
         }
 
-        NCMBSaveAsync(this.score);
-
+        //NCMBSaveAsync();
+        this.inputField.SetActive(true);
+        this.savePanel.SetActive(true);
         /*
-        //現在のハイスコアをNCMBに記録
         this.ranking = new NCMBObject("Ranking");
         this.ranking["name"] = "Pumpkin_King";
-        this.ranking["score"] = PlayerPrefs.GetInt("highScore_Key", 0);
-        this.ranking.SaveAsync();
+        this.ranking["score"] = this.score;
+        this.ranking.SaveAsync((NCMBException e) =>
+        {
+            if (e != null)
+            {
+                //エラー処理
+                return;
+            }
+            else
+            {
+                //成功時の処理
+            }
+        });
         */
 
         if (this.changeBGM == false)
@@ -304,7 +344,26 @@ public class UIController : MonoBehaviour
             this.gameOverTextUGUI.text = "Game Clear";
         }
 
-        NCMBSaveAsync(this.score);
+        //NCMBSaveAsync();
+        this.inputField.SetActive(true);
+        this.savePanel.SetActive(true);
+        /*
+        this.ranking = new NCMBObject("Ranking");
+        this.ranking["name"] = "Pumpkin_King";
+        this.ranking["score"] = this.score;
+        this.ranking.SaveAsync((NCMBException e) =>
+        {
+            if (e != null)
+            {
+                //エラー処理
+                return;
+            }
+            else
+            {
+                //成功時の処理
+            }
+        });
+        */
 
         //BGMの変更
         if (this.changeBGM == false)
@@ -385,13 +444,43 @@ public class UIController : MonoBehaviour
     }
 
     /// <summary>
+    /// イベントトリガーで使用
+    /// </summary>
+    public void StartWriting()
+    {
+        this.stopLoad = true;
+    }
+
+    /// <summary>
+    /// イベントトリガーで使用
+    /// </summary>
+    public void EndWriting()
+    {
+        this.stopLoad = false;
+    }
+
+    /// <summary>
     /// スコアをNCMBに記録
     /// </summary>
     /// <param name="i">今回プレイヤーが記録したスコア</param>
-    void NCMBSaveAsync(int i)
+    /*
+    public void NCMBSaveAsync()
     {
-        this.ranking["name"] = "Pumpkin_King";
-        this.ranking["score"] = i;
-        this.ranking.SaveAsync();
+        //this.ranking = new NCMBObject("Ranking");
+        this.ranking["name"] = this.playerName;
+        this.ranking["score"] = this.score;
+        this.ranking.SaveAsync((NCMBException e) => 
+        {
+            if (e != null)
+            {
+                //エラー処理
+                return;
+            }
+            else
+            {
+                //成功時の処理
+            }
+        });
     }
+    */
 }

@@ -69,7 +69,7 @@ public class RankingController : MonoBehaviour
                 }
                 else
                 {
-                    //Textに表示する値をrankListを参照して指定
+                    //TextMeshProに表示する値をrankListを参照して指定
                     this.rank = i + 1;
                     this.playerName = System.Convert.ToString(rankList[i]["name"]);
                     this.score = System.Convert.ToInt32(rankList[i]["score"]);
