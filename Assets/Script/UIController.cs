@@ -226,12 +226,13 @@ public class UIController : MonoBehaviour
         */
 
         //ハイスコアのリセット
+        /*
         if(Input.GetKey(KeyCode.Space)
         && Input.GetKey(KeyCode.R))
         {
             PlayerPrefs.DeleteKey("highScore_Key");
         }
-
+        */
         DistanceToBoss();
         if (this.cubeGeneratorController.isBoss)
         {

@@ -101,7 +101,7 @@ MonoBehaviour:
   distanceX: -30
   distanceY: -25
   life: 3
-  starParticlePrefab: {fileID: 180342160333321424, guid: 3c53d9f765b5019478939f283857bcd7,
+  starParticlePrefab: {fileID: 1264533756042865720, guid: c5bf000f8d8df754c9e3518906adcc64,
     type: 3}
   canvas: {fileID: 0}
 --- !u!58 &8651462427137873028

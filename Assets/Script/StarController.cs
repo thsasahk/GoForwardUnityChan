@@ -91,10 +91,16 @@ public class StarController : MonoBehaviour
         this.life -= i;
         if(this.life < 1)
         {
+            /*
+            Instantiate(this.starParticlePrefab, new Vector2(this.transform.position.x, this.transform.position.y)
+                ,new Vector2(-90.0f,0.0f));*/
+            
+            GameObject obj = Instantiate(this.starParticlePrefab);
+            obj.transform.position = new Vector2(this.transform.position.x, this.transform.position.y);
+            obj.transform.Rotate(-90.0f, 0.0f, 0.0f);
+            
+            this.uiController.starScore += 100;
             Destroy(gameObject);
-            Instantiate(this.starParticlePrefab, 
-                new Vector2(this.transform.position.x, this.transform.position.y), Quaternion.identity);
-            this.uiController.starScore += 20;
         }
     }
 

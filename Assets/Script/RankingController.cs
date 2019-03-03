@@ -74,7 +74,7 @@ public class RankingController : MonoBehaviour
                     this.playerName = System.Convert.ToString(rankList[i]["name"]);
                     this.score = System.Convert.ToInt32(rankList[i]["score"]);
                     //TextMeshProに記載
-                    this.tMPro[i + 2].GetComponent<TextMeshProUGUI>().text = this.rank.ToString() + ":" +
+                    this.tMPro[i + 2].GetComponent<TextMeshProUGUI>().text = this.rank.ToString() + "位:" +
                         this.playerName + " " + this.score.ToString() + "pts";
                 }
             }

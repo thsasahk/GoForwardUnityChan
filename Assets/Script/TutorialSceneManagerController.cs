@@ -48,7 +48,7 @@ public class TutorialSceneManagerController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.LeftShift)|| Input.GetKeyDown(KeyCode.RightShift))
+        if((Input.GetKeyDown(KeyCode.LeftShift)|| Input.GetKeyDown(KeyCode.RightShift)) && this.loadScene == false)
         {
             TimeLine();
         }
@@ -75,8 +75,16 @@ public class TutorialSceneManagerController : MonoBehaviour
     public void TimeLine()
     {
         loadScene = true;
+        Invoke("TimeLineStart", 1.0f);
+        Invoke("LoadScene", 6.0f);
+    }
+
+    /// <summary>
+    /// キー入力から呼び出しまでに間を置くために関数化
+    /// </summary>
+    void TimeLineStart()
+    {
         this.tutorialTimeLineDirector.Play();
-        Invoke("LoadScene", 5.0f);
     }
 
     void LoadScene()

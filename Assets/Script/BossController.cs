@@ -478,8 +478,12 @@ public class BossController : MonoBehaviour
             else
             {
                 this.cubeGeneratorScript.isBoss = false;
-                Instantiate(this.bossParticle, this.transform.position, Quaternion.identity);
-                this.uiController.bossScore += 100;
+                //Instantiate(this.bossParticle, this.transform.position, Quaternion.identity);
+                GameObject obj = Instantiate(this.bossParticle);
+                obj.transform.position = new Vector2(this.transform.position.x, this.transform.position.y);
+                obj.transform.Rotate(-90.0f, 0.0f, 0.0f);
+
+                this.uiController.bossScore += 1000;
                 Destroy(gameObject);
             }
         }

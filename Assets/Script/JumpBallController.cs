@@ -52,6 +52,7 @@ public class JumpBallController : MonoBehaviour
         if(transform.position.y > deadLine
         && this.uiController.isGameOver == false)
         {
+            this.uiController.score += 20;
             Instantiate(this.particlePrefab,transform.position,Quaternion.identity);
         }
     }

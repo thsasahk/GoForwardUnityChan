@@ -36,13 +36,13 @@ public class StartSceneManager : MonoBehaviour
     {
         this.animator = this.player.GetComponent<Animator>();
         this.animator.SetBool("Run", true);
+        //ハイスコアの表示
+        this.highScoreText.GetComponent<TextMeshProUGUI>().text = "あなたのハイスコア" +
+            PlayerPrefs.GetInt("highScore_Key", 0) + "pts";
     }
 
     void Update()
     {
-        //ハイスコアの表示
-        this.highScoreText.GetComponent<TextMeshProUGUI>().text = "Your High Score:" + PlayerPrefs.GetInt("highScore_Key",0) + "pts";
-
         //clickToPlayを点滅させる
         this.span += Time.deltaTime;
         if(this.span <= 1.0f)

@@ -26,7 +26,7 @@ public class GameOverTextColorController : MonoBehaviour
     /// </summary>
     private UIController uIController;
     /// <summary>
-    /// 色変数、NewRecordColorControllerクラスから参照する
+    /// NewRecordColorControllerクラスから参照する
     /// </summary>
     public Color color;
     /// <summary>
