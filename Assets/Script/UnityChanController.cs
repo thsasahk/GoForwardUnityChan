@@ -58,6 +58,10 @@ public class UnityChanController : MonoBehaviour
     /// </summary>
     public Slider chargeSlider;
     /// <summary>
+    /// jumpTimeを視覚化するオブジェクト
+    /// </summary>
+    public Slider hoverSlider;
+    /// <summary>
     /// Canvasオブジェクト
     /// </summary>
     public GameObject canvas;
@@ -172,7 +176,7 @@ public class UnityChanController : MonoBehaviour
         {
             this.animator.SetBool("Run", true);
             //jumpTimeをリセット
-            this.jumpTime = 0;
+            //this.jumpTime = 0;
         }
         else
         {
@@ -216,6 +220,13 @@ public class UnityChanController : MonoBehaviour
         {
             Jump();
         }
+        if (!Input.GetMouseButton(0) && !Input.GetKey(KeyCode.Space))
+        {
+            this.jumpTime -= Time.deltaTime * 1.5f;
+        }
+        //hoverSliderのvalueをjumpTimeに合わせて変更する
+        this.hoverSlider.value = this.jumpTime;
+
         // maxHigh以上には上昇しない
         // ピタッと止まると不自然なので少し揺らす
         this.maxHigh = Random.Range(this.maxHigh - 0.02f, this.maxHigh + 0.02f);
