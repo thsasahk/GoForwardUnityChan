@@ -223,6 +223,10 @@ public class UnityChanController : MonoBehaviour
         if (!Input.GetMouseButton(0) && !Input.GetKey(KeyCode.Space))
         {
             this.jumpTime -= Time.deltaTime * 1.5f;
+            if (this.jumpTime < 0.0f)
+            {
+                this.jumpTime = 0.0f;
+            }
         }
         //hoverSliderのvalueをjumpTimeに合わせて変更する
         this.hoverSlider.value = this.jumpTime;
@@ -335,7 +339,6 @@ public class UnityChanController : MonoBehaviour
                 Instantiate(this.clearParticleWR,new Vector2(-4.5f,-4.9f),Quaternion.identity);
                 Instantiate(this.clearParticleYG,new Vector2(4.5f,-4.9f),Quaternion.identity);
                 this.isGoalParticle = true;
-
             }
         }*/
     }
