@@ -193,7 +193,7 @@ public class TSPlayerController : MonoBehaviour
         {
             this.animator.SetBool("Run", true);
             //jumpTimeをリセット
-            this.jumpTime = 0;
+            //this.jumpTime = 0;
         }
         else
         {
