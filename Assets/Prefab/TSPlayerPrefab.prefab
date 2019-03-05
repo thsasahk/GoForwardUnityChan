@@ -341,6 +341,7 @@ MonoBehaviour:
   maxCharge: 1
   chargeLV: 0
   chargeSlider: {fileID: 0}
+  hoverSlider: {fileID: 0}
   canvas: {fileID: 0}
   clearWalk: -0.1
   clearParticleWR: {fileID: 1958250728622381722, guid: 81d223e54acea474280f15a07df80ab2,
@@ -399,10 +400,11 @@ MonoBehaviour:
   deadLine: -10
   maxCharge: 1
   chargeLV: 0
+  hoverSlider: {fileID: 0}
   jet: {fileID: 2271468282962257780}
   returnSpeed: -0.01
   maxHigh: 1
-  jumpLimit: 5
+  jumpLimit: 3
 --- !u!1 &2271468282962257780
 GameObject:
   m_ObjectHideFlags: 0
