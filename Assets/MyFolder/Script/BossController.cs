@@ -103,15 +103,24 @@ public class BossController : MonoBehaviour
             return;
         }
         //lengthが一定値を超えたら逃げ出す
+        /*
         if ((this.uiController.length >= 75 && this.uiController.length <= 104)
             || this.uiController.length >= 140)
         {
             Move09();
             return;
         }
+        */
         this.time += Time.deltaTime;
         if (this.time >= this.coolTime)
         {
+            //lengthが一定値を超えたら逃げ出す
+            if ((this.uiController.length >= 75 && this.uiController.length <= 104)
+                || this.uiController.length >= 135||(this.uiController.length < 100 && this.life < 1))
+            {
+                Move09();
+                return;
+            }
             SelectMove();
         }
     }
@@ -375,12 +384,14 @@ public class BossController : MonoBehaviour
     void Move09()
     {
         this.escape = true;
+        /*
         if (this.life < 0)
         {
             this.life = 0;
         }
+        */
         this.uiController.lifeRemainder = life;
-        GetComponent<CircleCollider2D>().enabled = false;
+        //GetComponent<CircleCollider2D>().enabled = false;
         iTween.RotateTo(gameObject, iTween.Hash("z", 720.0f,"delay",0.1f));
         iTween.RotateTo(gameObject, iTween.Hash("y", 180.0f, "delay", 1.1f));
         iTween.MoveTo(gameObject, iTween.Hash("x", 13.0f, "y", 7.0f, "delay", 2.1f));
@@ -461,6 +472,10 @@ public class BossController : MonoBehaviour
     public void Damage(int i)
     {
         this.audioSource[0].Play();
+        if (this.life < 1&& this.uiController.length < 100)
+        {
+            return;
+        }
         //life変数を引数分マイナスさせる
         this.life -= i;
         //int colorChange = 255 - ((15 - this.life) * 17);
@@ -469,13 +484,23 @@ public class BossController : MonoBehaviour
         float v = 1.0f - (float)this.life / (float)this.maxLife;
         this.spriteRenderer.color = this.gradiate.Evaluate(v);
         //life変数が1未満の場合はオブジェクトを破棄する
-        if (this.life < 1)
+        if (this.life < 1&& this.uiController.length > 100)
         {
+            this.cubeGeneratorScript.isBoss = false;
+            //Instantiate(this.bossParticle, this.transform.position, Quaternion.identity);
+            GameObject obj = Instantiate(this.bossParticle);
+            obj.transform.position = new Vector2(this.transform.position.x, this.transform.position.y);
+            obj.transform.Rotate(-90.0f, 0.0f, 0.0f);
+
+            this.uiController.bossScore += 1000;
+            Destroy(gameObject);
+            /*
             if (this.uiController.length < 100)
             {
                 Move09();
             }
             else
+            if (this.uiController.length > 100)
             {
                 this.cubeGeneratorScript.isBoss = false;
                 //Instantiate(this.bossParticle, this.transform.position, Quaternion.identity);
@@ -486,6 +511,7 @@ public class BossController : MonoBehaviour
                 this.uiController.bossScore += 1000;
                 Destroy(gameObject);
             }
+            */
         }
     }
 }
