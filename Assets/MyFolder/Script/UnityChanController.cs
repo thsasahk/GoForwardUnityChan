@@ -137,6 +137,16 @@ public class UnityChanController : MonoBehaviour
     /// ポーズ中であることを示す変数
     /// </summary>
     private bool isPause = false;
+    /// <summary>
+    /// StarBulletオブジェクト
+    /// </summary>
+    [SerializeField] private GameObject starBullet;
+    /// <summary>
+    /// StarBulletオブジェクトを生成する座標
+    /// </summary>
+    private Vector2 starBullePosition;
+    [SerializeField] private float x1;
+    [SerializeField] private float y1;
 
     void Start()
     {
@@ -145,6 +155,7 @@ public class UnityChanController : MonoBehaviour
         this.unitySE = GetComponents<AudioSource>();
         this.uiController = this.canvas.GetComponent<UIController>();
         this.jetParticle = this.jet.GetComponent<ParticleSystem>();
+        this.starBullePosition = new Vector2(this.transform.position.x + this.x1, this.transform.position.y + this.y1);
     }
 
     void Update()
@@ -449,4 +460,12 @@ public class UnityChanController : MonoBehaviour
     {
         this.uiController.GameClear();
     }*/
+
+    /// <summary>
+    /// StarBulletオブジェクトを射出する
+    /// </summary>
+    public void StarShot()
+    {
+        Instantiate(this.starBullet, this.starBullePosition, Quaternion.identity);
+    }
 }
