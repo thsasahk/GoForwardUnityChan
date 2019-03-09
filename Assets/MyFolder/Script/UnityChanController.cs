@@ -151,6 +151,14 @@ public class UnityChanController : MonoBehaviour
     /// StarShot()を呼び出すためのクリックした際にJump()を呼ぶのを禁止する
     /// </summary>
     public bool starShot;
+    /// <summary>
+    /// StarPanelオブジェクト
+    /// </summary>
+    [SerializeField] private GameObject starPanel;
+    /// <summary>
+    /// StarPanelオブジェクトのスクリプト
+    /// </summary>
+    private StarPanelController starPanelController;
 
     void Start()
     {
@@ -159,6 +167,7 @@ public class UnityChanController : MonoBehaviour
         this.unitySE = GetComponents<AudioSource>();
         this.uiController = this.canvas.GetComponent<UIController>();
         this.jetParticle = this.jet.GetComponent<ParticleSystem>();
+        this.starPanelController = this.starPanel.GetComponent<StarPanelController>();
     }
 
     void Update()
@@ -470,6 +479,13 @@ public class UnityChanController : MonoBehaviour
     /// </summary>
     public void StarShot()
     {
+        //残談がない時やクリアシーンに入った時は発射不可
+        if (this.starPanelController.starBullet < 1&& this.uiController.clearScene)
+        {
+            return;
+        }
+        //残談を減らす
+        this.starPanelController.starBullet--;
         this.starShot = true;
         this.starBullePosition = new Vector2(this.transform.position.x + this.x1, this.transform.position.y + this.y1);
         Instantiate(this.starBullet, this.starBullePosition, Quaternion.identity);
