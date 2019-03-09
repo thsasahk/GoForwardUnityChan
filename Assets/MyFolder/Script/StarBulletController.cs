@@ -66,6 +66,7 @@ public class StarBulletController : MonoBehaviour
     void Update()
     {
         this.transform.Translate(this.speed * Time.deltaTime, 0.0f, 0.0f);
+        //deadLineを越えたら破棄
         if (this.transform.position.x > this.deadLine)
         {
             Destroy(gameObject);
@@ -76,10 +77,11 @@ public class StarBulletController : MonoBehaviour
     {
         switch (other.gameObject.tag)
         {
+            //Damege()を作動させる
             case "Block":
                 other.gameObject.GetComponent<CubeController>().Damage(this.attack);
                 break;
-
+            //吹き飛ばす
             case "HBlock":
                 this.verticalPower = Random.Range(this.vPowerMin, this.vPowerMax);
                 this.horizontalPower = Random.Range(this.hPowerMin, this.hPowerMax);
@@ -90,21 +92,23 @@ public class StarBulletController : MonoBehaviour
                 other.gameObject.GetComponent<CubeController>().speed = 0;
                 other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 break;
-
+            
             case "JumpBall":
                 Destroy(other.gameObject);
                 break;
-
+            //Damege()を作動させる
             case "Star":
                 other.gameObject.GetComponent<StarController>().Damage(this.attack);
                 break;
-
+            //Damege()を作動させる
             case "Boss":
+                Debug.Log("ok");
                 other.gameObject.GetComponent<BossController>().Damage(this.attack);
                 Destroy(gameObject);
                 break;
-
+            //Damege()を作動させる
             case "Bullet":
+                Debug.Log("ok2");
                 other.gameObject.GetComponent<BossBulletController>().Damage(this.attack);
                 break;
 
