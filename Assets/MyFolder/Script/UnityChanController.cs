@@ -150,7 +150,7 @@ public class UnityChanController : MonoBehaviour
     /// <summary>
     /// StarShot()を呼び出すためのクリックした際にJump()を呼ぶのを禁止する
     /// </summary>
-    private bool starShot;
+    public bool starShot;
 
     void Start()
     {
