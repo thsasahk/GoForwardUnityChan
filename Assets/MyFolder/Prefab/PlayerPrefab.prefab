@@ -118,7 +118,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 50
+  m_Mass: 5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 3.5
@@ -332,8 +332,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitySE: []
-  jumpPower: 0
-  deadLine: -9
+  jumpPower: 18000
+  deadLine: -7.4
   bombLv0: {fileID: 3496292481898863473, guid: bee9842bedfeed34088278f25492f3ed, type: 3}
   bombLv1: {fileID: 793018430437199667, guid: f2cae45b1d744e647ac109c437cb8178, type: 3}
   bombLv2: {fileID: 2525198722434481331, guid: 49ba453e4862c1d419c4584b562aeb7c, type: 3}
@@ -341,17 +341,21 @@ MonoBehaviour:
   maxCharge: 1
   chargeLV: 0
   chargeSlider: {fileID: 0}
+  hoverSlider: {fileID: 0}
   canvas: {fileID: 0}
-  clearWalk: -0.1
+  clearWalk: -4
   clearParticleWR: {fileID: 1958250728622381722, guid: 81d223e54acea474280f15a07df80ab2,
     type: 3}
   clearParticleYG: {fileID: 7872717802261990808, guid: e94f7e6d9b30e2646b623d4d1f2995af,
     type: 3}
   jet: {fileID: 8116148401971171496}
-  returnSpeed: 0
-  maxHigh: 0
-  jumpLimit: 0
+  returnSpeed: -0.4
+  maxHigh: 1
+  jumpLimit: 3
   stalker: {fileID: 0}
+  starBullet: {fileID: 0}
+  x1: 2.3
+  y1: 0.7
 --- !u!61 &8116148401185870991
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -500,7 +504,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8116148401971171496}
   m_LocalRotation: {x: -0.7068248, y: -0.019971512, z: -0.019971568, w: -0.70682466}
-  m_LocalPosition: {x: 0.49, y: -0.76, z: 9.83}
+  m_LocalPosition: {x: 0.61, y: -0.78, z: -0}
   m_LocalScale: {x: 1.2500002, y: 1, z: 1.2500006}
   m_Children: []
   m_Father: {fileID: 8116148401185870987}
@@ -520,7 +524,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 0
   useUnscaledTime: 0
@@ -5148,7 +5152,7 @@ ParticleSystemRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_RenderMode: 4
   m_SortMode: 0
   m_MinParticleSize: 0
