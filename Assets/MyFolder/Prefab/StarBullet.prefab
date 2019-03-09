@@ -151,3 +151,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44eb18f7918c830408c0c09fa79146a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 4
+  attack: 8
+  vPowerMin: 100000
+  vPowerMax: 200000
+  hPowerMin: 30000
+  hPowerMax: 50000
+  rsMin: 360
+  rsMax: 1080
+  fallTime: 5
+  deadLine: 9
