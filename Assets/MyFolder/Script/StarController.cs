@@ -52,6 +52,14 @@ public class StarController : MonoBehaviour
     /// 接触したオブジェクトに与える力の大きさ
     /// </summary>
     //public float power;
+    /// <summary>
+    /// StarPanelオブジェクト
+    /// </summary>
+    private GameObject starPanel;
+    /// <summary>
+    /// StarPanelオブジェクトのスクリプト
+    /// </summary>
+    private StarPanelController starPanelController;
 
     void Start()
     {
@@ -61,6 +69,8 @@ public class StarController : MonoBehaviour
             iTween.Hash("x", this.distanceX, "y", this.distanceY, "time", this.fallTime, "easeType", "linear"));
         this.canvas = GameObject.Find("Canvas");
         this.uiController = this.canvas.GetComponent<UIController>();
+        this.starPanel = GameObject.FindGameObjectWithTag("StarPanel");
+        this.starPanelController = this.starPanel.GetComponent<StarPanelController>();
     }
     void Update()
     {
@@ -93,12 +103,16 @@ public class StarController : MonoBehaviour
         {
             /*
             Instantiate(this.starParticlePrefab, new Vector2(this.transform.position.x, this.transform.position.y)
-                ,new Vector2(-90.0f,0.0f));*/
+                ,new Vector2(-90.0f,0.0f));
+            */
             
             GameObject obj = Instantiate(this.starParticlePrefab);
             obj.transform.position = new Vector2(this.transform.position.x, this.transform.position.y);
             obj.transform.Rotate(-90.0f, 0.0f, 0.0f);
-            
+            if (this.starPanelController.starBullet <= 3)
+            {
+                this.starPanelController.starBullet++;
+            }
             this.uiController.starScore += 100;
             Destroy(gameObject);
         }
