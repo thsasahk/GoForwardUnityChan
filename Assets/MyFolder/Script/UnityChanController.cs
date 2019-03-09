@@ -147,6 +147,10 @@ public class UnityChanController : MonoBehaviour
     private Vector2 starBullePosition;
     [SerializeField] private float x1;
     [SerializeField] private float y1;
+    /// <summary>
+    /// StarShot()を呼び出すためのクリックした際にJump()を呼ぶのを禁止する
+    /// </summary>
+    private bool starShot;
 
     void Start()
     {
@@ -155,7 +159,6 @@ public class UnityChanController : MonoBehaviour
         this.unitySE = GetComponents<AudioSource>();
         this.uiController = this.canvas.GetComponent<UIController>();
         this.jetParticle = this.jet.GetComponent<ParticleSystem>();
-        this.starBullePosition = new Vector2(this.transform.position.x + this.x1, this.transform.position.y + this.y1);
     }
 
     void Update()
@@ -227,7 +230,8 @@ public class UnityChanController : MonoBehaviour
             Return();
         }
 
-        if((Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space)) && this.jumpTime < this.jumpLimit)
+        if((Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space)) && this.jumpTime < this.jumpLimit
+            && !this.starShot)
         {
             Jump();
         }
@@ -466,6 +470,16 @@ public class UnityChanController : MonoBehaviour
     /// </summary>
     public void StarShot()
     {
+        this.starShot = true;
+        this.starBullePosition = new Vector2(this.transform.position.x + this.x1, this.transform.position.y + this.y1);
         Instantiate(this.starBullet, this.starBullePosition, Quaternion.identity);
+    }
+
+    /// <summary>
+    /// Jump()を呼び出すことを許可する
+    /// </summary>
+    public void StarShotEnd()
+    {
+        this.starShot = false;
     }
 }
