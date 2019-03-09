@@ -18,6 +18,7 @@ TagManager:
   - Stalker
   - Canon
   - StarBullet
+  - StarPanel
   layers:
   - Default
   - TransparentFX
