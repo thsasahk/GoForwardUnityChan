@@ -162,6 +162,8 @@ MonoBehaviour:
   rsMax: 1080
   fallTime: 5
   deadLine: 9
+  particle: {fileID: 1264533756042865720, guid: c5bf000f8d8df754c9e3518906adcc64,
+    type: 3}
 --- !u!82 &8644014021150374759
 AudioSource:
   m_ObjectHideFlags: 0
