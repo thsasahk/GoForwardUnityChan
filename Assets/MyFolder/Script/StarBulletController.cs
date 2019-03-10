@@ -101,10 +101,6 @@ public class StarBulletController : MonoBehaviour
                 other.gameObject.GetComponent<JumpBallController>().Damage(this.attack);
                 break;
             //Damege()を作動させる
-            case "Star":
-                other.gameObject.GetComponent<StarController>().Damage(this.attack);
-                break;
-            //Damege()を作動させる
             case "Boss":
                 other.gameObject.GetComponent<BossController>().Damage(this.attack);
                 GameObject obj = Instantiate(this.particle);
@@ -119,6 +115,15 @@ public class StarBulletController : MonoBehaviour
 
             default:
                 break;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        //Damege()を作動させる
+        if (other.gameObject.tag == "Star")
+        {
+            other.gameObject.GetComponent<StarController>().Damage(this.attack);
         }
     }
 }
