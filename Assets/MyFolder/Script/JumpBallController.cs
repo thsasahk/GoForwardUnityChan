@@ -28,6 +28,10 @@ public class JumpBallController : MonoBehaviour
     /// JumpBallが破棄されたときに生成されるParticleSystem
     /// </summary>
     public GameObject particlePrefab;
+    /// <summary>
+    /// オブジェクトの体力
+    /// </summary>
+    public int life;
 
     void Start()
     {
@@ -46,6 +50,7 @@ public class JumpBallController : MonoBehaviour
         }
     }
 
+    /*
     void OnDestroy()
     {
         //スクロールによる破棄やシーンのロードではParticleSystemを生成しない
@@ -56,6 +61,7 @@ public class JumpBallController : MonoBehaviour
             Instantiate(this.particlePrefab,transform.position,Quaternion.identity);
         }
     }
+    */
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -74,6 +80,17 @@ public class JumpBallController : MonoBehaviour
         if (other.gameObject.tag == "Stalker")
         {
             this.jSE[1].Play();
+        }
+    }
+
+    public void Damage(int i)
+    {
+        this.life -= i;
+        if (this.life < 1)
+        {
+            this.uiController.score += 20;
+            Instantiate(this.particlePrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
     }
 }

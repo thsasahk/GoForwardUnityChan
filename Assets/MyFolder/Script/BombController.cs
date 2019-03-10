@@ -63,7 +63,7 @@ public class BombController : MonoBehaviour
         {
             //attackに関係なくJumpBallを破壊
             case "JumpBall":
-                Destroy(other.gameObject);
+                other.GetComponent<JumpBallController>().Damage(this.attack);
                 if(attack <= 3)
                 {
                     Destroy(gameObject);

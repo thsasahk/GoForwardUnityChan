@@ -96,9 +96,9 @@ public class StarBulletController : MonoBehaviour
                 other.gameObject.GetComponent<CubeController>().speed = 0;
                 other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                 break;
-            
+            //Damage()作動させる
             case "JumpBall":
-                Destroy(other.gameObject);
+                other.gameObject.GetComponent<JumpBallController>().Damage(this.attack);
                 break;
             //Damege()を作動させる
             case "Star":
