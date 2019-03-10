@@ -106,7 +106,6 @@ public class StarBulletController : MonoBehaviour
                 break;
             //Damege()を作動させる
             case "Boss":
-                Debug.Log("ok");
                 other.gameObject.GetComponent<BossController>().Damage(this.attack);
                 GameObject obj = Instantiate(this.particle);
                 obj.transform.position = this.transform.position;
@@ -115,7 +114,6 @@ public class StarBulletController : MonoBehaviour
                 break;
             //Damege()を作動させる
             case "Bullet":
-                Debug.Log("ok2");
                 other.gameObject.GetComponent<BossBulletController>().Damage(this.attack);
                 break;
 
