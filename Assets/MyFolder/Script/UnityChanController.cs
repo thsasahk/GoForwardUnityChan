@@ -480,7 +480,7 @@ public class UnityChanController : MonoBehaviour
     public void StarShot()
     {
         //残談がない時やクリアシーンに入った時は発射不可
-        if (this.starPanelController.starBullet < 1&& this.uiController.clearScene)
+        if (this.starPanelController.starBullet < 1|| this.uiController.clearScene)
         {
             return;
         }
