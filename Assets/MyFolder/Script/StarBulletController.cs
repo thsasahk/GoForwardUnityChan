@@ -56,6 +56,10 @@ public class StarBulletController : MonoBehaviour
     /// オブジェクトが削除される地点
     /// </summary>
     [SerializeField] private float deadLine;
+    /// <summary>
+    /// パーティクルオブジェクト
+    /// </summary>
+    [SerializeField] private GameObject particle;
 
     void Start()
     {
@@ -104,6 +108,9 @@ public class StarBulletController : MonoBehaviour
             case "Boss":
                 Debug.Log("ok");
                 other.gameObject.GetComponent<BossController>().Damage(this.attack);
+                GameObject obj = Instantiate(this.particle);
+                obj.transform.position = this.transform.position;
+                obj.transform.transform.Rotate(-90.0f, 0.0f, 0.0f);
                 Destroy(gameObject);
                 break;
             //Damege()を作動させる
