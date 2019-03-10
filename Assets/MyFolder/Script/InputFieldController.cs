@@ -42,11 +42,6 @@ public class InputFieldController : MonoBehaviour
     /// <param name="i">今回プレイヤーが記録したスコア</param>
     public void NCMBSaveAsync()
     {
-        //this.ranking = new NCMBObject("Ranking");
-        if (inputField.text == null)
-        {
-            inputField.text = "NoName";
-        }
         this.ranking["name"] = inputField.text;
         this.ranking["score"] = this.uIController.score;
         this.ranking.SaveAsync((NCMBException e) =>

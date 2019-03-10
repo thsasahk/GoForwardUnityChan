@@ -72,6 +72,10 @@ public class RankingController : MonoBehaviour
                     //TextMeshProに表示する値をrankListを参照して指定
                     this.rank = i + 1;
                     this.playerName = System.Convert.ToString(rankList[i]["name"]);
+                    if(this.playerName == "")
+                    {
+                        this.playerName = "No Name";
+                    }
                     this.score = System.Convert.ToInt32(rankList[i]["score"]);
                     //TextMeshProに記載
                     this.tMPro[i + 2].GetComponent<TextMeshProUGUI>().text = this.rank.ToString() + "位:" +
