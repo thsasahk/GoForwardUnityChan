@@ -391,7 +391,7 @@ public class BossController : MonoBehaviour
         }
         */
         this.uiController.lifeRemainder = life;
-        //GetComponent<CircleCollider2D>().enabled = false;
+        GetComponent<CircleCollider2D>().enabled = false;
         iTween.RotateTo(gameObject, iTween.Hash("z", 720.0f,"delay",0.1f));
         iTween.RotateTo(gameObject, iTween.Hash("y", 180.0f, "delay", 1.1f));
         iTween.MoveTo(gameObject, iTween.Hash("x", 13.0f, "y", 7.0f, "delay", 2.1f));
