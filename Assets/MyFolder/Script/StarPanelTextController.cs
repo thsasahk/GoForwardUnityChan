@@ -45,7 +45,7 @@ public class StarPanelTextController : MonoBehaviour
     {
         if (this.starPanelController.starBullet != 0)
         {
-            this.tmp.text = "クリックorSキー";
+            this.tmp.text = "クリックorZキー";
             this.material.SetColor(ShaderUtilities.ID_UnderlayColor, ColorGradiate());
         }
         else
