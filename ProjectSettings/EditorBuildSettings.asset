@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/naichilab/MyFolder/Scenes/StartScene.unity
+    path: Assets/MyFolder/Scenes/StartScene.unity
     guid: 66f50fa2b1569b94aa9590965bdb9526
   - enabled: 1
-    path: Assets/naichilab/MyFolder/Scenes/TutorialScene.unity
+    path: Assets/MyFolder/Scenes/TutorialScene.unity
     guid: 2f484f007ea4d374f99cf21c7450b4b3
   - enabled: 1
-    path: Assets/naichilab/MyFolder/Scenes/GameScene.unity
+    path: Assets/MyFolder/Scenes/GameScene.unity
     guid: 6b0658545bf005e4982bf6fee20614d9
   m_configObjects: {}
