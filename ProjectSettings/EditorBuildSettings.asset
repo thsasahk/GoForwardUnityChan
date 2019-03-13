@@ -5,25 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/UnityChan2D/Demo/Scenes/Start.unity
-    guid: b763c98f277cc420aa68ceb3fc0daf82
-  - enabled: 0
-    path: Assets/UnityChan2D/Demo/Scenes/Loading 1-1.unity
-    guid: a35423fc824db4fcab5346624a89eadd
-  - enabled: 0
-    path: Assets/UnityChan2D/Demo/Scenes/Intro 1-1.unity
-    guid: b624da3e00d714908a6ad67aba8ddba4
-  - enabled: 0
-    path: Assets/UnityChan2D/Demo/Scenes/World 1-1.unity
-    guid: bc1bc11bd56944cb68646a65a5fff077
   - enabled: 1
-    path: Assets/MyFolder/Scenes/StartScene.unity
+    path: Assets/naichilab/MyFolder/Scenes/StartScene.unity
     guid: 66f50fa2b1569b94aa9590965bdb9526
   - enabled: 1
-    path: Assets/MyFolder/Scenes/TutorialScene.unity
+    path: Assets/naichilab/MyFolder/Scenes/TutorialScene.unity
     guid: 2f484f007ea4d374f99cf21c7450b4b3
   - enabled: 1
-    path: Assets/MyFolder/Scenes/GameScene.unity
+    path: Assets/naichilab/MyFolder/Scenes/GameScene.unity
     guid: 6b0658545bf005e4982bf6fee20614d9
   m_configObjects: {}

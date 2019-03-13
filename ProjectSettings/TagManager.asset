@@ -4,21 +4,20 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - DamageObject
-  - Stage
   - Block
+  - Stalker
+  - Fire
   - Bomb
-  - HBlock
-  - JumpBall
+  - Boss
   - Coin
   - Star
-  - Boss
-  - Bullet
+  - JumpBall
   - Plazm
-  - Stalker
-  - Canon
+  - HBlock
+  - DamageObject
+  - Stage
   - StarBullet
-  - StarPanel
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -28,8 +27,8 @@ TagManager:
   - UI
   - 
   - 
-  - Ground
-  - Player
+  - 
+  - 
   - 
   - 
   - 
@@ -55,13 +54,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Coin
-    uniqueID: 3534837493
-    locked: 0
-  - name: Block
-    uniqueID: 2494971979
-    locked: 0
-  - name: UI
-    uniqueID: 4086813705
     locked: 0
