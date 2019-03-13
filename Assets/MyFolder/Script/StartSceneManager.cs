@@ -67,6 +67,7 @@ public class StartSceneManager : MonoBehaviour
         */
     }
 
+    /*
     private void LateUpdate()
     {
         if ((Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetKeyDown(KeyCode.Space)) 
@@ -76,15 +77,14 @@ public class StartSceneManager : MonoBehaviour
             FadeManager.Instance.LoadScene("TutorialScene", 1.0f);
         }
     }
+    */
 
     /// <summary>
     /// TutorialSceneをロードする
     /// イベントトリガーで使用
     /// </summary>
-    /*
     public void LoadScene()
     {
-        Debug.Log("ok");
         //シーンのロード中に重ねて読み込むことはしない
         if (this.stopLoad == false)
         {
@@ -92,7 +92,6 @@ public class StartSceneManager : MonoBehaviour
             FadeManager.Instance.LoadScene("TutorialScene", 1.0f);
         }
     }
-    */
 
     /// <summary>
     /// イベントトリガーで使用
