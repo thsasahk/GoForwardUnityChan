@@ -23,21 +23,13 @@ public class TutorialSceneManagerController : MonoBehaviour
     /// </summary>
     public bool loadScene = false;
     /// <summary>
-    /// HardPrefabオブジェクト
+    /// シーン遷移の際に再生するTimeLine
     /// </summary>
-    //private GameObject hCube;
-    /// <summary>
-    /// HardPrefabオブジェクトのスクリプト
-    /// </summary>
-    //private TSCubeController tSCubeController;
-
     [SerializeField] private GameObject tutorialTimeLine;
-
+    /// <summary>
+    /// TimeLineを停止させる際に使用するPlayableDirector
+    /// </summary>
     private PlayableDirector tutorialTimeLineDirector;
-
-    /*[SerializeField] private GameObject manualText;
-
-    private TSUIController tSUIController;*/
 
     void Start()
     {
@@ -74,7 +66,7 @@ public class TutorialSceneManagerController : MonoBehaviour
 
     public void TimeLine()
     {
-        loadScene = true;
+        this.loadScene = true;
         Invoke("TimeLineStart", 1.0f);
         Invoke("LoadScene", 6.0f);
     }

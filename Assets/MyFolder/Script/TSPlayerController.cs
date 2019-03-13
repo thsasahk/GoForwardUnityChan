@@ -155,7 +155,7 @@ public class TSPlayerController : MonoBehaviour
             this.rigid2D.velocity = Vector2.zero;
             return;
         }
-
+        /*
         //チャージ音を再生する
         if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.LeftControl) ||
             Input.GetKeyDown(KeyCode.RightControl))
@@ -172,6 +172,7 @@ public class TSPlayerController : MonoBehaviour
         {
             Shot();
         }
+        */
         //ChargeSliderの色を変化させる
         switch (this.chargeLV)
         {
@@ -186,7 +187,6 @@ public class TSPlayerController : MonoBehaviour
         }
         //スライダーの値を変化させる
         this.chargeSlider.value = this.chargeTime;
-
         //着地しているかどうかを調べる
         this.isGround = (this.transform.position.y > this.groundLevel) ? false : true;
         if (isGround)
@@ -202,11 +202,13 @@ public class TSPlayerController : MonoBehaviour
 
         //ジャンプ状態のときはボリュームを0にする
         this.unitySE[1].volume = (isGround) ? 1 : 0;
-
+        /*
         if ((Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space)) && this.jumpTime < this.jumpLimit)
         {
             Jump();
         }
+        */
+        //
         if (!Input.GetMouseButton(0) && !Input.GetKey(KeyCode.Space))
         {
             this.jumpTime -= Time.deltaTime * 1.5f;
@@ -217,7 +219,7 @@ public class TSPlayerController : MonoBehaviour
         }
         //hoverSliderのvalueをjumpTimeに合わせて変更する
         this.hoverSlider.value = this.jumpTime;
-
+        
         // maxHigh以上には上昇しない
         // ピタッと止まると不自然なので少し揺らす
         this.maxHigh = Random.Range(this.maxHigh - 0.02f, this.maxHigh + 0.02f);
@@ -349,6 +351,35 @@ public class TSPlayerController : MonoBehaviour
                 break;
         }*/
 
+    }
+
+    private void LateUpdate()
+    {
+        if (this.tutorialSceneManagerController.loadScene)
+        {
+            return;
+        }
+        //チャージ音を再生する
+        if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.LeftControl) ||
+            Input.GetKeyDown(KeyCode.RightControl))
+        {
+            this.unitySE[0].Play();
+        }
+        //右クリックを推している間、Charge関数を呼び続ける
+        if (Input.GetMouseButton(1) || Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+        {
+            Charge();
+        }
+        if (Input.GetMouseButtonUp(1) || Input.GetKeyUp(KeyCode.LeftControl) ||
+            Input.GetKeyUp(KeyCode.RightControl))
+        {
+            Shot();
+        }
+
+        if ((Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space)) && this.jumpTime < this.jumpLimit)
+        {
+            Jump();
+        }
     }
 
     /// <summary>
