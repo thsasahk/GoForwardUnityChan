@@ -19,6 +19,10 @@ public class TutorialSceneManagerController : MonoBehaviour
     /// </summary>
     [SerializeField] private GameObject player;
     /// <summary>
+    /// Playerオブジェクトのスクリプト
+    /// </summary>
+    private TSPlayerController tSPlayerController;
+    /// <summary>
     /// LoadSceneを実行した際にtrueにする
     /// </summary>
     public bool loadScene = false;
@@ -34,6 +38,7 @@ public class TutorialSceneManagerController : MonoBehaviour
     void Start()
     {
         this.tutorialTimeLineDirector = this.tutorialTimeLine.GetComponent<PlayableDirector>();
+        this.tSPlayerController = this.player.GetComponent<TSPlayerController>();
         //this.manualText = GameObject.Find("ManualText");
         //this.tSUIController = this.manualText.GetComponent<TSUIController>();
     }
@@ -66,6 +71,10 @@ public class TutorialSceneManagerController : MonoBehaviour
 
     public void TimeLine()
     {
+        if (this.tSPlayerController.isComeBack|| this.loadScene)
+        {
+            return;
+        }
         this.loadScene = true;
         Invoke("TimeLineStart", 1.0f);
         Invoke("LoadScene", 6.0f);

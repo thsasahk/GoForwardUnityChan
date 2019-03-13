@@ -1636,7 +1636,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lesson: 1
   isPlayer: 1
-  player: {fileID: 1626546840, guid: 301579eb75a5b054da97f4fedfc65d2b, type: 3}
+  player: {fileID: 1605995569}
   loadScene: 0
   tutorialTimeLine: {fileID: 370968793}
 --- !u!1 &1119795681

@@ -97,8 +97,10 @@ public class TSPlayerController : MonoBehaviour
     /// ジェットのSEが再生中かどうかを判別
     /// </summary>
     private bool jetSEPlay;
-
-    private bool isComeBack = false;
+    /// <summary>
+    /// playerが定位置へ帰還中であることを表す
+    /// </summary>
+    public bool isComeBack = false;
     /// <summary>
     /// ポーズ中であることを示す変数
     /// </summary>
@@ -355,7 +357,8 @@ public class TSPlayerController : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (this.tutorialSceneManagerController.loadScene)
+        if (this.tutorialSceneManagerController.loadScene || this.isComeBack ||
+            Mathf.Approximately(Time.timeScale, 0f))
         {
             return;
         }
