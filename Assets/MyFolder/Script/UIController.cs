@@ -244,7 +244,7 @@ public class UIController : MonoBehaviour
             this.oneplay = false;
         }
     }
-
+    /*
     private void LateUpdate()
     {
         //ゲームオーバーかゲームクリアになった場合
@@ -254,7 +254,11 @@ public class UIController : MonoBehaviour
             Load();
         }
     }
+    */
 
+    /// <summary>
+    /// StartSceneへ遷移する
+    /// </summary>
     public void Load()
     {
         if (this.stopLoad)
@@ -379,7 +383,6 @@ public class UIController : MonoBehaviour
         this.gameOverTextMaterial.SetColor("_OutlineColor", new Color32(0, 0, 0, 100));
         this.gameOverTextUGUI.text = "Game Clear";
         */
-        
         this.runLengthText.GetComponent<Text>().text = " ";
         this.scoreText.GetComponent<Text>().text = " ";
         this.clear = true;
@@ -444,6 +447,7 @@ public class UIController : MonoBehaviour
         }
     }
 
+    /*
     /// <summary>
     /// イベントトリガーで使用
     /// </summary>
@@ -459,6 +463,7 @@ public class UIController : MonoBehaviour
     {
         this.stopLoad = false;
     }
+    */
 
     /// <summary>
     /// スコアをNCMBに記録
