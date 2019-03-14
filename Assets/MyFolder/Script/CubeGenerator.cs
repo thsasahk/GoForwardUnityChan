@@ -135,7 +135,7 @@ public class CubeGenerator : MonoBehaviour
             else if (m == hardPercentage - 2)
             {
                 //lengthが100以下のとき、すでにJumpBallを生成している場合はJumpBallを生成しない
-                if (this.uiController.length > 75 || this.ballSwitch)
+                if (this.uiController.length < 75 || this.ballSwitch)
                     return;
                 GameObject go = Instantiate(this.jumpBall) as GameObject;
                 go.transform.position = new Vector2(this.genPosX - 3, this.offsetY);
