@@ -33,43 +33,73 @@ public class StalkerController : MonoBehaviour
     /// オブジェクトのAnimator
     /// </summary>
     private Animator animator;
-
+    /// <summary>
+    /// canvasオブジェクト
+    /// </summary>
     private GameObject canvas;
-
+    /// <summary>
+    /// canvasオブジェクトのスクリプト
+    /// </summary>
     private UIController uIController;
-
-    //private bool oneTime = false;
-
-    public bool scrollStop = false;
-
+    /// <summary>
+    /// オブジェクトのAudioSource
+    /// </summary>
     private AudioSource[] se;
-
+    /// <summary>
+    /// 接触したオブジェクトに与えるy方向の力
+    /// </summary>
     private float verticalPower;
-
+    /// <summary>
+    /// verticalPowerの最小値
+    /// </summary>
     [SerializeField] private float vPowerMin;
-
+    /// <summary>
+    /// verticalPowerの最大値
+    /// </summary>
     [SerializeField] private float vPowerMax;
-
+    /// <summary>
+    /// 接触したオブジェクトに与えるx方向の力
+    /// </summary>
     private float horizontalPower;
-
+    /// <summary>
+    /// horizontalPowerの最小値
+    /// </summary>
     [SerializeField] private float hPowerMin;
-
+    /// <summary>
+    /// horizontalPowerの最大値
+    /// </summary>
     [SerializeField] private float hPowerMax;
-
+    /// <summary>
+    /// 接触したオブジェクトに与える回転速度
+    /// </summary>
     private float rollSpeed;
-
+    /// <summary>
+    /// rollSpeedの最小値
+    /// </summary>
     [SerializeField] private float rsMin;
-
+    /// <summary>
+    /// rollSpeedの最大値
+    /// </summary>
     [SerializeField] private float rsMax;
-
+    /// <summary>
+    /// 接触したオブジェクトが落下を続ける時間
+    /// </summary>
     [SerializeField] private float fallTime;
-
+    /// <summary>
+    /// GameOverTimeLineオブジェクト
+    /// </summary>
     [SerializeField] private GameObject gameOverTimeLine;
-
+    /// <summary>
+    /// GameOverTimeLineのPlayableDirector
+    /// </summary>
     private PlayableDirector gameOverTimeLineDirector;
-
+    /// <summary>
+    /// CubeGeneratorオブジェクトのスクリプト
+    /// </summary>
     [SerializeField] private GameObject cubeGeneratorObject;
-
+    /// <summary>
+    /// CubeGeneratorオブジェクト
+    /// </summary>
     private CubeGenerator cubeGenerator;
 
     void Start()
@@ -103,6 +133,7 @@ public class StalkerController : MonoBehaviour
         }
         */
 
+        /*
         //カウントを数える
         this.count += Time.deltaTime;
         //posXの値をposMin～posMaxの間で決定する
@@ -118,8 +149,13 @@ public class StalkerController : MonoBehaviour
         }
         // 目標地点に徐々に近づいていく、目標地点が遠いほど速度は速くなる
         transform.Translate((this.posX - transform.position.x) * this.speed * Time.deltaTime, 0.0f, 0.0f);
+        */
     }
 
+    /// <summary>
+    /// 接触したオブジェクトに力を与えて吹き飛ばす
+    /// </summary>
+    /// <param name="other">接触したオブジェクト</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         switch (other.gameObject.tag)
