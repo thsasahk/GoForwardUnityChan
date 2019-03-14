@@ -21,13 +21,17 @@ public class StarGenerator : MonoBehaviour
     /// </summary>
     public float span;
     /// <summary>
-    /// span変数にランダム性を持たせるための変数
+    /// span変数の最低値
     /// </summary>
-    public float coolTime;
+    public float minSpan;
+    /// <summary>
+    /// span変数の最大値
+    /// </summary>
+    public float maxSpan;
     /// <summary>
     /// 最後にStarを生成してからの時間を管理する
     /// </summary>
-    private float time = 0;
+    public float time = 0;
     /// <summary>
     /// CubeGeneratorオブジェクト
     /// </summary>
@@ -41,7 +45,7 @@ public class StarGenerator : MonoBehaviour
     {
         this.uiController = this.canvas.GetComponent<UIController>();
         //最初のStarを生成する時間を決定する
-        this.span = Random.Range(this.coolTime,this.coolTime + 5.0f);
+        this.span = Random.Range(this.minSpan, this.maxSpan);
         this.cubeGeneratorScript = this.cubeGenerator.GetComponent<CubeGenerator>();
     }
 
@@ -58,11 +62,11 @@ public class StarGenerator : MonoBehaviour
             Destroy(gameObject);
         }
         this.time += Time.deltaTime;
-        if(this.uiController.length >= 75 && this.time >= this.span)
+        if(/*this.uiController.length >= 75 && */this.time >= this.span)
         {
             Instantiate(this.star,new Vector2(13,5),Quaternion.identity);
             //次にStarを生成する時間を決定する
-            this.span = Random.Range(this.coolTime,this.coolTime + 5.0f);
+            this.span = Random.Range(this.minSpan, this.maxSpan);
             this.time = 0;
         }
     }
