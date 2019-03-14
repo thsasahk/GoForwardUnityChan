@@ -117,6 +117,7 @@ public class StarController : MonoBehaviour
         }
     }
 
+    /*
     /// <summary>
     /// Playerと接触した際にCircleCollider2DのTriggerをオフにする
     /// </summary>
@@ -134,7 +135,9 @@ public class StarController : MonoBehaviour
         //        this.power * Mathf.Sin(this.rollAngle * Mathf.Deg2Rad), 0));
         //}
     }
+    */
 
+    /*
     void OnCollisionExit2D(Collision2D other)
     {
         if (other.gameObject.tag == "Player")
@@ -142,4 +145,5 @@ public class StarController : MonoBehaviour
             GetComponent<CircleCollider2D>().isTrigger = true;
         }
     }
+    */
 }
