@@ -108,9 +108,9 @@ public class StarController : MonoBehaviour
             GameObject obj = Instantiate(this.starParticlePrefab);
             obj.transform.position = new Vector2(this.transform.position.x, this.transform.position.y);
             obj.transform.Rotate(-90.0f, 0.0f, 0.0f);
-            if (this.starPanelController.starBullet < 3)
+            if (this.starPanelController.starCount < 3)
             {
-                this.starPanelController.starBullet++;
+                this.starPanelController.starCount++;
             }
             this.uiController.starScore += 100;
             Destroy(gameObject);

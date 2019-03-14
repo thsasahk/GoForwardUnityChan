@@ -18,10 +18,9 @@ public class StarPanelController : MonoBehaviour
     /// </summary>
     [SerializeField] private Image[] image;
     /// <summary>
-    /// StarShot()を行える回数
+    /// StarDash()を行える回数
     /// </summary>
-    public int starBullet = 0;
-
+    public int starCount = 0;
     //private int starBullet2 = 0;
     /// <summary>
     /// StarBulletを発射可能であることを示す色
@@ -43,11 +42,11 @@ public class StarPanelController : MonoBehaviour
     void Update()
     {
         //StarBulletの値によって何個目のイメージまで点灯させるかを決定する
-        for (int i = 1; i <= this.starBullet; i++)
+        for (int i = 1; i <= this.starCount; i++)
         {
             this.image[i - 1].color = this.color;
         }
-        for (int m = this.image.Length; m > this.starBullet; m--)
+        for (int m = this.image.Length; m > this.starCount; m--)
         {
             this.image[m - 1].color = this.color2;
         }
@@ -67,8 +66,8 @@ public class StarPanelController : MonoBehaviour
         //ZキーでStarBulletを発射する
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            this.unityChanController.StarShot();
-            this.unityChanController.starShot = false;
+            this.unityChanController.StarDash();
+            this.unityChanController.starDash = false;
         }
         //this.starBullet2 = this.starBullet;
     }
