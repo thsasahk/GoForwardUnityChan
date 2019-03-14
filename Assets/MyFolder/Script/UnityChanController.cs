@@ -231,6 +231,7 @@ public class UnityChanController : MonoBehaviour
         }
         */
 
+        /*
         //オブジェクトの定位置をstalkerオブジェクトの位置を参考にしながら決定
         //ずれている場合はそのポイントへ徐々に戻る
         this.posX = this.stalker.transform.position.x + 6.7f;
@@ -238,6 +239,7 @@ public class UnityChanController : MonoBehaviour
         {
             Return();
         }
+        */
 
         if((Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space)) && this.jumpTime < this.jumpLimit
             && !this.starShot)
@@ -438,6 +440,7 @@ public class UnityChanController : MonoBehaviour
         this.jumpTime += Time.deltaTime;
     }
 
+    /*
     /// <summary>
     /// Stalkerオブジェクトと一定の距離を置ける位置に徐々に移動していく
     /// </summary>
@@ -445,6 +448,7 @@ public class UnityChanController : MonoBehaviour
     {
         transform.Translate((this.posX - transform.position.x) * this.returnSpeed * Time.deltaTime, 0.0f, 0.0f);
     }
+    */
 
     void OnDestroy()
     {
