@@ -12,7 +12,7 @@ public class UnityChanController : MonoBehaviour
     /// <summary>
     /// オブジェクトのRigidbody2D
     /// </summary>
-    Rigidbody2D rigid2D;
+    private Rigidbody2D rigid2D;
     /// <summary>
     /// オブジェクトのAudioSource
     /// </summary>
@@ -100,7 +100,7 @@ public class UnityChanController : MonoBehaviour
     /// <summary>
     /// オブジェクトが徐々にスタート位置に戻る速度
     /// </summary>
-    public float returnSpeed;
+    //public float returnSpeed;
     /// <summary>
     /// オブジェクトの最高高度
     /// </summary>
@@ -124,7 +124,7 @@ public class UnityChanController : MonoBehaviour
     /// <summary>
     /// Playerオブジェクトが目標にする立ち位置
     /// </summary>
-    private float posX;
+    //private float posX;
     /// <summary>
     /// RunAnimeとSEの終了させる変数
     /// </summary>
@@ -150,7 +150,7 @@ public class UnityChanController : MonoBehaviour
     /// <summary>
     /// StarShot()を呼び出すためのクリックした際にJump()を呼ぶのを禁止する
     /// </summary>
-    public bool starShot;
+    public bool starDash;
     /// <summary>
     /// StarPanelオブジェクト
     /// </summary>
@@ -159,6 +159,78 @@ public class UnityChanController : MonoBehaviour
     /// StarPanelオブジェクトのスクリプト
     /// </summary>
     private StarPanelController starPanelController;
+    /// <summary>
+    /// StarDash()の間隔
+    /// </summary>
+    public float coolTime;
+    /// <summary>
+    /// StarDash()を最後に呼び出してからの時間を計測
+    /// </summary>
+    private float time = 0;
+    /// <summary>
+    /// StarDash()でオブジェクトに与える力
+    /// </summary>
+    private Vector2 dashPower;
+    /// <summary>
+    /// dashPowerのx値
+    /// </summary>
+    public float dashPowerX;
+    /// <summary>
+    /// Playerオブジェクトのx方向の限界
+    /// </summary>
+    public float maxPosX;
+    /// <summary>
+    /// dashParticleオブジェクト
+    /// </summary>
+    [SerializeField]private ParticleSystem dashParticle;
+    /// <summary>
+    /// 接触したオブジェクトに与えるy方向の力
+    /// </summary>
+    private float verticalPower;
+    /// <summary>
+    /// verticalPowerの最小値
+    /// </summary>
+    [SerializeField] private float vPowerMin;
+    /// <summary>
+    /// verticalPowerの最大値
+    /// </summary>
+    [SerializeField] private float vPowerMax;
+    /// <summary>
+    /// 接触したオブジェクトに与えるx方向の力
+    /// </summary>
+    private float horizontalPower;
+    /// <summary>
+    /// horizontalPowerの最小値
+    /// </summary>
+    [SerializeField] private float hPowerMin;
+    /// <summary>
+    /// horizontalPowerの最大値
+    /// </summary>
+    [SerializeField] private float hPowerMax;
+    /// <summary>
+    /// 接触したオブジェクトに与える回転速度
+    /// </summary>
+    private float rollSpeed;
+    /// <summary>
+    /// rollSpeedの最小値
+    /// </summary>
+    [SerializeField] private float rsMin;
+    /// <summary>
+    /// rollSpeedの最大値
+    /// </summary>
+    [SerializeField] private float rsMax;
+    /// <summary>
+    /// 接触したオブジェクトが落下を続ける時間
+    /// </summary>
+    [SerializeField] private float fallTime;
+    /// <summary>
+    /// StarDash()による短時間の無敵
+    /// </summary>
+    private bool isStar = false;
+    /// <summary>
+    /// 無敵の継続時間
+    /// </summary>
+    [SerializeField] float starTime;
 
     void Start()
     {
@@ -168,6 +240,7 @@ public class UnityChanController : MonoBehaviour
         this.uiController = this.canvas.GetComponent<UIController>();
         this.jetParticle = this.jet.GetComponent<ParticleSystem>();
         this.starPanelController = this.starPanel.GetComponent<StarPanelController>();
+        this.dashPower = new Vector2(this.dashPowerX * Time.deltaTime, 0f);
     }
 
     void Update()
@@ -187,7 +260,19 @@ public class UnityChanController : MonoBehaviour
             this.unitySE[1].Play();
             this.isPause = false;
         }
-
+        //最後にStarDash()を呼び出してからの時間を計測
+        this.time += Time.deltaTime;
+        //無敵状態解除
+        if(this.time >= this.starTime)
+        {
+            this.dashParticle.Stop();
+            this.isStar = false;
+        }
+        //maxPosX以上の位置への移動は禁止する
+        if (this.transform.position.x >= this.maxPosX)
+        {
+            this.transform.position = new Vector2(this.maxPosX, this.transform.position.y);
+        }
         //着地しているかどうかを調べる
         this.isGround = (this.transform.position.y > this.groundLevel) ? false : true;
         /*
@@ -222,7 +307,6 @@ public class UnityChanController : MonoBehaviour
             this.unitySE[2].Stop();
             return;
         }
-
         /*走行距離150で終了
         if (this.uiController.length >= 150.0f)
         {
@@ -240,9 +324,8 @@ public class UnityChanController : MonoBehaviour
             Return();
         }
         */
-
         if((Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space)) && this.jumpTime < this.jumpLimit
-            && !this.starShot)
+            && !this.starDash)
         {
             Jump();
         }
@@ -256,7 +339,6 @@ public class UnityChanController : MonoBehaviour
         }
         //hoverSliderのvalueをjumpTimeに合わせて変更する
         this.hoverSlider.value = this.jumpTime;
-
         // maxHigh以上には上昇しない
         // ピタッと止まると不自然なので少し揺らす
         this.maxHigh = Random.Range(this.maxHigh - 0.02f, this.maxHigh + 0.02f);
@@ -271,7 +353,6 @@ public class UnityChanController : MonoBehaviour
             this.unitySE[2].Stop();
             this.jetSEPlay = false;
         }
-
         //チャージ音を再生する
         if (Input.GetMouseButtonDown(1)|| Input.GetKeyDown(KeyCode.LeftControl)|| Input.GetKeyDown(KeyCode.RightControl))
         {
@@ -282,7 +363,6 @@ public class UnityChanController : MonoBehaviour
         {
             Charge();
         }
-
         //発射
         if (Input.GetMouseButtonUp(1)|| Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl))
         {
@@ -479,10 +559,21 @@ public class UnityChanController : MonoBehaviour
     }*/
 
     /// <summary>
-    /// StarBulletオブジェクトを射出する
+    /// x正方向への力を与える
     /// </summary>
-    public void StarShot()
+    public void StarDash()
     {
+        if (this.time < this.coolTime || this.starPanelController.starCount < 1 || this.uiController.clearScene)
+        {
+            return;
+        }
+        this.dashParticle.Play();
+        this.isStar = true;
+        this.starPanelController.starCount--;
+        this.starDash = true;
+        this.rigid2D.AddForce(this.dashPower);
+        this.time = 0;
+        /*
         //残談がない時やクリアシーンに入った時は発射不可
         if (this.starPanelController.starBullet < 1|| this.uiController.clearScene)
         {
@@ -493,13 +584,62 @@ public class UnityChanController : MonoBehaviour
         this.starShot = true;
         this.starBullePosition = new Vector2(this.transform.position.x + this.x1, this.transform.position.y + this.y1);
         Instantiate(this.starBullet, this.starBullePosition, Quaternion.identity);
+        */
     }
 
     /// <summary>
     /// Jump()を呼び出すことを許可する
     /// </summary>
-    public void StarShotEnd()
+    public void StarDashEnd()
     {
-        this.starShot = false;
+        this.starDash = false;
+    }
+
+    /// <summary>
+    /// 接触したオブジェクトに力を与えて吹き飛ばす
+    /// </summary>
+    /// <param name="other">接触したオブジェクト</param>
+    private void OnCollisionEnter2D(Collision2D other)
+{
+        if (this.isStar)
+        {
+            switch (other.gameObject.tag)
+            {
+                case "Block":
+                case "HBlock":
+                    this.verticalPower = Random.Range(this.vPowerMin, this.vPowerMax);
+                    this.horizontalPower = Random.Range(this.hPowerMin, this.hPowerMax);
+                    other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(this.horizontalPower * Time.deltaTime,
+                        this.verticalPower * Time.deltaTime));
+                    this.rollSpeed = Random.Range(this.rsMin, this.rsMax);
+                    iTween.RotateTo(other.gameObject, iTween.Hash("z", this.rollSpeed, "time", this.fallTime));
+                    other.gameObject.GetComponent<CubeController>().speed = 0;
+                    other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                    break;
+
+                case "JumpBall":
+                    this.verticalPower = Random.Range(this.vPowerMin, this.vPowerMax);
+                    this.horizontalPower = Random.Range(this.hPowerMin, this.hPowerMax);
+                    other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(this.horizontalPower * Time.deltaTime,
+                        this.verticalPower * Time.deltaTime));
+                    this.rollSpeed = Random.Range(this.rsMin, this.rsMax);
+                    iTween.RotateTo(other.gameObject, iTween.Hash("z", this.rollSpeed, "time", this.fallTime));
+                    other.gameObject.GetComponent<JumpBallController>().speed = 0;
+                    other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                    other.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+                    break;
+
+                case "Bullet":
+                    this.verticalPower = Random.Range(this.vPowerMin, this.vPowerMax);
+                    this.horizontalPower = Random.Range(this.hPowerMin, this.hPowerMax);
+                    other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(this.horizontalPower * Time.deltaTime,
+                        this.verticalPower * Time.deltaTime));
+                    other.gameObject.GetComponent<BossBulletController>().speed = 0;
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 }
