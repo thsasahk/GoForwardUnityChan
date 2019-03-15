@@ -63,7 +63,7 @@ public class StarPanelController : MonoBehaviour
             }
         }
         */
-        //ZキーでStarBulletを発射する
+        //Zキーで前進する
         if (Input.GetKeyDown(KeyCode.Z))
         {
             this.unityChanController.StarDash();
