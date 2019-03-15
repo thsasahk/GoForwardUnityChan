@@ -64,6 +64,27 @@ public class CubeController : MonoBehaviour
         {
             this.SE[0].Play();
         }
+
+        //isStarがtrueの時にPlayerと接触した場合に吹っ飛ばされSEを再生する
+        if (other.gameObject.tag == "Player")
+        {
+            if (other.gameObject.GetComponent<UnityChanController>().isStar)
+            {
+                switch (gameObject.tag)
+                {
+                    case "Block":
+                        this.SE[1].Play();
+                        break;
+
+                    case "HBlock":
+                        this.SE[2].Play();
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
     }
     /// <summary>
     /// Cubeオブジェクトのlife変数を変化させオブジェクトの破棄を管理する
@@ -95,7 +116,7 @@ public class CubeController : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Stalker")
+        if (other.tag == "Stalker")
         {
             switch (gameObject.tag)
             {
