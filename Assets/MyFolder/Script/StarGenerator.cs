@@ -19,19 +19,19 @@ public class StarGenerator : MonoBehaviour
     /// <summary>
     /// Starの生成間隔を決定する
     /// </summary>
-    public float span;
+    private float span;
     /// <summary>
     /// span変数の最低値
     /// </summary>
-    public float minSpan;
+    [SerializeField] private float minSpan;
     /// <summary>
     /// span変数の最大値
     /// </summary>
-    public float maxSpan;
+    [SerializeField] private float maxSpan;
     /// <summary>
     /// 最後にStarを生成してからの時間を管理する
     /// </summary>
-    public float time = 0;
+    private float time = 0;
     /// <summary>
     /// CubeGeneratorオブジェクト
     /// </summary>
