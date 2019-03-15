@@ -230,7 +230,15 @@ public class UnityChanController : MonoBehaviour
     /// <summary>
     /// 無敵の継続時間
     /// </summary>
-    [SerializeField] float starTime;
+    [SerializeField] private float starTime;
+    /// <summary>
+    /// StarDash()内のiTween.MoveToの継続時間に影響
+    /// </summary>
+    [SerializeField] private float t1;
+    /// <summary>
+    /// dashParticleオブジェクトのAudioSource
+    /// </summary>
+    private AudioSource dashSE;
 
     void Start()
     {
@@ -241,6 +249,7 @@ public class UnityChanController : MonoBehaviour
         this.jetParticle = this.jet.GetComponent<ParticleSystem>();
         this.starPanelController = this.starPanel.GetComponent<StarPanelController>();
         this.dashPower = new Vector2(this.dashPowerX * Time.deltaTime, 0f);
+        this.dashSE = this.dashParticle.GetComponent<AudioSource>();
     }
 
     void Update()
@@ -252,6 +261,7 @@ public class UnityChanController : MonoBehaviour
             {
                 this.unitySE[n].Stop();
             }
+            this.dashSE.Stop();
             this.isPause = true;
             return;
         }
@@ -563,15 +573,19 @@ public class UnityChanController : MonoBehaviour
     /// </summary>
     public void StarDash()
     {
-        if (this.time < this.coolTime || this.starPanelController.starCount < 1 || this.uiController.clearScene)
+        if (this.time < this.coolTime || this.starPanelController.starCount < 1 || 
+            this.uiController.clearScene || this.isPause)
         {
             return;
         }
         this.dashParticle.Play();
+        this.dashSE.Play();
         this.isStar = true;
         this.starPanelController.starCount--;
         this.starDash = true;
-        this.rigid2D.AddForce(this.dashPower);
+        //this.rigid2D.AddForce(this.dashPower);
+        iTween.MoveTo(gameObject, iTween.Hash("x", this.maxPosX, "time", this.starTime - this.t1, 
+            /*"delay", 0.2f,*/ "easeType", "linear"));
         this.time = 0;
         /*
         //残談がない時やクリアシーンに入った時は発射不可
@@ -599,7 +613,7 @@ public class UnityChanController : MonoBehaviour
     /// 接触したオブジェクトに力を与えて吹き飛ばす
     /// </summary>
     /// <param name="other">接触したオブジェクト</param>
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionStay2D(Collision2D other)
 {
         if (this.isStar)
         {
@@ -634,6 +648,7 @@ public class UnityChanController : MonoBehaviour
                     this.horizontalPower = Random.Range(this.hPowerMin, this.hPowerMax);
                     other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(this.horizontalPower * Time.deltaTime,
                         this.verticalPower * Time.deltaTime));
+                    other.gameObject.GetComponent<CircleCollider2D>().enabled = false;
                     other.gameObject.GetComponent<BossBulletController>().speed = 0;
                     break;
 
