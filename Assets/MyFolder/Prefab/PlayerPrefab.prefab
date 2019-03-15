@@ -369,6 +369,7 @@ MonoBehaviour:
   rsMin: 360
   rsMax: 1080
   fallTime: 5
+  isStar: 0
   starTime: 1.5
   t1: 0.1
 --- !u!61 &8116148401185870991
