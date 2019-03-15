@@ -237,10 +237,12 @@ public class TSPlayerController : MonoBehaviour
             this.jetSEPlay = false;
         }
 
+        /*
         if (this.transform.position.x != -2.9f || this.transform.position.y >= this.maxHigh)
         {
             Return();
         }
+        */
 
         /*lesson変数を参照してPlayerに許可する行動を決定する
         switch (this.tutorialSceneManagerController.lesson)
@@ -510,6 +512,7 @@ public class TSPlayerController : MonoBehaviour
         this.jumpTime += Time.deltaTime;
     }
 
+    /*
     /// <summary>
     /// オブジェクトが画面右に行くのを禁止
     /// オブジェクトが画面左に押し込まれても、徐々にスタート位置に帰ってくる
@@ -526,6 +529,7 @@ public class TSPlayerController : MonoBehaviour
             this.transform.Translate(this.returnSpeed * Time.deltaTime, 0.0f, 0.0f);
         }
     }
+    */
 
     /// <summary>
     /// オブジェクトが破棄されるときに調整のためにlesson変数を減少させる
