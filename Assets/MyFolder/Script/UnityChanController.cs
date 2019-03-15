@@ -226,7 +226,7 @@ public class UnityChanController : MonoBehaviour
     /// <summary>
     /// StarDash()による短時間の無敵
     /// </summary>
-    private bool isStar = false;
+    public bool isStar = false;
     /// <summary>
     /// 無敵の継続時間
     /// </summary>
@@ -644,12 +644,15 @@ public class UnityChanController : MonoBehaviour
                     break;
 
                 case "Bullet":
+                    other.gameObject.GetComponent<BossBulletController>().Damage(2);
+                    /*
                     this.verticalPower = Random.Range(this.vPowerMin, this.vPowerMax);
                     this.horizontalPower = Random.Range(this.hPowerMin, this.hPowerMax);
                     other.gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(this.horizontalPower * Time.deltaTime,
                         this.verticalPower * Time.deltaTime));
                     other.gameObject.GetComponent<CircleCollider2D>().enabled = false;
                     other.gameObject.GetComponent<BossBulletController>().speed = 0;
+                    */
                     break;
 
                 default:
