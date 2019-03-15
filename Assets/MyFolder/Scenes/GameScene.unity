@@ -2952,6 +2952,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stalker
       objectReference: {fileID: 0}
+    - target: {fileID: 2543939852000399232, guid: 2bb17f128d1db8f4aada5002e8e2b0f5,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2409627569322899313, guid: 2bb17f128d1db8f4aada5002e8e2b0f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3037,11 +3042,6 @@ PrefabInstance:
       propertyPath: cubeGeneratorObject
       value: 
       objectReference: {fileID: 958883081}
-    - target: {fileID: 2543939852000399232, guid: 2bb17f128d1db8f4aada5002e8e2b0f5,
-        type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6530326334008742887, guid: 2bb17f128d1db8f4aada5002e8e2b0f5,
         type: 3}
       propertyPath: Loop
@@ -4472,10 +4472,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   star: {fileID: 8651462427137873048, guid: 6441df56f753a9c48a248a7d043e0bf8, type: 3}
   canvas: {fileID: 1050034879}
-  span: 0
-  minSpan: 20
-  maxSpan: 30
-  time: 0
+  minSpan: 10
+  maxSpan: 20
   cubeGenerator: {fileID: 958883081}
 --- !u!4 &2057240020
 Transform:
@@ -5437,16 +5435,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HoverSlider
       objectReference: {fileID: 0}
-    - target: {fileID: 8991029885397520804, guid: 42dd01aff5c57514ea60f05fb9cbd447,
-        type: 3}
-      propertyPath: m_Value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8991029885397520804, guid: 42dd01aff5c57514ea60f05fb9cbd447,
-        type: 3}
-      propertyPath: m_MaxValue
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 1210478151321700765, guid: 42dd01aff5c57514ea60f05fb9cbd447,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5551,6 +5539,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991029885397520804, guid: 42dd01aff5c57514ea60f05fb9cbd447,
+        type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991029885397520804, guid: 42dd01aff5c57514ea60f05fb9cbd447,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7136588382139862052, guid: 42dd01aff5c57514ea60f05fb9cbd447,
         type: 3}
