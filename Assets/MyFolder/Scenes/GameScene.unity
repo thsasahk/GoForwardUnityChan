@@ -343,31 +343,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 126680485}
   m_CullTransparentMesh: 0
---- !u!1 &200573062 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6408485092539994499, guid: 3f3608719564ad644be5a5c1242dcc28,
+--- !u!95 &200573063 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 200573063, guid: 3f3608719564ad644be5a5c1242dcc28,
     type: 3}
   m_PrefabInstance: {fileID: 2051809651}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &200573063
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 200573062}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!82 &200573065 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 4787094771879701908, guid: 3f3608719564ad644be5a5c1242dcc28,
@@ -4363,11 +4344,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canon
       objectReference: {fileID: 0}
-    - target: {fileID: 6408485092539994499, guid: 3f3608719564ad644be5a5c1242dcc28,
-        type: 3}
-      propertyPath: m_TagString
-      value: Canon
-      objectReference: {fileID: 0}
     - target: {fileID: 6408485092539994498, guid: 3f3608719564ad644be5a5c1242dcc28,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4423,23 +4399,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6408485092539994498, guid: 3f3608719564ad644be5a5c1242dcc28,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6408485092539994498, guid: 3f3608719564ad644be5a5c1242dcc28,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 515547211748681499, guid: 3f3608719564ad644be5a5c1242dcc28,
-        type: 3}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 1050034879}
-    m_RemovedComponents:
-    - {fileID: 515547211748681499, guid: 3f3608719564ad644be5a5c1242dcc28, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3f3608719564ad644be5a5c1242dcc28, type: 3}
 --- !u!1 &2057240018
 GameObject:
@@ -5134,36 +5094,6 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -5.4
       objectReference: {fileID: 0}
-    - target: {fileID: 2129675403995322527, guid: f44db72ee7fd3c64ebcf67f702249926,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2129675404609815062, guid: f44db72ee7fd3c64ebcf67f702249926,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2129675403878856867, guid: f44db72ee7fd3c64ebcf67f702249926,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2129675404138027089, guid: f44db72ee7fd3c64ebcf67f702249926,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2129675405054033148, guid: f44db72ee7fd3c64ebcf67f702249926,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2129675405502051528, guid: f44db72ee7fd3c64ebcf67f702249926,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
     - target: {fileID: 2129675403943216508, guid: f44db72ee7fd3c64ebcf67f702249926,
         type: 3}
       propertyPath: m_Color.r
@@ -5184,7 +5114,37 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2129675403995322527, guid: f44db72ee7fd3c64ebcf67f702249926,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129675404609815062, guid: f44db72ee7fd3c64ebcf67f702249926,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 2129675404877865255, guid: f44db72ee7fd3c64ebcf67f702249926,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129675403878856867, guid: f44db72ee7fd3c64ebcf67f702249926,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129675404138027089, guid: f44db72ee7fd3c64ebcf67f702249926,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129675405054033148, guid: f44db72ee7fd3c64ebcf67f702249926,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129675405502051528, guid: f44db72ee7fd3c64ebcf67f702249926,
         type: 3}
       propertyPath: m_SortingOrder
       value: -1
@@ -5914,37 +5874,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPrefab
       objectReference: {fileID: 0}
-    - target: {fileID: 8116148401185870984, guid: e2628e3ec1a8de24295ecb71bdd77753,
-        type: 3}
-      propertyPath: chargeSlider
-      value: 
-      objectReference: {fileID: 828478275}
-    - target: {fileID: 8116148401185870984, guid: e2628e3ec1a8de24295ecb71bdd77753,
-        type: 3}
-      propertyPath: hoverSlider
-      value: 
-      objectReference: {fileID: 8991029885397520804}
-    - target: {fileID: 8116148401185870984, guid: e2628e3ec1a8de24295ecb71bdd77753,
-        type: 3}
-      propertyPath: canvas
-      value: 
-      objectReference: {fileID: 1050034879}
-    - target: {fileID: 8116148401185870984, guid: e2628e3ec1a8de24295ecb71bdd77753,
-        type: 3}
-      propertyPath: stalker
-      value: 
-      objectReference: {fileID: 355043216}
-    - target: {fileID: 8116148401185870984, guid: e2628e3ec1a8de24295ecb71bdd77753,
-        type: 3}
-      propertyPath: starBullet
-      value: 
-      objectReference: {fileID: 705114336, guid: dc77585a88fbf9c42aaa68181836859b,
-        type: 3}
-    - target: {fileID: 8116148401185870984, guid: e2628e3ec1a8de24295ecb71bdd77753,
-        type: 3}
-      propertyPath: starPanel
-      value: 
-      objectReference: {fileID: 1519060767}
     - target: {fileID: 8116148401185870987, guid: e2628e3ec1a8de24295ecb71bdd77753,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6000,6 +5929,37 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8116148401185870984, guid: e2628e3ec1a8de24295ecb71bdd77753,
+        type: 3}
+      propertyPath: chargeSlider
+      value: 
+      objectReference: {fileID: 828478275}
+    - target: {fileID: 8116148401185870984, guid: e2628e3ec1a8de24295ecb71bdd77753,
+        type: 3}
+      propertyPath: hoverSlider
+      value: 
+      objectReference: {fileID: 8991029885397520804}
+    - target: {fileID: 8116148401185870984, guid: e2628e3ec1a8de24295ecb71bdd77753,
+        type: 3}
+      propertyPath: canvas
+      value: 
+      objectReference: {fileID: 1050034879}
+    - target: {fileID: 8116148401185870984, guid: e2628e3ec1a8de24295ecb71bdd77753,
+        type: 3}
+      propertyPath: stalker
+      value: 
+      objectReference: {fileID: 355043216}
+    - target: {fileID: 8116148401185870984, guid: e2628e3ec1a8de24295ecb71bdd77753,
+        type: 3}
+      propertyPath: starBullet
+      value: 
+      objectReference: {fileID: 705114336, guid: dc77585a88fbf9c42aaa68181836859b,
+        type: 3}
+    - target: {fileID: 8116148401185870984, guid: e2628e3ec1a8de24295ecb71bdd77753,
+        type: 3}
+      propertyPath: starPanel
+      value: 
+      objectReference: {fileID: 1519060767}
     - target: {fileID: 1530069165305731025, guid: e2628e3ec1a8de24295ecb71bdd77753,
         type: 3}
       propertyPath: m_IsActive
