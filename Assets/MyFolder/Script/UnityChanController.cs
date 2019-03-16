@@ -240,6 +240,8 @@ public class UnityChanController : MonoBehaviour
     /// </summary>
     private AudioSource dashSE;
 
+    [SerializeField] private float recovery;
+
     void Start()
     {
         this.animator = GetComponent<Animator>();
@@ -341,7 +343,7 @@ public class UnityChanController : MonoBehaviour
         }
         if (!Input.GetMouseButton(0) && !Input.GetKey(KeyCode.Space))
         {
-            this.jumpTime -= Time.deltaTime * 1.5f;
+            this.jumpTime -= this.recovery * Time.deltaTime;
             if (this.jumpTime < 0.0f)
             {
                 this.jumpTime = 0.0f;
