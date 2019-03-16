@@ -576,7 +576,7 @@ public class UnityChanController : MonoBehaviour
     public void StarDash()
     {
         if (this.time < this.coolTime || this.starPanelController.starCount < 1 || 
-            this.uiController.clearScene || this.isPause)
+            this.uiController.clearScene || this.isPause || !isGround)
         {
             return;
         }
