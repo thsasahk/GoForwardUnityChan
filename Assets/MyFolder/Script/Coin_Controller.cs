@@ -24,11 +24,29 @@ public class Coin_Controller : MonoBehaviour
     /// 移動終了位置
     /// </summary>
     public int deadLine = -10;
+    /// <summary>
+    /// オブジェクトのSpriteRenderer
+    /// </summary>
+    private SpriteRenderer sprite;
+    /// <summary>
+    /// オブジェクトにGradientをつける
+    /// </summary>
+    public Gradient gradient;
+    /// <summary>
+    /// ColorGradient()の返し値
+    /// </summary>
+    private Color color;
+    /// <summary>
+    /// オブジェクトの色を個体ごとに変化させるための変数
+    /// </summary>
+    private float i;
 
     void Start()
     {
         this.canvas = GameObject.Find("Canvas");
         this.uiController = this.canvas.GetComponent<UIController>();
+        this.sprite = GetComponent<SpriteRenderer>();
+        this.i = Random.Range(0, 3.13f);
     }
 
     // Update is called once per frame
@@ -45,6 +63,8 @@ public class Coin_Controller : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        //
+        this.sprite.color = ColorGradient();
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -56,5 +76,12 @@ public class Coin_Controller : MonoBehaviour
             this.uiController.coinScore += 20;
             Destroy(gameObject);
         }        
+    }
+
+    private Color ColorGradient()
+    {
+        this.i += Time.deltaTime;
+        this.color = this.gradient.Evaluate(Mathf.Abs(Mathf.Sin(this.i)));
+        return this.color;
     }
 }
