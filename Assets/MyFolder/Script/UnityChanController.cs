@@ -687,6 +687,7 @@ public class UnityChanController : MonoBehaviour
                     other.GetComponent<Rigidbody2D>().AddForce(new Vector2(this.horizontalPower * Time.deltaTime,
                         this.verticalPower * Time.deltaTime));
                     other.GetComponent<Rigidbody2D>().gravityScale = this.gravity;
+                    other.GetComponent<AudioSource>().Play();
                     this.rollSpeed = Random.Range(this.rsMin, this.rsMax);
                     iTween.RotateTo(other.gameObject, iTween.Hash("z", this.rollSpeed, "time", this.fallTime));
                     other.GetComponent<Coin_Controller>().speed = 0;
