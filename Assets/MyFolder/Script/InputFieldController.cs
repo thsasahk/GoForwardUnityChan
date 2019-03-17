@@ -6,17 +6,29 @@ using TMPro;
 
 public class InputFieldController : MonoBehaviour
 {
+    /// <summary>
+    /// InputFieldController
+    /// </summary>
     private TMP_InputField inputField;
-
+    /// <summary>
+    /// NCMBオブジェクト
+    /// </summary>
     private NCMBObject ranking;
-
+    /// <summary>
+    /// InputFieldに入力される名前
+    /// </summary>
     private string playerName = "NoName";
-
+    /// <summary>
+    /// Canvasオブジェクト
+    /// </summary>
     [SerializeField] private GameObject canvas;
-
+    /// <summary>
+    /// Canvasオブジェクトのスクリプト
+    /// </summary>
     private UIController uIController;
 
-    // Start is called before the first frame update
+    private bool save;
+
     void Start()
     {
         this.ranking = new NCMBObject("Ranking");
@@ -24,7 +36,6 @@ public class InputFieldController : MonoBehaviour
         this.inputField = GetComponent<TMP_InputField>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         
@@ -42,21 +53,29 @@ public class InputFieldController : MonoBehaviour
     /// <param name="i">今回プレイヤーが記録したスコア</param>
     public void NCMBSaveAsync()
     {
-        this.ranking["name"] = inputField.text;
-        this.ranking["score"] = this.uIController.score;
-        this.ranking.SaveAsync((NCMBException e) =>
+        //セーブは一度だけ
+        if (!this.save)
         {
-            if (e != null)
+            this.ranking["name"] = inputField.text;
+            this.ranking["score"] = this.uIController.score;
+            this.save = true;
+            this.ranking.SaveAsync();
+            /*
+            this.ranking.SaveAsync((NCMBException e) =>
             {
-                //エラー処理
-                return;
-            }
-            else
-            {
-                //成功時の処理
-            }
-        });
-
+                if (e != null)
+                {
+                    //エラー処理
+                    return;
+                }
+                else
+                {
+                    //成功時の処理
+                    this.save = true;
+                }
+            });
+            */
+        }
         //this.uIController.Load();
     }
 }

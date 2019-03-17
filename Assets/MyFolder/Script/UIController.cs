@@ -265,13 +265,26 @@ public class UIController : MonoBehaviour
     /// <summary>
     /// StartSceneへ遷移する
     /// </summary>
-    public void Load()
+    public void StartLoad()
     {
         if (this.stopLoad)
         {
             return;
         }
         FadeManager.Instance.LoadScene("StartScene", 1.0f);
+        this.stopLoad = true;
+    }
+
+    /// <summary>
+    /// GameSceneへ遷移する
+    /// </summary>
+    public void GameLoad()
+    {
+        if (this.stopLoad)
+        {
+            return;
+        }
+        FadeManager.Instance.LoadScene("GameScene", 1.0f);
         this.stopLoad = true;
     }
 
