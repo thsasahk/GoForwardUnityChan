@@ -395,7 +395,8 @@ public class UnityChanController : MonoBehaviour
             Charge();
         }
         //発射
-        if (Input.GetMouseButtonUp(1)|| Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl))
+        if ((Input.GetMouseButtonUp(1)|| Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl))
+            && !this.isStar)
         {
             Shot();
         }
@@ -485,6 +486,10 @@ public class UnityChanController : MonoBehaviour
     /// </summary>
     void Charge()
     {
+        if (this.isStar)
+        {
+            return;
+        }
         this.chargeTime += Time.deltaTime;
 
         if (chargeTime >= maxCharge)
