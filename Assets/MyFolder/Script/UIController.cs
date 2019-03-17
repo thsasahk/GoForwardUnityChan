@@ -86,6 +86,10 @@ public class UIController : MonoBehaviour
     /// </summary>
     public int bossScore = 0;
     /// <summary>
+    /// stalkerオブジェクトの撃破で得られるスコア
+    /// </summary>
+    public int stalkerScore = 0;
+    /// <summary>
     /// unitychanオブジェクト
     /// </summary>
     public GameObject unityChan;
@@ -197,7 +201,12 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
-        if(this.isGameOver == false && this.clearScene == false)
+        //scoreを表示
+        if (this.clear == false)
+        {
+            this.scoreText.GetComponent<Text>().text = "Score:" + this.score.ToString() + "pts";
+        }
+        if (this.isGameOver == false && this.clearScene == false)
         {
             //走った距離を計測する
             this.length += this.speed * Time.deltaTime;
@@ -213,12 +222,8 @@ public class UIController : MonoBehaviour
             this.runLengthText.GetComponent<Text>().text = "Distance: " + this.distance.ToString("F1") + "m";
         }
         //scoreを計算
-        this.score = this.cubeScore + this.coinScore + this.starScore + this.bossScore + Mathf.FloorToInt(this.length);
-        //scoreを表示
-        if (this.clear == false)
-        {
-            this.scoreText.GetComponent<Text>().text = "Score:" + this.score.ToString() + "pts";
-        }
+        this.score = this.cubeScore + this.coinScore + this.starScore + this.stalkerScore
+            + this.bossScore + Mathf.FloorToInt(this.length);
 
         //ゲームオーバーかゲームクリアになった場合
         /*
