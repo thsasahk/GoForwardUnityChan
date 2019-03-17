@@ -34,7 +34,7 @@ Material:
     - _MaskSoftnessX: 0
     - _MaskSoftnessY: 0
     - _OutlineSoftness: 0
-    - _OutlineWidth: 0.14
+    - _OutlineWidth: 0.31
     - _PerspectiveFilter: 0.875
     - _ScaleRatioA: 0.90909094
     - _ScaleRatioB: 1
@@ -61,7 +61,7 @@ Material:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
     - _MaskCoord: {r: 0, g: 0, b: 100000, a: 100000}
-    - _OutlineColor: {r: 0, g: 0, b: 0, a: 1}
+    - _OutlineColor: {r: 1, g: 0, b: 0.66730356, a: 1}
     - _UnderlayColor: {r: 0.99765027, g: 1, b: 0, a: 0.5}
 --- !u!28 &2800000
 Texture2D:
@@ -113,9 +113,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: Bangers SDF 3
+  m_Name: Bangers SDF 4
   m_EditorClassIdentifier: 
-  hashCode: 1302552300
+  hashCode: 1302552299
   material: {fileID: 2100000}
   materialHashCode: -1865135980
   fontAssetType: 1
