@@ -319,6 +319,8 @@ public class BossController : MonoBehaviour
         iTween.MoveTo(gameObject, iTween.Hash("x", 6.8f, "y", 0.0f, "time", 3.0f));
         iTween.PunchScale(gameObject, iTween.Hash("x", 2.0f, "y", 2.0f, "time", 3.0f,
             "delay", 3.0f, "easeType", "linear"));
+        Invoke("Attack02", 5.0f);
+        /*
         if (this.uiController.length < 75)
         {
             Invoke("Attack02", 5.0f);
@@ -337,6 +339,7 @@ public class BossController : MonoBehaviour
                     break;
             }
         }
+        */
     }
 
     /// <summary>
@@ -418,6 +421,7 @@ public class BossController : MonoBehaviour
             Quaternion.identity);
     }
 
+    /*
     /// <summary>
     /// starオブジェクトを召喚
     /// </summary>
@@ -426,6 +430,7 @@ public class BossController : MonoBehaviour
         this.animator.SetTrigger("Boss_Attack");
         Instantiate(this.star, new Vector2(8.0f, 6.0f), Quaternion.identity);
     }
+    */
 
     /// <summary>
     /// 放射状に多数の攻撃
@@ -492,7 +497,7 @@ public class BossController : MonoBehaviour
             obj.transform.position = new Vector2(this.transform.position.x, this.transform.position.y);
             obj.transform.Rotate(-90.0f, 0.0f, 0.0f);
 
-            this.uiController.bossScore += 1000;
+            this.uiController.bossScore += 500;
             Destroy(gameObject);
             /*
             if (this.uiController.length < 100)
