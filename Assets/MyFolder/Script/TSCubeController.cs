@@ -138,7 +138,7 @@ public class TSCubeController : MonoBehaviour
         //life変数が1未満の場合はオブジェクトを破棄する
         if (this.life < 1)
         {
-            this.tSUIController.score += 10;
+            this.tSUIController.destroyCube -= 1;
             Instantiate(this.particlePrefab, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }

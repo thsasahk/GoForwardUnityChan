@@ -26,14 +26,13 @@ public class TSUIController : MonoBehaviour
     /// オブジェクトのTextMeshProUGUIオブジェクト
     /// </summary>
     private TextMeshProUGUI lessonManual;
-
     [SerializeField] private GameObject scoreObject;
-
     private TextMeshProUGUI scoreText;
-
-    public int score = 0;
-
-    [SerializeField] private int maxScore;
+    /// <summary>
+    /// シーン遷移させるのに破壊しなければいけないキューブの個数
+    /// </summary>
+    public int destroyCube;
+    //[SerializeField] private int maxScore;
 
     void Start()
     {
@@ -51,14 +50,16 @@ public class TSUIController : MonoBehaviour
         {
             TextMoveBotom();
         }
-        if (this.tutorialSceneManagerController.loadScene == false && this.score >= this.maxScore)
+        if (this.tutorialSceneManagerController.loadScene == false && this.destroyCube < 1)
         {
             this.tutorialSceneManagerController.TimeLine();
         }
         this.lessonManual.text = "ブロックを破壊せよ！!\n" +
             "Spaceキーor左クリック→ジャンプ\n" +
-            "Ctrキーor右クリック→射撃(チャージ可能)\n";
-        this.scoreText.text = "Score:" + this.score.ToString() + "pts";
+            "Ctrキーor右クリック→射撃(チャージ可能)\n" +
+            "あと" + this.destroyCube + "個";
+        this.scoreText.text = "Tutorial Mission";
+        //this.scoreText.text = "Score:" + this.score.ToString() + "pts";
     }
 
     /// <summary>
