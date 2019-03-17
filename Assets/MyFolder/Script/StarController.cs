@@ -7,7 +7,7 @@ public class StarController : MonoBehaviour
     /// <summary>
     /// オブジェクトに円運動させるために進行方向の角度を変化させる
     /// </summary>
-    public float angleSpeed;
+    [SerializeField] private float angleSpeed;
     /// <summary>
     /// オブジェクトの現在の進行方向の角度
     /// </summary>
@@ -15,23 +15,31 @@ public class StarController : MonoBehaviour
     /// <summary>
     /// 角度RollAngleへの移動量を決める
     /// </summary>
-    public float rollSpeed;
+    [SerializeField] private float rollSpeed;
     /// <summary>
     /// 直線運動のの実行時間
     /// </summary>
-    public float fallTime;
+    [SerializeField]private float fallTime;
     /// <summary>
     /// 直線運動での目的X座標
     /// </summary>
-    public float distanceX;
+    [SerializeField] private float distanceX;
     /// <summary>
     /// 直線運動での目的Y座標
     /// </summary>
-    public float distanceY;
+    private float distanceY;
+    /// <summary>
+    /// distanceYの最小値
+    /// </summary>
+    [SerializeField] private float distanceYmin;
+    /// <summary>
+    /// distanceYの最大値
+    /// </summary>
+    [SerializeField] private float distanceYmax;
     /// <summary>
     /// オブジェクトの破棄条件を管理する
     /// </summary>
-    public int life;
+    [SerializeField] private int life;
     /// <summary>
     /// オブジェクト破棄時に生成されるParticleSystem
     /// </summary>
@@ -63,7 +71,7 @@ public class StarController : MonoBehaviour
 
     void Start()
     {
-        this.distanceY = Random.Range(-10.0f, -25.0f);
+        this.distanceY = Random.Range(this.distanceYmin, this.distanceYmax);
         //オブジェクトを右上から左下方向へ移動させる
         iTween.MoveAdd(this.gameObject,
             iTween.Hash("x", this.distanceX, "y", this.distanceY, "time", this.fallTime, "easeType", "linear"));

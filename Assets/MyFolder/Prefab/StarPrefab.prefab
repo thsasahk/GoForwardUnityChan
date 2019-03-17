@@ -99,7 +99,8 @@ MonoBehaviour:
   rollSpeed: 20
   fallTime: 10
   distanceX: -30
-  distanceY: -25
+  distanceYmin: -25
+  distanceYmax: -12
   life: 3
   starParticlePrefab: {fileID: 1264533756042865720, guid: 3e39b891db6f86d47b9743ec6d11bfbb,
     type: 3}
