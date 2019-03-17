@@ -372,6 +372,7 @@ MonoBehaviour:
   isStar: 0
   starTime: 1.5
   t1: 0.1
+  interval: 0.1
   recovery: 0.5
 --- !u!61 &8116148401185870991
 BoxCollider2D:
@@ -5200,11 +5201,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8116148401185870987}
     m_Modifications:
-    - target: {fileID: 6960521203962637257, guid: d02034c4d379e7645bb832d7314ca5b0,
-        type: 3}
-      propertyPath: m_Name
-      value: DashStarParticle
-      objectReference: {fileID: 0}
     - target: {fileID: 6960521203962637268, guid: d02034c4d379e7645bb832d7314ca5b0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5259,6 +5255,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6960521203962637257, guid: d02034c4d379e7645bb832d7314ca5b0,
+        type: 3}
+      propertyPath: m_Name
+      value: DashStarParticle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d02034c4d379e7645bb832d7314ca5b0, type: 3}

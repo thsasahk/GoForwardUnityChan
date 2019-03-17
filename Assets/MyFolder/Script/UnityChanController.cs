@@ -239,7 +239,17 @@ public class UnityChanController : MonoBehaviour
     /// dashParticleオブジェクトのAudioSource
     /// </summary>
     private AudioSource dashSE;
-
+    /// <summary>
+    /// 連射機対策のショットする際に必要な間隔
+    /// </summary>
+    [SerializeField] private float interval;
+    /// <summary>
+    /// 前回ショットしてからの時間を計測
+    /// </summary>
+    private float shotTime = 0;
+    /// <summary>
+    /// ジャンプゲージの回復速度に影響
+    /// </summary>
     [SerializeField] private float recovery;
 
     void Start()
@@ -274,6 +284,7 @@ public class UnityChanController : MonoBehaviour
         }
         //最後にStarDash()を呼び出してからの時間を計測
         this.time += Time.deltaTime;
+        this.shotTime += Time.deltaTime;
         //無敵状態解除
         if(this.time >= this.starTime)
         {
@@ -491,28 +502,32 @@ public class UnityChanController : MonoBehaviour
     /// </summary>
     void Shot()
     {
-        this.unitySE[0].Stop();
-        switch (this.chargeLV)
+        if (this.shotTime >= interval)
         {
-            case 0:
-                Instantiate(bombLv0, new Vector2(transform.position.x + 1.0f, transform.position.y - 0.3f), 
-                    Quaternion.identity);
-                break;
+            this.unitySE[0].Stop();
+            switch (this.chargeLV)
+            {
+                case 0:
+                    Instantiate(bombLv0, new Vector2(transform.position.x + 1.0f, transform.position.y - 0.3f),
+                        Quaternion.identity);
+                    break;
 
-            case 1:
-                GameObject BombLv1 = Instantiate(this.bombLv1) as GameObject;
-                BombLv1.transform.position = new Vector2(transform.position.x + 1.0f, transform.position.y - 0.3f);
-                BombLv1.transform.Rotate(0.0f, 0.0f, 0.0f);
-                break;
+                case 1:
+                    GameObject BombLv1 = Instantiate(this.bombLv1) as GameObject;
+                    BombLv1.transform.position = new Vector2(transform.position.x + 1.0f, transform.position.y - 0.3f);
+                    BombLv1.transform.Rotate(0.0f, 0.0f, 0.0f);
+                    break;
 
-            case 2:
-                GameObject BombLv2 = Instantiate(this.bombLv2) as GameObject;
-                BombLv2.transform.position = new Vector2(transform.position.x + 1.0f, transform.position.y - 0.3f);
-                BombLv2.transform.Rotate(0.0f, 0.0f, 0.0f);
-                break;
+                case 2:
+                    GameObject BombLv2 = Instantiate(this.bombLv2) as GameObject;
+                    BombLv2.transform.position = new Vector2(transform.position.x + 1.0f, transform.position.y - 0.3f);
+                    BombLv2.transform.Rotate(0.0f, 0.0f, 0.0f);
+                    break;
+            }
+            this.chargeTime = 0.0f;
+            this.chargeLV = 0;
+            this.shotTime = 0;
         }
-        this.chargeTime = 0.0f;
-        this.chargeLV = 0;
     }
 
     /// <summary>
@@ -589,6 +604,8 @@ public class UnityChanController : MonoBehaviour
         iTween.MoveTo(gameObject, iTween.Hash("x", this.maxPosX, "time", this.starTime - this.t1, 
             /*"delay", 0.2f,*/ "easeType", "linear"));
         this.time = 0;
+        this.chargeTime = 0.0f;
+        this.chargeLV = 0;
         /*
         //残談がない時やクリアシーンに入った時は発射不可
         if (this.starPanelController.starBullet < 1|| this.uiController.clearScene)
