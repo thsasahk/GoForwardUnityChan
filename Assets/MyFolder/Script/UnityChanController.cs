@@ -255,6 +255,10 @@ public class UnityChanController : MonoBehaviour
     /// Coinに与える重力
     /// </summary>
     [SerializeField] private float gravity;
+    /// <summary>
+    /// 極めて規則的な入力をされていないかを確認
+    /// </summary>
+    private float shotTime2;
 
     void Start()
     {
@@ -506,7 +510,7 @@ public class UnityChanController : MonoBehaviour
     /// </summary>
     void Shot()
     {
-        if (this.shotTime >= interval)
+        if (this.shotTime >= interval && this.shotTime != this.shotTime2)
         {
             this.unitySE[0].Stop();
             switch (this.chargeLV)
@@ -530,6 +534,7 @@ public class UnityChanController : MonoBehaviour
             }
             this.chargeTime = 0.0f;
             this.chargeLV = 0;
+            this.shotTime2 = this.shotTime;
             this.shotTime = 0;
         }
     }
