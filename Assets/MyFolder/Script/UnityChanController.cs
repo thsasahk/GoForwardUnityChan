@@ -251,6 +251,10 @@ public class UnityChanController : MonoBehaviour
     /// ジャンプゲージの回復速度に影響
     /// </summary>
     [SerializeField] private float recovery;
+    /// <summary>
+    /// Coinに与える重力
+    /// </summary>
+    [SerializeField] private float gravity;
 
     void Start()
     {
@@ -570,15 +574,6 @@ public class UnityChanController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.tag == "Canon")
-        {
-            this.unitySE[1].Stop();
-            this.animator.SetBool("Run", false);
-        }
-    }
-
     /*
     void GameClearCall()
     {
@@ -633,7 +628,7 @@ public class UnityChanController : MonoBehaviour
     /// </summary>
     /// <param name="other">接触したオブジェクト</param>
     private void OnCollisionStay2D(Collision2D other)
-{
+    {
         if (this.isStar)
         {
             switch (other.gameObject.tag)
@@ -677,6 +672,35 @@ public class UnityChanController : MonoBehaviour
                 default:
                     break;
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        switch (other.tag)
+        {
+            case "Coin":
+                if (this.isStar)
+                {
+                    this.verticalPower = Random.Range(this.vPowerMin, this.vPowerMax);
+                    this.horizontalPower = Random.Range(this.hPowerMin, this.hPowerMax);
+                    other.GetComponent<Rigidbody2D>().AddForce(new Vector2(this.horizontalPower * Time.deltaTime,
+                        this.verticalPower * Time.deltaTime));
+                    other.GetComponent<Rigidbody2D>().gravityScale = this.gravity;
+                    this.rollSpeed = Random.Range(this.rsMin, this.rsMax);
+                    iTween.RotateTo(other.gameObject, iTween.Hash("z", this.rollSpeed, "time", this.fallTime));
+                    other.GetComponent<Coin_Controller>().speed = 0;
+                    other.GetComponent<BoxCollider2D>().enabled = false;
+                }
+                break;
+
+            case "Canon":
+                this.unitySE[1].Stop();
+                this.animator.SetBool("Run", false);
+                break;
+
+            default:
+                break;
         }
     }
 }

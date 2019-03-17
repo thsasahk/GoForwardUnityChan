@@ -59,7 +59,7 @@ public class Coin_Controller : MonoBehaviour
         //Coinを移動させる
         this.transform.Translate(this.speed * Time.deltaTime, 0, 0);
         //deadLineを超えたら破棄
-        if(transform.position.x < this.deadLine)
+        if(transform.position.y < this.deadLine)
         {
             Destroy(this.gameObject);
         }
@@ -70,7 +70,7 @@ public class Coin_Controller : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {
         //Playerに接触するとCoinSoundオブジェクトを生成してUIControllerのcoinScoreを加算し、消滅する
-        if(other.gameObject.tag == "Player")
+        if(other.gameObject.tag == "Player" && !other.GetComponent<UnityChanController>().isStar)
         {
             Instantiate(this.coinSound, transform.position, Quaternion.identity);
             this.uiController.coinScore += 20;

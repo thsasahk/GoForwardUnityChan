@@ -374,6 +374,7 @@ MonoBehaviour:
   t1: 0.1
   interval: 0.1
   recovery: 0.5
+  gravity: 5
 --- !u!61 &8116148401185870991
 BoxCollider2D:
   m_ObjectHideFlags: 0
