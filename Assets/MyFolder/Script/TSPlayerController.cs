@@ -105,6 +105,10 @@ public class TSPlayerController : MonoBehaviour
     /// ポーズ中であることを示す変数
     /// </summary>
     private bool isPause = false;
+    /// <summary>
+    /// ジャンプゲージの回復速度に影響
+    /// </summary>
+    [SerializeField] private float recovery;
 
     void Start()
     {
@@ -385,6 +389,14 @@ public class TSPlayerController : MonoBehaviour
         {
             Jump();
         }
+        if (!Input.GetMouseButton(0) && !Input.GetKey(KeyCode.Space))
+        {
+            this.jumpTime -= this.recovery * Time.deltaTime;
+            if (this.jumpTime < 0.0f)
+            {
+                this.jumpTime = 0.0f;
+            }
+        }
     }
 
     /// <summary>
@@ -530,20 +542,25 @@ public class TSPlayerController : MonoBehaviour
         }
     }
     */
-
+    /*
     /// <summary>
     /// オブジェクトが破棄されるときに調整のためにlesson変数を減少させる
     /// </summary>
-    /*
     private void OnDestroy()
     {
         this.tutorialSceneManagerController.isPlayer = false;
-    }*/
-
-
+    }
+    */
+    /// <summary>
+    /// Playerオブジェクトをスタート地点に移動させる
+    /// スライダーに関する値は0に戻す
+    /// </summary>
     void ComeBack()
     {
         this.isComeBack = true;
+        this.chargeLV = 0;
+        this.chargeTime = 0;
+        this.jumpTime = 0;
         this.unitySE[2].Play();
         this.unitySE[1].Stop();
         this.animator.SetBool("Run", false);

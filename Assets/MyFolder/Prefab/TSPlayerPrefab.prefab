@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1626546846}
   - component: {fileID: 1626546845}
   - component: {fileID: 1626546844}
-  - component: {fileID: 1626546843}
   - component: {fileID: 1626546842}
   - component: {fileID: 1626546841}
   m_Layer: 0
@@ -319,40 +318,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1626546843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1626546840}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bed104d3170442448d70bee9f52de10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitySE: []
-  jumpPower: 18000
-  deadLine: -9
-  bombLv0: {fileID: 3496292481898863473, guid: bee9842bedfeed34088278f25492f3ed, type: 3}
-  bombLv1: {fileID: 793018430437199667, guid: f2cae45b1d744e647ac109c437cb8178, type: 3}
-  bombLv2: {fileID: 2525198722434481331, guid: 49ba453e4862c1d419c4584b562aeb7c, type: 3}
-  chargeTime: 0
-  maxCharge: 1
-  chargeLV: 0
-  chargeSlider: {fileID: 0}
-  hoverSlider: {fileID: 0}
-  canvas: {fileID: 0}
-  clearWalk: -0.1
-  clearParticleWR: {fileID: 1958250728622381722, guid: 81d223e54acea474280f15a07df80ab2,
-    type: 3}
-  clearParticleYG: {fileID: 7872717802261990808, guid: e94f7e6d9b30e2646b623d4d1f2995af,
-    type: 3}
-  jet: {fileID: 2271468282962257780}
-  returnSpeed: -0.01
-  maxHigh: 1
-  jumpLimit: 5
-  stalker: {fileID: 0}
 --- !u!61 &1626546842
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -405,6 +370,8 @@ MonoBehaviour:
   returnSpeed: -0.01
   maxHigh: 1
   jumpLimit: 3
+  isComeBack: 0
+  recovery: 0.5
 --- !u!1 &2271468282962257780
 GameObject:
   m_ObjectHideFlags: 0
