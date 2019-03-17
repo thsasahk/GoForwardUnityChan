@@ -153,23 +153,29 @@ public class UIController : MonoBehaviour
     /// 現在位置からボス出現位置までの距離
     /// </summary>
     private float distanceToBoss;
-
+    /// <summary>
+    /// クリアシーンが開始したことを記録する
+    /// </summary>
     public bool clearScene = false;
-
+    /// <summary>
+    /// クリア時に再生するタイムライン
+    /// </summary>
     [SerializeField] private GameObject clearSceneTimeLine;
-
+    /// <summary>
+    /// タイムラインのディレクター
+    /// </summary>
     private PlayableDirector clearSceneTimeLineDirector;
-
+    /// <summary>
+    /// 一度目のボス撤退時の体力を記録
+    /// </summary>
     public int lifeRemainder = 0;
-
-    //private NCMBObject ranking;
-
-    //private string playerName = "NoName";
-
-    //private TextMeshProUGUI inputField;
-
+    /// <summary>
+    /// プレイヤーネームを入力する
+    /// </summary>
     [SerializeField] private GameObject inputField;
-
+    /// <summary>
+    /// 記録をセーブ際に使用するボタン
+    /// </summary>
     [SerializeField] private GameObject savePanel;
 
     void Start()
