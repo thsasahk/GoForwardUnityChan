@@ -59,6 +59,13 @@ public class TSBombController : MonoBehaviour
                 }
                 break;
 
+            case "Star":
+                other.gameObject.GetComponent<TSStarController>().Damage(this.attack);
+                if (attack <= 3)
+                {
+                    Destroy(gameObject);
+                }
+                break;
 
             //それ以外のオブジェクトには反応しない
             default:
