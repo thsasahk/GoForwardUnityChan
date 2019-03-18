@@ -67,7 +67,7 @@ public class StarPanelController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z))
         {
             this.unityChanController.StarDash();
-            this.unityChanController.starDash = false;
+            //this.unityChanController.isStar = false;
         }
         //this.starBullet2 = this.starBullet;
     }

@@ -150,7 +150,7 @@ public class UnityChanController : MonoBehaviour
     /// <summary>
     /// StarShot()を呼び出すためのクリックした際にJump()を呼ぶのを禁止する
     /// </summary>
-    public bool starDash;
+    //public bool starDash;
     /// <summary>
     /// StarPanelオブジェクト
     /// </summary>
@@ -170,11 +170,11 @@ public class UnityChanController : MonoBehaviour
     /// <summary>
     /// StarDash()でオブジェクトに与える力
     /// </summary>
-    private Vector2 dashPower;
+    //private Vector2 dashPower;
     /// <summary>
     /// dashPowerのx値
     /// </summary>
-    public float dashPowerX;
+    //public float dashPowerX;
     /// <summary>
     /// Playerオブジェクトのx方向の限界
     /// </summary>
@@ -268,7 +268,7 @@ public class UnityChanController : MonoBehaviour
         this.uiController = this.canvas.GetComponent<UIController>();
         this.jetParticle = this.jet.GetComponent<ParticleSystem>();
         this.starPanelController = this.starPanel.GetComponent<StarPanelController>();
-        this.dashPower = new Vector2(this.dashPowerX * Time.deltaTime, 0f);
+        //this.dashPower = new Vector2(this.dashPowerX * Time.deltaTime, 0f);
         this.dashSE = this.dashParticle.GetComponent<AudioSource>();
     }
 
@@ -292,6 +292,7 @@ public class UnityChanController : MonoBehaviour
         }
         //最後にStarDash()を呼び出してからの時間を計測
         this.time += Time.deltaTime;
+        //最後に射撃してからの時間を計測
         this.shotTime += Time.deltaTime;
         //無敵状態解除
         if(this.time >= this.starTime)
@@ -356,7 +357,7 @@ public class UnityChanController : MonoBehaviour
         }
         */
         if((Input.GetMouseButton(0) || Input.GetKey(KeyCode.Space)) && this.jumpTime < this.jumpLimit
-            && !this.starDash)
+            && !/*this.starDash*/this.isStar)
         {
             Jump();
         }
@@ -390,7 +391,8 @@ public class UnityChanController : MonoBehaviour
             this.unitySE[0].Play();
         }
         //右クリックを推している間、Charge関数を呼び続ける
-        if(Input.GetMouseButton(1)|| Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+        if((Input.GetMouseButton(1)|| Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl))
+            && !this.isStar)
         {
             Charge();
         }
@@ -604,7 +606,8 @@ public class UnityChanController : MonoBehaviour
         this.dashSE.Play();
         this.isStar = true;
         this.starPanelController.starCount--;
-        this.starDash = true;
+        //this.starDash = true;
+        this.isStar = true;
         //this.rigid2D.AddForce(this.dashPower);
         iTween.MoveTo(gameObject, iTween.Hash("x", this.maxPosX, "time", this.starTime - this.t1, 
             /*"delay", 0.2f,*/ "easeType", "linear"));
@@ -625,13 +628,16 @@ public class UnityChanController : MonoBehaviour
         */
     }
 
+    /*
     /// <summary>
     /// Jump()を呼び出すことを許可する
     /// </summary>
     public void StarDashEnd()
     {
-        this.starDash = false;
+        //this.starDash = false;
+        this.isStar = false;
     }
+    */
 
     /// <summary>
     /// 接触したオブジェクトに力を与えて吹き飛ばす
