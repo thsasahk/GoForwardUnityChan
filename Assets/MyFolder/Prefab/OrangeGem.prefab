@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9104095835196298147}
   - component: {fileID: 6083951886500774854}
   - component: {fileID: 1072609135215498791}
-  - component: {fileID: 8630410156909945090}
+  - component: {fileID: 7124171510414375038}
   m_Layer: 0
   m_Name: OrangeGem
   m_TagString: Block
@@ -323,7 +323,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8630410156909945090
+--- !u!114 &7124171510414375038
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

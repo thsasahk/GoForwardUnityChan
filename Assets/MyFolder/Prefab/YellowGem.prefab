@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9104095835196298147}
   - component: {fileID: 6083951886500774854}
   - component: {fileID: 1072609135215498791}
-  - component: {fileID: 8630410156909945090}
+  - component: {fileID: 1936282898647384477}
   m_Layer: 0
   m_Name: YellowGem
   m_TagString: Block
@@ -323,7 +323,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8630410156909945090
+--- !u!114 &1936282898647384477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -337,6 +337,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: -5.5
   deadLine: -10
-  particlePrefab: {fileID: 8874050835183737977, guid: 81aff6bc9c6e49c4d80d90e878f093df,
+  particlePrefab: {fileID: 4699762153853051566, guid: 1b69be27ba38a7f4dbf0ef10c0323be2,
     type: 3}
   life: 2
