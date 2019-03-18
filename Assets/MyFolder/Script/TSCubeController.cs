@@ -74,12 +74,7 @@ public class TSCubeController : MonoBehaviour
 
     void Update()
     {
-        if (transform.position.x < this.deadLine)
-        {
-            Destroy(gameObject);
-        }
-
-        if (this.tutorialSceneManagerController.loadScene)
+        if (transform.position.x < this.deadLine|| this.tutorialSceneManagerController.loadScene)
         {
             Destroy(gameObject);
         }
