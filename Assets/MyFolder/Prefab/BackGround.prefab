@@ -105,8 +105,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129675403943216506}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -5.4, z: 0}
-  m_LocalScale: {x: 1.2, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -7.683, z: 0}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_Children: []
   m_Father: {fileID: 2129675405466904467}
   m_RootOrder: 2
@@ -279,6 +279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed: -0.005
   canvas: {fileID: 0}
+  stalker: {fileID: 0}
 --- !u!1 &2129675404138027103
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,6 +453,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed: -0.005
   canvas: {fileID: 0}
+  stalker: {fileID: 0}
 --- !u!1 &2129675404786223317
 GameObject:
   m_ObjectHideFlags: 0
@@ -499,6 +501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed: -0.02
   canvas: {fileID: 0}
+  stalker: {fileID: 0}
 --- !u!1 &2129675404877865252
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,6 +596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed: -0.0021
   canvas: {fileID: 0}
+  stalker: {fileID: 0}
 --- !u!1 &2129675404909805040
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,6 +644,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeed: -0.02
   canvas: {fileID: 0}
+  stalker: {fileID: 0}
 --- !u!1 &2129675405054033146
 GameObject:
   m_ObjectHideFlags: 0
