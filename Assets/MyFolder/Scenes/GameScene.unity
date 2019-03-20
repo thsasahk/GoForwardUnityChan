@@ -406,7 +406,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 194135422}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.594542, y: -0.052000284, z: -10}
+  m_LocalPosition: {x: -0.594542, y: -3.9, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2104001367}
@@ -1366,7 +1366,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.594542, y: -0.011803865, z: -10}
+  m_LocalPosition: {x: -0.594542, y: -0.01180315, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2857,11 +2857,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stalker
       objectReference: {fileID: 0}
-    - target: {fileID: 2543939852000399232, guid: 2bb17f128d1db8f4aada5002e8e2b0f5,
-        type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2409627569322899313, guid: 2bb17f128d1db8f4aada5002e8e2b0f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2947,6 +2942,11 @@ PrefabInstance:
       propertyPath: cubeGeneratorObject
       value: 
       objectReference: {fileID: 958883081}
+    - target: {fileID: 2543939852000399232, guid: 2bb17f128d1db8f4aada5002e8e2b0f5,
+        type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6530326334008742887, guid: 2bb17f128d1db8f4aada5002e8e2b0f5,
         type: 3}
       propertyPath: Loop
@@ -4638,13 +4638,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_LookaheadTime: 0
-  m_LookaheadSmoothing: 10
+  m_LookaheadSmoothing: 30
   m_LookaheadIgnoreY: 0
   m_XDamping: 1
-  m_YDamping: 1
+  m_YDamping: 20
   m_ZDamping: 1
   m_ScreenX: 0.41
-  m_ScreenY: 0.87
+  m_ScreenY: 0.5
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.012448134
   m_DeadZoneHeight: 0
@@ -5707,6 +5707,36 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 3.363732
       objectReference: {fileID: 0}
+    - target: {fileID: 2129675403995322527, guid: f44db72ee7fd3c64ebcf67f702249926,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129675404609815062, guid: f44db72ee7fd3c64ebcf67f702249926,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129675403878856867, guid: f44db72ee7fd3c64ebcf67f702249926,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129675404138027089, guid: f44db72ee7fd3c64ebcf67f702249926,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129675405054033148, guid: f44db72ee7fd3c64ebcf67f702249926,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2129675405502051528, guid: f44db72ee7fd3c64ebcf67f702249926,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 2129675403943216508, guid: f44db72ee7fd3c64ebcf67f702249926,
         type: 3}
       propertyPath: m_Color.r
@@ -5727,37 +5757,7 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2129675403995322527, guid: f44db72ee7fd3c64ebcf67f702249926,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -2
-      objectReference: {fileID: 0}
-    - target: {fileID: 2129675404609815062, guid: f44db72ee7fd3c64ebcf67f702249926,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -2
-      objectReference: {fileID: 0}
     - target: {fileID: 2129675404877865255, guid: f44db72ee7fd3c64ebcf67f702249926,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2129675403878856867, guid: f44db72ee7fd3c64ebcf67f702249926,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2129675404138027089, guid: f44db72ee7fd3c64ebcf67f702249926,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2129675405054033148, guid: f44db72ee7fd3c64ebcf67f702249926,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2129675405502051528, guid: f44db72ee7fd3c64ebcf67f702249926,
         type: 3}
       propertyPath: m_SortingOrder
       value: -1
@@ -6077,6 +6077,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: HoverSlider
       objectReference: {fileID: 0}
+    - target: {fileID: 8991029885397520804, guid: 42dd01aff5c57514ea60f05fb9cbd447,
+        type: 3}
+      propertyPath: m_Value
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8991029885397520804, guid: 42dd01aff5c57514ea60f05fb9cbd447,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1210478151321700765, guid: 42dd01aff5c57514ea60f05fb9cbd447,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6181,16 +6191,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8991029885397520804, guid: 42dd01aff5c57514ea60f05fb9cbd447,
-        type: 3}
-      propertyPath: m_Value
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8991029885397520804, guid: 42dd01aff5c57514ea60f05fb9cbd447,
-        type: 3}
-      propertyPath: m_MaxValue
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7136588382139862052, guid: 42dd01aff5c57514ea60f05fb9cbd447,
         type: 3}
