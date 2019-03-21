@@ -272,7 +272,6 @@ public class TSPlayerController : MonoBehaviour
         }
         //最後にStarDash()を呼び出してからの時間を計測
         this.time += Time.deltaTime;
-        this.shotTime += Time.deltaTime;
         //無敵状態解除
         if (this.time >= this.starTime)
         {
@@ -497,8 +496,7 @@ public class TSPlayerController : MonoBehaviour
         {
             Charge();
         }
-        if (Input.GetMouseButtonUp(1) || Input.GetKeyUp(KeyCode.LeftControl) ||
-            Input.GetKeyUp(KeyCode.RightControl))
+        if (Input.GetMouseButtonUp(1) || Input.GetKeyUp(KeyCode.LeftControl) || Input.GetKeyUp(KeyCode.RightControl))
         {
             Shot();
         }
