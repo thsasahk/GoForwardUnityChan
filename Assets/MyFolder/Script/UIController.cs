@@ -189,7 +189,7 @@ public class UIController : MonoBehaviour
         this.gameOverTextMaterial = this.gameOverTextUGUI.fontMaterial;
         this.runLengthText = GameObject.Find("RunLength");
         this.bgm = this.bgmManager.GetComponents<AudioSource>();
-        this.highScore = PlayerPrefs.GetInt("highScore_Key", 0);
+        this.highScore = PlayerPrefs.GetInt("highScore_Key_ver0.71", 0);
         this.DangerTextUGUI = this.DangerText.GetComponent<TextMeshProUGUI>();
         this.cubeGeneratorController = this.cubeGenerator.GetComponent<CubeGenerator>();
         this.DangerTextAnimator = this.DangerText.GetComponent<Animator>();
@@ -201,11 +201,13 @@ public class UIController : MonoBehaviour
 
     void Update()
     {
+        /*
         //scoreを表示
         if (this.clear == false)
         {
             this.scoreText.GetComponent<Text>().text = "Score:" + this.score.ToString() + "pts";
         }
+        */
         if (this.isGameOver == false && this.clearScene == false)
         {
             //走った距離を計測する
@@ -220,6 +222,8 @@ public class UIController : MonoBehaviour
             }
             //走った距離を表示する
             this.runLengthText.GetComponent<Text>().text = "Distance: " + this.distance.ToString("F1") + "m";
+            //scoreを表示
+            this.scoreText.GetComponent<Text>().text = "Score:" + this.score.ToString() + "pts";
         }
         //scoreを計算
         this.score = this.cubeScore + this.coinScore + this.starScore + this.stalkerScore
@@ -306,7 +310,7 @@ public class UIController : MonoBehaviour
         if(this.highScore < this.score)
         {
             this.highScore = this.score;
-            PlayerPrefs.SetInt("highScore_Key",this.highScore);
+            PlayerPrefs.SetInt("highScore_Key_ver0.71",this.highScore);
             PlayerPrefs.Save();
 
             this.recordUpdate = "Yes";
@@ -355,7 +359,7 @@ public class UIController : MonoBehaviour
         if (this.highScore < this.score)
         {
             this.highScore = this.score;
-            PlayerPrefs.SetInt("highScore_Key", this.highScore);
+            PlayerPrefs.SetInt("highScore_Key_ver0.71", this.highScore);
             PlayerPrefs.Save();
             
             //ハイスコアが更新されたことを記録
@@ -407,14 +411,19 @@ public class UIController : MonoBehaviour
         this.gameOverTextMaterial.SetColor("_OutlineColor", new Color32(0, 0, 0, 100));
         this.gameOverTextUGUI.text = "Game Clear";
         */
+        /*
         this.runLengthText.GetComponent<Text>().text = " ";
         this.scoreText.GetComponent<Text>().text = " ";
+        */
         this.clear = true;
     }
 
     //操作を停止してから一定時間空けてからCleaSceneに入るために関数化
     void ClearScene()
     {
+        this.runLengthText.GetComponent<Text>().text = " ";
+        this.scoreText.GetComponent<Text>().text = " ";
+        this.stalkerScore += 1000;
         this.clearSceneTimeLineDirector.Play();
     }
 
