@@ -32,6 +32,10 @@ public class BombController : MonoBehaviour
     /// オブジェクトを破棄するx座標
     /// </summary>
     [SerializeField] private float deadLine;//{16:9 10_1028:786 8}
+    /// <summary>
+    /// 
+    /// </summary>
+    [SerializeField] private float knockBack;
 
     void Start(){}
 
@@ -75,7 +79,9 @@ public class BombController : MonoBehaviour
             case "HBlock":
                 this.cubeController = other.gameObject.GetComponent<CubeController>();
                 this.cubeController.Damage(this.attack);
-                if(attack <= 3)
+                //other.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.right * this.knockBack);
+                other.gameObject.GetComponent<CubeController>().time = this.knockBack;
+                if (attack <= 3)
                 {
                     Destroy(gameObject);
                 }
