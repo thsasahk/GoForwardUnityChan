@@ -26,14 +26,21 @@ public class InputFieldController : MonoBehaviour
     /// Canvasオブジェクトのスクリプト
     /// </summary>
     private UIController uIController;
-
+    /// <summary>
+    /// セーブしたことを記録
+    /// </summary>
     private bool save;
+    /// <summary>
+    /// セーブ時に再生するオーディオソース
+    /// </summary>
+    public AudioSource audioSource;
 
     void Start()
     {
         this.ranking = new NCMBObject("Ranking");
         this.uIController = this.canvas.GetComponent<UIController>();
         this.inputField = GetComponent<TMP_InputField>();
+        this.audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -56,6 +63,7 @@ public class InputFieldController : MonoBehaviour
         //セーブは一度だけ
         if (!this.save)
         {
+            this.audioSource.Play();
             this.ranking["name"] = inputField.text;
             this.ranking["score"] = this.uIController.score;
             this.save = true;
