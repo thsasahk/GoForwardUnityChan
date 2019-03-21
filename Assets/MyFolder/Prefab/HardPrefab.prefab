@@ -102,7 +102,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 12.8, y: 7.2}
+    oldSize: {x: 0.97, y: 0.97}
     newSize: {x: 12.8, y: 7.2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -337,10 +337,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: -5.5
+  backSpeed: 5
   deadLine: -10
   particlePrefab: {fileID: 6409366848875675875, guid: 2226024090decc449a46784b1f6f1b5a,
     type: 3}
   life: 1
+  time: 0
 --- !u!82 &5499281965405250005
 AudioSource:
   m_ObjectHideFlags: 0
