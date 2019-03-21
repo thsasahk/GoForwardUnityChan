@@ -287,6 +287,11 @@ public class UnityChanController : MonoBehaviour
         }
         if (this.isPause)
         {
+            if(!Input.GetMouseButton(1) && !Input.GetKey(KeyCode.LeftControl) && !Input.GetKey(KeyCode.RightControl)
+                && (this.chargeLV != 0 || this.chargeTime != 0))
+            {
+                Shot();
+            }
             this.unitySE[1].Play();
             this.isPause = false;
         }
