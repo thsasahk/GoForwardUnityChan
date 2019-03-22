@@ -336,7 +336,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: -5.5
+  backSpeed: 0
   deadLine: -10
   particlePrefab: {fileID: 8874050835183737977, guid: 7676c76fc91dee4498b330d5693664e5,
     type: 3}
   life: 2
+  time: 0

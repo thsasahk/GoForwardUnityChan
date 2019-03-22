@@ -9,6 +9,10 @@ public class CubeController : MonoBehaviour
     /// </summary>
     public float speed;//{16:9 -7_1028:786 -5.5}
     /// <summary>
+    /// 
+    /// </summary>
+    public float backSpeed;
+    /// <summary>
     /// 消滅位置
     /// </summary>
     public float deadLine = -10;
@@ -32,6 +36,10 @@ public class CubeController : MonoBehaviour
     /// オブジェクトの破棄条件を計測する変数
     /// </summary>
     public int life;
+    /// <summary>
+    /// 
+    /// </summary>
+    public float time;
 
     void Start()
     {
@@ -47,14 +55,22 @@ public class CubeController : MonoBehaviour
             return;
         }
         //キューブを移動させる
-        transform.Translate(this.speed * Time.deltaTime, 0, 0);
+        //transform.Translate(this.speed * Time.deltaTime, 0, 0);
+        if (this.time <= 0)
+        {
+            transform.Translate(this.speed * Time.deltaTime, 0, 0);
+        }
+        else
+        {
+            this.time -= Time.deltaTime;
+            transform.Translate(this.backSpeed * this.time * Time.deltaTime, 0, 0);
+        }
         //画面外に出たら破棄する
         if(transform.position.y < deadLine)
         {
             Destroy(this.gameObject);
         }
     }
-
     //生成され、着地した際にSE[0]を再生する
     void OnCollisionEnter2D(Collision2D other)
     {
