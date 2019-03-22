@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &611697183703617920
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 611697183703617922}
+  - component: {fileID: 611697183703617923}
+  m_Layer: 0
+  m_Name: CubeGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &611697183703617922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611697183703617920}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.7669119, y: 2.336122, z: -0.06961532}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &611697183703617923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 611697183703617920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48e790590949b024bbd2156b7736dffa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubePrefab:
+  - {fileID: 3457633664069827116, guid: f20ab0de68c444a459589fa019b21919, type: 3}
+  - {fileID: 3457633664069827116, guid: 0dcb8e0494b0bc946bc06c2d6b34fd5a, type: 3}
+  - {fileID: 3457633664069827116, guid: e6e1ecde55e5b3a43bebf1f8242dcd3c, type: 3}
+  - {fileID: 3457633664069827116, guid: 61d032380eec8314b9dcc657f18d8c9d, type: 3}
+  hardPrefab: {fileID: 5529118170657180753, guid: d8987cb10a80a5f4fa77b126557219c8,
+    type: 3}
+  jumpBall: {fileID: 1685832049595097712, guid: 74d25e2828e23074baf4bdfbd789f852,
+    type: 3}
+  span: 1
+  maxBlockNum: 3
+  hardPercentage: 14
+  canvas: {fileID: 0}
+  boss: {fileID: 9181895578445652581, guid: 4381199cb024d4a49a952cf8fe23a53e, type: 3}
+  isBoss: 0
