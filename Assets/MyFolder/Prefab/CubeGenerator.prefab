@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 611697183703617923}
   m_Layer: 0
   m_Name: CubeGenerator
-  m_TagString: Untagged
+  m_TagString: CubeGenerator
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,9 +52,13 @@ MonoBehaviour:
     type: 3}
   jumpBall: {fileID: 1685832049595097712, guid: 74d25e2828e23074baf4bdfbd789f852,
     type: 3}
-  span: 1
+  genPosX: 12
+  offsetY: 0.3
+  spaceY: 6.9
+  offsetX: 0.5
+  spaceX: 0.1
   maxBlockNum: 3
-  hardPercentage: 14
+  hardPercentage: 10
   canvas: {fileID: 0}
   boss: {fileID: 9181895578445652581, guid: 4381199cb024d4a49a952cf8fe23a53e, type: 3}
   isBoss: 0

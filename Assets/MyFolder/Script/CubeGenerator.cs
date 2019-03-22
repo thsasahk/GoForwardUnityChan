@@ -23,35 +23,35 @@ public class CubeGenerator : MonoBehaviour
     /// <summary>
     /// Cubeの生成間隔
     /// </summary>
-    public float span = 1.0f;
+    private float span = 1.0f;
     /// <summary>
     /// Cubeの生成位置：X座標
     /// </summary>
-    private float genPosX = 12;
+    [SerializeField] private float genPosX = 12;
     /// <summary>
     /// Cubeの生成位置オフセット
     /// </summary>
-    private float offsetY = 0.3f;
+    [SerializeField] private float offsetY = 0.3f;
     /// <summary>
     /// Cubeの生成位置：Y座標
     /// </summary>
-    private float spaceY = 6.9f;
+    [SerializeField] private float spaceY = 6.9f;
     /// <summary>
     /// Cubeの生成位置オフセット
     /// </summary>
-    private float offsetX = 0.5f;
+    [SerializeField]private float offsetX;
     /// <summary>
     /// Cubeの横方向の間隔
     /// </summary>
-    private float spaceX = 0.4f;
+    [SerializeField]private float spaceX;
     /// <summary>
     /// Cubeの生成個数の上限
     /// </summary>
-    public int maxBlockNum = 4;
+    [SerializeField] private int maxBlockNum;
     /// <summary>
     /// HardCubeが生成される確率
     /// </summary>
-    public int hardPercentage;
+    [SerializeField] private int hardPercentage;
     /// <summary>
     /// 一度に複数のJumpBallを作らないように管理する変数
     /// </summary>
@@ -59,7 +59,7 @@ public class CubeGenerator : MonoBehaviour
     /// <summary>
     /// Canvasオブジェクト
     /// </summary>
-    public GameObject canvas;
+    [SerializeField] private GameObject canvas;
     /// <summary>
     /// Canvasオブジェクトのスクリプト
     /// </summary>
@@ -67,7 +67,7 @@ public class CubeGenerator : MonoBehaviour
     /// <summary>
     /// Bossオブジェクト
     /// </summary>
-    public GameObject boss;
+    [SerializeField] private GameObject boss;
     /// <summary>
     /// Bossオブジェクトのスクリプト
     /// </summary>
