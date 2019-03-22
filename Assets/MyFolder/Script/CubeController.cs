@@ -9,7 +9,7 @@ public class CubeController : MonoBehaviour
     /// </summary>
     public float speed;//{16:9 -7_1028:786 -5.5}
     /// <summary>
-    /// 
+    /// bombLv1,bombLv2と衝突した時のノックバックの速度
     /// </summary>
     public float backSpeed;
     /// <summary>
@@ -37,15 +37,25 @@ public class CubeController : MonoBehaviour
     /// </summary>
     public int life;
     /// <summary>
-    /// 
+    /// bombLv1,bombLv2と衝突したときノックバックする時間
     /// </summary>
     public float time;
+    /// <summary>
+    /// 
+    /// </summary>
+    [SerializeField] private GameObject cubeGenarator;
+    /// <summary>
+    /// 
+    /// </summary>
+    private CubeGenerator cubeGeneratorController;
 
     void Start()
     {
         this.SE = GetComponents<AudioSource>();
         this.canvas = GameObject.Find("Canvas");
         this.uiController = this.canvas.GetComponent<UIController>();
+        this.cubeGenarator = GameObject.FindGameObjectWithTag("CubeGenerator");
+        this.cubeGeneratorController = this.cubeGenarator.GetComponent<CubeGenerator>();
     }
 
     void Update()
@@ -66,7 +76,7 @@ public class CubeController : MonoBehaviour
             transform.Translate(this.backSpeed * this.time * Time.deltaTime, 0, 0);
         }
         //画面外に出たら破棄する
-        if(transform.position.y < deadLine)
+        if(transform.position.y < deadLine|| this.cubeGeneratorController.isBoss)
         {
             Destroy(this.gameObject);
         }
