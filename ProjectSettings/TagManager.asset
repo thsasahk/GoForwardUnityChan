@@ -18,6 +18,9 @@ TagManager:
   - Stage
   - StarBullet
   - Bullet
+  - StarPanel
+  - Canon
+  - CubeGenerator
   layers:
   - Default
   - TransparentFX
