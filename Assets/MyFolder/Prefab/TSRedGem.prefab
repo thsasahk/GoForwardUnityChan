@@ -122,7 +122,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 6
+  m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 5
@@ -344,4 +344,5 @@ MonoBehaviour:
   manualText: {fileID: 0}
   lesson4Start: 0
   player: {fileID: 1626546840, guid: 301579eb75a5b054da97f4fedfc65d2b, type: 3}
-  delay: 0
+  time: 0
+  backSpeed: 0
