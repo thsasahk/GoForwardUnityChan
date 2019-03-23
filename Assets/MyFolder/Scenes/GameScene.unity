@@ -1924,6 +1924,8 @@ PlayableDirector:
     value: {fileID: 0}
   - key: {fileID: 114521258660884830, guid: dba391fabbb98cb4597f122c6d307f3e, type: 2}
     value: {fileID: 0}
+  - key: {fileID: 114843264021961906, guid: dba391fabbb98cb4597f122c6d307f3e, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - 74263787117a15643a666f3adf5ef55d: {fileID: 228410071}
@@ -6709,6 +6711,16 @@ PrefabInstance:
       propertyPath: starPanel
       value: 
       objectReference: {fileID: 1519060767}
+    - target: {fileID: 8116148401185870991, guid: e2628e3ec1a8de24295ecb71bdd77753,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2190698493583001713, guid: e2628e3ec1a8de24295ecb71bdd77753,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1530069165305731025, guid: e2628e3ec1a8de24295ecb71bdd77753,
         type: 3}
       propertyPath: m_IsActive
@@ -6728,16 +6740,6 @@ PrefabInstance:
         type: 3}
       propertyPath: playOnAwake
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8116148401185870991, guid: e2628e3ec1a8de24295ecb71bdd77753,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2190698493583001713, guid: e2628e3ec1a8de24295ecb71bdd77753,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e2628e3ec1a8de24295ecb71bdd77753, type: 3}
