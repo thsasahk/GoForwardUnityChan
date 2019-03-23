@@ -458,6 +458,7 @@ public class BossController : MonoBehaviour
         bullet.transform.Rotate(0, 0, this.angle);
     }
 
+    /*
     /// <summary>
     /// オブジェクトを破棄してbossScoreを加算する
     /// </summary>
@@ -465,10 +466,11 @@ public class BossController : MonoBehaviour
     {
         iTween.Stop(gameObject);
         CancelInvoke();
-        this.uiController.bossScore += 100;
+        //this.uiController.bossScore += 100;
         this.cubeGeneratorScript.isBoss = false;
         Destroy(gameObject,1.0f);
     }
+    */
 
     /// <summary>
     /// Bombオブジェクトに接触した際呼び出される、lengthによってlifeが1未満になった時の処理を変化させる
@@ -496,7 +498,7 @@ public class BossController : MonoBehaviour
             GameObject obj = Instantiate(this.bossParticle);
             obj.transform.position = new Vector2(this.transform.position.x, this.transform.position.y);
             obj.transform.Rotate(-90.0f, 0.0f, 0.0f);
-
+            //得点を加算
             this.uiController.bossScore += 500;
             Destroy(gameObject);
             /*
