@@ -41,11 +41,11 @@ public class CubeController : MonoBehaviour
     /// </summary>
     public float time;
     /// <summary>
-    /// 
+    /// CubeGebaratorオブジェクト
     /// </summary>
     [SerializeField] private GameObject cubeGenarator;
     /// <summary>
-    /// 
+    /// CubeGeneratorオブジェクトのスクリプト
     /// </summary>
     private CubeGenerator cubeGeneratorController;
 
@@ -76,7 +76,7 @@ public class CubeController : MonoBehaviour
             transform.Translate(this.backSpeed * this.time * Time.deltaTime, 0, 0);
         }
         //画面外に出たら破棄する
-        if(transform.position.y < deadLine|| this.cubeGeneratorController.isBoss)
+        if(transform.position.y < deadLine/*|| this.cubeGeneratorController.isBoss*/)
         {
             Destroy(this.gameObject);
         }

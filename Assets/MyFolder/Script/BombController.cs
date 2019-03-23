@@ -33,7 +33,7 @@ public class BombController : MonoBehaviour
     /// </summary>
     [SerializeField] private float deadLine;//{16:9 10_1028:786 8}
     /// <summary>
-    /// 
+    /// 衝突したHardBlockに与えるノックバックの時間
     /// </summary>
     [SerializeField] private float knockBack;
 
@@ -42,7 +42,7 @@ public class BombController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        switch(this.attack)
+        switch (this.attack)
         {
             case 1:
                 transform.Translate(this.bombSpeed * Time.deltaTime, 0, 0);
