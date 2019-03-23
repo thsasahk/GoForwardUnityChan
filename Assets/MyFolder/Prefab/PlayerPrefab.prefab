@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8116148401185870984}
   - component: {fileID: 8116148401185870991}
   - component: {fileID: 1722598438654286935}
+  - component: {fileID: 2190698493583001713}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Player
@@ -356,10 +357,8 @@ MonoBehaviour:
   starBullet: {fileID: 0}
   x1: 2.3
   y1: 0.7
-  starDash: 0
   starPanel: {fileID: 0}
   coolTime: 5
-  dashPowerX: 300000
   maxPosX: 0
   dashParticle: {fileID: 7168492035986713405}
   vPowerMin: 100000
@@ -388,7 +387,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.057001173}
+  m_Offset: {x: 0.023220152, y: 0.52140033}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -399,7 +398,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.71, y: 3.0035977}
+  m_Size: {x: 1.9205215, y: 2.0747993}
   m_EdgeRadius: 0
 --- !u!82 &1722598438654286935
 AudioSource:
@@ -497,6 +496,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!58 &2190698493583001713
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8116148401185870980}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.011609942, y: -0.4}
+  serializedVersion: 2
+  m_Radius: 0.99840057
 --- !u!1 &8116148401971171496
 GameObject:
   m_ObjectHideFlags: 0
@@ -5202,6 +5217,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8116148401185870987}
     m_Modifications:
+    - target: {fileID: 6960521203962637257, guid: d02034c4d379e7645bb832d7314ca5b0,
+        type: 3}
+      propertyPath: m_Name
+      value: DashStarParticle
+      objectReference: {fileID: 0}
     - target: {fileID: 6960521203962637268, guid: d02034c4d379e7645bb832d7314ca5b0,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5256,11 +5276,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -90
-      objectReference: {fileID: 0}
-    - target: {fileID: 6960521203962637257, guid: d02034c4d379e7645bb832d7314ca5b0,
-        type: 3}
-      propertyPath: m_Name
-      value: DashStarParticle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d02034c4d379e7645bb832d7314ca5b0, type: 3}
