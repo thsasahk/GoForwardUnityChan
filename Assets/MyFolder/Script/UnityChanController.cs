@@ -339,7 +339,13 @@ public class UnityChanController : MonoBehaviour
         //ClearSceneに入ったら操作不能
         if (this.uiController.clearScene)
         {
-            Invoke("Clear", 1.0f);
+            if (!this.oneTime)
+            {
+                iTween.MoveTo(gameObject, iTween.Hash("x", 0.0f, "y", -3.9f, "time", 1.0f));
+            }
+
+            this.oneTime = true;
+            //Invoke("Clear", 1.0f);
             this.unitySE[0].Stop();
             this.unitySE[2].Stop();
             return;

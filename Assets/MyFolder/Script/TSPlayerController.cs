@@ -226,7 +226,12 @@ public class TSPlayerController : MonoBehaviour
         //TimeLineの再生中、Pose中は操作不能
         if (this.tutorialSceneManagerController.loadScene|| Mathf.Approximately(Time.timeScale, 0f))
         {
-            for(int n = 0; n <= 2; n++)
+            //位置を調整する
+            if (this.tutorialSceneManagerController.loadScene && this.isPause == false)
+            {
+                iTween.MoveTo(gameObject, iTween.Hash("x", -2.9f, "y", -3.9f, "time", 1.0f));
+            }
+            for (int n = 0; n <= 2; n++)
             {
                 this.unitySE[n].Stop();
             }
