@@ -341,7 +341,7 @@ public class UnityChanController : MonoBehaviour
         {
             if (!this.oneTime)
             {
-                iTween.MoveTo(gameObject, iTween.Hash("x", 0.0f, "y", -3.9f, "time", 1.0f));
+                iTween.MoveTo(gameObject, iTween.Hash("x", -1.3f, "y", -3.9f, "time", 1.0f));
             }
 
             this.oneTime = true;
