@@ -255,7 +255,6 @@ MonoBehaviour:
     type: 3}
   life: 1
   power: 3000
-  power2: 0
 --- !u!82 &2270473544019818831
 AudioSource:
   m_ObjectHideFlags: 0
