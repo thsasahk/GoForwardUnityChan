@@ -189,7 +189,7 @@ public class UIController : MonoBehaviour
         this.gameOverTextMaterial = this.gameOverTextUGUI.fontMaterial;
         this.runLengthText = GameObject.Find("RunLength");
         this.bgm = this.bgmManager.GetComponents<AudioSource>();
-        this.highScore = PlayerPrefs.GetInt("highScore_Key_ver0.71", 0);
+        this.highScore = PlayerPrefs.GetInt("highScore_Key_ver0.8", 0);
         this.DangerTextUGUI = this.DangerText.GetComponent<TextMeshProUGUI>();
         this.cubeGeneratorController = this.cubeGenerator.GetComponent<CubeGenerator>();
         this.DangerTextAnimator = this.DangerText.GetComponent<Animator>();
@@ -310,7 +310,7 @@ public class UIController : MonoBehaviour
         if(this.highScore < this.score)
         {
             this.highScore = this.score;
-            PlayerPrefs.SetInt("highScore_Key_ver0.71",this.highScore);
+            PlayerPrefs.SetInt("highScore_Key_ver0.8",this.highScore);
             PlayerPrefs.Save();
 
             this.recordUpdate = "Yes";
@@ -359,7 +359,7 @@ public class UIController : MonoBehaviour
         if (this.highScore < this.score)
         {
             this.highScore = this.score;
-            PlayerPrefs.SetInt("highScore_Key_ver0.71", this.highScore);
+            PlayerPrefs.SetInt("highScore_Key_ver0.8", this.highScore);
             PlayerPrefs.Save();
             
             //ハイスコアが更新されたことを記録

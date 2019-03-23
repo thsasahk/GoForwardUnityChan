@@ -38,7 +38,7 @@ public class StartSceneManager : MonoBehaviour
         this.animator.SetBool("Run", true);
         //ハイスコアの表示
         this.highScoreText.GetComponent<TextMeshProUGUI>().text = "あなたのハイスコア" +
-            PlayerPrefs.GetInt("highScore_Key_ver0.71", 0) + "pts";
+            PlayerPrefs.GetInt("highScore_Key_ver0.8", 0) + "pts";
     }
 
     void Update()
