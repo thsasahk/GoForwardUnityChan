@@ -76,7 +76,10 @@ public class CubeGenerator : MonoBehaviour
     /// オブジェクトのon/offを表す変数
     /// </summary>
     public bool isBoss;
-
+    /// <summary>
+    /// JumpMonsterの生成位置に影響
+    /// </summary>
+    [SerializeField] private float jPos;
 
     void Start()
     {
@@ -134,11 +137,11 @@ public class CubeGenerator : MonoBehaviour
             }
             else if (m == hardPercentage - 2)
             {
-                //lengthが100以下のとき、すでにJumpBallを生成している場合はJumpBallを生成しない
+                //lengthが75以下のとき、すでにJumpBallを生成している場合はJumpBallを生成しない
                 if (this.uiController.length < 75 || this.ballSwitch)
                     return;
                 GameObject go = Instantiate(this.jumpBall) as GameObject;
-                go.transform.position = new Vector2(this.genPosX - 3, this.offsetY);
+                go.transform.position = new Vector2(this.genPosX - this.jPos, this.offsetY);
                 //JumpBallを生成したことを記録
                 this.ballSwitch = true;
             }
