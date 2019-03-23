@@ -32,16 +32,37 @@ public class JumpBallController : MonoBehaviour
     /// オブジェクトの体力
     /// </summary>
     public int life;
+    /// <summary>
+    /// オブジェクトのRigidbody2D
+    /// </summary>
+    private Rigidbody2D rb2D;
+    /// <summary>
+    /// オブジェクトのジャンプ力
+    /// </summary>
+    [SerializeField] private float power;
+    //[SerializeField] private float power2;
+    /// <summary>
+    /// AddForceの引数
+    /// </summary>
+    private Vector2 powerVector;
+    //private Vector2 powerVector2;
 
     void Start()
     {
         this.jSE = GetComponents<AudioSource>();
         this.canvas = GameObject.Find("Canvas");
         this.uiController = this.canvas.GetComponent<UIController>();
+        this.rb2D = GetComponent<Rigidbody2D>();
+        this.powerVector = new Vector2(0.0f, this.power);
+        //this.powerVector2 = new Vector2(0.0f, this.power2);
     }
 
     void Update()
     {
+        if (this.uiController.isGameOver)
+        {
+            return;
+        }
         transform.Translate(this.speed * Time.deltaTime, 0, 0);//{16:9 -7_1028:786 -5.5}B{16:9 -6_1028:786 -5}
         //画面外に出たら破棄する
         if (transform.position.y < deadLine)
@@ -65,6 +86,34 @@ public class JumpBallController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
+        switch (other.gameObject.tag)
+        {
+            /*
+            case "Block":
+            case "HBlock":
+                this.rb2D.AddForce(this.powerVector2);
+                break;
+            */
+
+            case "Player":
+                if (other.gameObject.GetComponent<UnityChanController>().isStar)
+                {
+                    this.jSE[1].Play();
+                    break;
+                }
+
+                this.jSE[0].Play();
+                break;
+
+            case "Stage":
+                this.rb2D.AddForce(this.powerVector);
+                break;
+
+            default:  
+                break;
+        }
+        this.rb2D.AddForce(this.powerVector);
+        /*
         if (other.gameObject.tag == "Player")
         {
             if (other.gameObject.GetComponent<UnityChanController>().isStar)
@@ -74,6 +123,7 @@ public class JumpBallController : MonoBehaviour
             }
             this.jSE[0].Play();
         }
+        */
     }
 
     /// <summary>
