@@ -40,12 +40,10 @@ public class JumpBallController : MonoBehaviour
     /// オブジェクトのジャンプ力
     /// </summary>
     [SerializeField] private float power;
-    //[SerializeField] private float power2;
     /// <summary>
     /// AddForceの引数
     /// </summary>
     private Vector2 powerVector;
-    //private Vector2 powerVector2;
 
     void Start()
     {
@@ -54,7 +52,6 @@ public class JumpBallController : MonoBehaviour
         this.uiController = this.canvas.GetComponent<UIController>();
         this.rb2D = GetComponent<Rigidbody2D>();
         this.powerVector = new Vector2(0.0f, this.power);
-        //this.powerVector2 = new Vector2(0.0f, this.power2);
     }
 
     void Update()
@@ -88,12 +85,10 @@ public class JumpBallController : MonoBehaviour
     {
         switch (other.gameObject.tag)
         {
-            /*
             case "Block":
             case "HBlock":
-                this.rb2D.AddForce(this.powerVector2);
+                this.rb2D.AddForce(this.powerVector);
                 break;
-            */
 
             case "Player":
                 if (other.gameObject.GetComponent<UnityChanController>().isStar)
@@ -112,7 +107,6 @@ public class JumpBallController : MonoBehaviour
             default:  
                 break;
         }
-        this.rb2D.AddForce(this.powerVector);
         /*
         if (other.gameObject.tag == "Player")
         {
