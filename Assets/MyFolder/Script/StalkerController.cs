@@ -207,7 +207,7 @@ public class StalkerController : MonoBehaviour
                 this.rollSpeed = Random.Range(this.rsMin, this.rsMax);
                 iTween.RotateTo(other.gameObject, iTween.Hash("z", this.rollSpeed, "time", this.fallTime));
                 other.GetComponent<JumpBallController>().speed = 0;
-                other.GetComponent<BoxCollider2D>().enabled = false;
+                //other.GetComponent<BoxCollider2D>().enabled = false;
                 other.GetComponent<CircleCollider2D>().enabled = false;
                 break;
 
