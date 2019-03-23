@@ -62,3 +62,4 @@ MonoBehaviour:
   canvas: {fileID: 0}
   boss: {fileID: 9181895578445652581, guid: 4381199cb024d4a49a952cf8fe23a53e, type: 3}
   isBoss: 0
+  jPos: 1.5
