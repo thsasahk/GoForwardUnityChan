@@ -97,7 +97,7 @@ MonoBehaviour:
   bombSpeed: 6
   attack: 3
   deadLine: 8
-  knockBack: 1.2
+  knockBack: 0.8
 --- !u!70 &7967998438342243391
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
