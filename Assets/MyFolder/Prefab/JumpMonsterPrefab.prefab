@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3134302732947780869}
   - component: {fileID: 6571254959847768920}
   - component: {fileID: 2270473544019818831}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: JumpMonsterPrefab
   m_TagString: JumpBall
   m_Icon: {fileID: 0}
@@ -117,9 +117,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07009506, y: 0.12543368}
+  m_Offset: {x: 0.07009506, y: 0.1316477}
   serializedVersion: 2
-  m_Radius: 1.1495943
+  m_Radius: 1.1433803
 --- !u!50 &2853440468259008942
 Rigidbody2D:
   serializedVersion: 4
@@ -249,12 +249,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15cbc4e9f2ceba640ae0f4914b9a6c31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: -5.5
+  speed: -8
   deadLine: -10
   particlePrefab: {fileID: 8831586614848771706, guid: c1685a1363092334ab6654993b0214e7,
     type: 3}
   life: 1
-  power: 3000
+  power: 5000
 --- !u!82 &2270473544019818831
 AudioSource:
   m_ObjectHideFlags: 0

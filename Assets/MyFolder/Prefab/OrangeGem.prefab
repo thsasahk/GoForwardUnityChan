@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6083951886500774854}
   - component: {fileID: 1072609135215498791}
   - component: {fileID: 7124171510414375038}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: OrangeGem
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -342,3 +342,4 @@ MonoBehaviour:
     type: 3}
   life: 2
   time: 0
+  cubeGenarator: {fileID: 0}

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6083951886500774854}
   - component: {fileID: 1072609135215498791}
   - component: {fileID: 3211413635015445571}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TSOrangeGem
   m_TagString: Block
   m_Icon: {fileID: 0}
@@ -339,7 +339,7 @@ MonoBehaviour:
   life: 2
   speed: -5.5
   deadLine: -10
-  particlePrefab: {fileID: 6409366848875675875, guid: f6082426102b8ea478fe0a602d2fa5c6,
+  particlePrefab: {fileID: 8874050835183737977, guid: 7676c76fc91dee4498b330d5693664e5,
     type: 3}
   manualText: {fileID: 0}
   lesson4Start: 0

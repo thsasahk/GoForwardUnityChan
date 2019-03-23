@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8260528424439170956}
   - component: {fileID: 2789726138912420957}
   - component: {fileID: 4263806776521223009}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BossPrefab
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -146,7 +146,7 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   Player: {fileID: 8116148401185870980, guid: e2628e3ec1a8de24295ecb71bdd77753, type: 3}
-  jumpMonster: {fileID: 1685832049595097712, guid: 74d25e2828e23074baf4bdfbd789f852,
+  jumpMonster: {fileID: 1685832049595097712, guid: 26e54ce4d57722946aa5fad50b8e6c60,
     type: 3}
   star: {fileID: 8651462427137873048, guid: 6441df56f753a9c48a248a7d043e0bf8, type: 3}
   bossBullet: {fileID: 7173052509966433393, guid: e6bfa3d0001734941992731afe8a587e,
