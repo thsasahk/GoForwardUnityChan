@@ -20,6 +20,10 @@ public class TSBombController : MonoBehaviour
     /// オブジェクトを破棄するx座標
     /// </summary>
     [SerializeField] private float deadLine;//{16:9 10_1028:786 8}
+    /// <summary>
+    /// 衝突したHardBlockに与えるノックバックの時間
+    /// </summary>
+    [SerializeField] private float knockBack;
 
     void Start() { }
 
@@ -53,6 +57,7 @@ public class TSBombController : MonoBehaviour
             case "HBlock":
                 this.tSCubeController = other.gameObject.GetComponent<TSCubeController>();
                 this.tSCubeController.Damage(this.attack);
+                other.gameObject.GetComponent<TSCubeController>().time = this.knockBack;
                 if (attack <= 3)
                 {
                     Destroy(gameObject);

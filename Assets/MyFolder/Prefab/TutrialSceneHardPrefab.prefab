@@ -344,4 +344,5 @@ MonoBehaviour:
   manualText: {fileID: 0}
   lesson4Start: 0
   player: {fileID: 1626546840, guid: 301579eb75a5b054da97f4fedfc65d2b, type: 3}
-  delay: 1.8
+  time: 0
+  backSpeed: 3

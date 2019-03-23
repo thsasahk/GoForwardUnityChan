@@ -56,10 +56,16 @@ public class TSCubeController : MonoBehaviour
     /// playerオブジェクト
     /// </summary>
     [SerializeField] private GameObject player;
-
-    [SerializeField] private float delay;
-
-    private float count;
+    //[SerializeField] private float delay;
+    //private float count;
+    /// <summary>
+    /// bombLv1,bombLv2と衝突したときノックバックする時間
+    /// </summary>
+    public float time;
+    /// <summary>
+    /// bombLv1,bombLv2と衝突した時のノックバックの速度
+    /// </summary>
+    public float backSpeed;
 
     void Start()
     {
@@ -79,7 +85,16 @@ public class TSCubeController : MonoBehaviour
             Destroy(gameObject);
         }
         //キューブを移動させる
-        transform.Translate(this.speed * Time.deltaTime, 0, 0);
+        //transform.Translate(this.speed * Time.deltaTime, 0, 0);
+        if (this.time <= 0)
+        {
+            transform.Translate(this.speed * Time.deltaTime, 0, 0);
+        }
+        else
+        {
+            this.time -= Time.deltaTime;
+            transform.Translate(this.backSpeed * this.time * Time.deltaTime, 0, 0);
+        }
 
         /*lesson変数によってキューブの性質を変化させる
         switch (this.tutorialSceneManagerController.lesson)

@@ -209,3 +209,4 @@ MonoBehaviour:
   bombSpeed: 6
   attack: 5
   deadLine: 8
+  knockBack: 1.5
