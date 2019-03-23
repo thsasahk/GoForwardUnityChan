@@ -674,7 +674,7 @@ public class UnityChanController : MonoBehaviour
                     this.rollSpeed = Random.Range(this.rsMin, this.rsMax);
                     iTween.RotateTo(other.gameObject, iTween.Hash("z", this.rollSpeed, "time", this.fallTime));
                     other.gameObject.GetComponent<JumpBallController>().speed = 0;
-                    other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+                    //other.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                     other.gameObject.GetComponent<CircleCollider2D>().enabled = false;
                     break;
 

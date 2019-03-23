@@ -361,10 +361,10 @@ MonoBehaviour:
   coolTime: 5
   maxPosX: 0
   dashParticle: {fileID: 7168492035986713405}
-  vPowerMin: 100000
-  vPowerMax: 200000
-  hPowerMin: 30000
-  hPowerMax: 50000
+  vPowerMin: 15000
+  vPowerMax: 30000
+  hPowerMin: -10000
+  hPowerMax: 5000
   rsMin: 360
   rsMax: 1080
   fallTime: 5

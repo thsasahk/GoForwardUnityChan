@@ -202,8 +202,8 @@ public class StalkerController : MonoBehaviour
             case "JumpBall":
                 this.verticalPower = Random.Range(this.vPowerMin, this.vPowerMax);
                 this.horizontalPower = Random.Range(this.hPowerMin, this.hPowerMax);
-                other.GetComponent<Rigidbody2D>().AddForce(new Vector2(this.horizontalPower * Time.deltaTime,
-                    this.verticalPower * Time.deltaTime));
+                other.GetComponent<Rigidbody2D>().AddForce(new Vector2(this.horizontalPower * Time.deltaTime * 6.0f,
+                    this.verticalPower * Time.deltaTime * 6.0f));
                 this.rollSpeed = Random.Range(this.rsMin, this.rsMax);
                 iTween.RotateTo(other.gameObject, iTween.Hash("z", this.rollSpeed, "time", this.fallTime));
                 other.GetComponent<JumpBallController>().speed = 0;

@@ -120,10 +120,10 @@ MonoBehaviour:
   posMin: -8
   speed: -0.4
   span: 10
-  vPowerMin: 100000
-  vPowerMax: 200000
-  hPowerMin: -100000
-  hPowerMax: 50000
+  vPowerMin: 30000
+  vPowerMax: 50000
+  hPowerMin: -20000
+  hPowerMax: 5000
   rsMin: 360
   rsMax: 1080
   fallTime: 5

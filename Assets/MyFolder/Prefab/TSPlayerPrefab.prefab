@@ -384,10 +384,10 @@ MonoBehaviour:
   starTime: 1.5
   t1: 0.1
   interval: 0.1
-  vPowerMin: 100000
-  vPowerMax: 200000
-  hPowerMin: 30000
-  hPowerMax: 50000
+  vPowerMin: 15000
+  vPowerMax: 30000
+  hPowerMin: -10000
+  hPowerMax: 5000
   rsMin: 360
   rsMax: 1080
   fallTime: 5
