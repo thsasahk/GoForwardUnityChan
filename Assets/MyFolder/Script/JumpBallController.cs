@@ -85,11 +85,6 @@ public class JumpBallController : MonoBehaviour
     {
         switch (other.gameObject.tag)
         {
-            case "Block":
-            case "HBlock":
-                this.rb2D.AddForce(this.powerVector);
-                break;
-
             case "Player":
                 if (other.gameObject.GetComponent<UnityChanController>().isStar)
                 {
