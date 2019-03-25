@@ -176,9 +176,13 @@ public class UnityChanController : MonoBehaviour
     /// </summary>
     //public float dashPowerX;
     /// <summary>
-    /// Playerオブジェクトのx方向の限界
+    /// Playerオブジェクトのx方向の移動制限
     /// </summary>
     public float maxPosX;
+    /// <summary>
+    /// Playerオブジェクトのx方向の移動制限
+    /// </summary>
+    [SerializeField] private float minPosX;
     /// <summary>
     /// dashParticleオブジェクト
     /// </summary>
@@ -306,10 +310,13 @@ public class UnityChanController : MonoBehaviour
             this.isStar = false;
         }
         //maxPosX以上の位置への移動は禁止する
+        Mathf.Clamp(transform.position.x, this.minPosX, this.maxPosX);
+        /*
         if (this.transform.position.x >= this.maxPosX)
         {
             this.transform.position = new Vector2(this.maxPosX, this.transform.position.y);
         }
+        */
         //着地しているかどうかを調べる
         this.isGround = (this.transform.position.y > this.groundLevel) ? false : true;
         /*

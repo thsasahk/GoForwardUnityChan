@@ -126,9 +126,13 @@ public class TSPlayerController : MonoBehaviour
     /// </summary>
     private TSStarPanelController tSStarPanelController;
     /// <summary>
-    /// Playerオブジェクトのx方向の限界
+    /// Playerオブジェクトのx方向の移動制限
     /// </summary>
     public float maxPosX;
+    /// <summary>
+    /// Playerオブジェクトのx方向の移動制限
+    /// </summary>
+    [SerializeField] private float minPosX;
     /// <summary>
     /// dashParticleオブジェクト
     /// </summary>
@@ -275,6 +279,8 @@ public class TSPlayerController : MonoBehaviour
             this.rigid2D.velocity = Vector2.zero;
             return;
         }
+        //maxPosX以上の位置への移動は禁止する
+        Mathf.Clamp(transform.position.x, this.minPosX, this.maxPosX);
         //最後にStarDash()を呼び出してからの時間を計測
         this.time += Time.deltaTime;
         //無敵状態解除

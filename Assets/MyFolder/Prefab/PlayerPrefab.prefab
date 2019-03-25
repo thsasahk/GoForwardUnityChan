@@ -360,6 +360,7 @@ MonoBehaviour:
   starPanel: {fileID: 0}
   coolTime: 5
   maxPosX: 0
+  minPosX: -4
   dashParticle: {fileID: 7168492035986713405}
   vPowerMin: 15000
   vPowerMax: 30000
